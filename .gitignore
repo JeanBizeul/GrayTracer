@@ -1,0 +1,6 @@
+raytracer
+
+*.log
+
+objs/
+.vscode/
