@@ -15,7 +15,7 @@ You can take a look at the newcomers documentation we wrote which explains why w
 
 The raytracer also features a fully scipted scene manager using libconfig++ file format and C++ library.
 
-**You can find the documentation under the [doc folder](doc/how-to-read.md) located at the root of the repository.**
+**You can find the documentation under the [doc folder](<doc/How to read.md>) located at the root of the repository.**
 
 ## Installation & usage
 
