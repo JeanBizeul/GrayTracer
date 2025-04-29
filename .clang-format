@@ -11,3 +11,7 @@ IncludeCategories:
       Priority: 1
     - Regex: '".*\.hpp"'
       Priority: 3
+PointerAlignment: Right
+ReferenceAlignment: Right
+DerivePointerAlignment: false
+SeparateDefinitionBlocks: Always
