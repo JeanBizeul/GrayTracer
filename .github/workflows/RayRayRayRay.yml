@@ -26,6 +26,7 @@ jobs:
           echo "repo=false" >> "$GITHUB_OUTPUT"
   check_program_compilation:
     name: compilation
+    needs: check_mirror_repo
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker:latest
     steps:
@@ -70,7 +71,9 @@ jobs:
         run: make tests_run
   push_to_mirror:
     name: pushing
-    needs: run_tests
+    needs:
+      - run_tests
+      - check_mirror_repo
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
