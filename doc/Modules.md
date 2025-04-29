@@ -5,6 +5,7 @@ These objects can represent these things :
 - [Primitives](Modules/Primitives.md): 3D objects.
 - [Lights](Modules/Lights.md).
 - [Materials](Modules/Materials.md).
+- [Renderers](Renderers.md).
 
 More modules may be added in the future but for now the rest of the program is shipped in with the code base.
 
