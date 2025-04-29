@@ -10,6 +10,20 @@ env:
   MIRROR_URL: "git@github.com:EpitechPromo2028/B-OOP-400-NAN-4-1-raytracer-jean.bizeul.git"
   BINARY: "raytracer"
 jobs:
+  check_mirror_repo:
+    name: "Check mirror repository"
+    runs-on: ubuntu-latest
+    outputs:
+        check_repo: ${{ steps.check_repo.outputs.repo }}
+    steps:
+      - id: check_repo
+        run: |
+          cleaned_url=$(echo "$MIRROR_URL" | sed 's/git@github.com://' | sed 's/.git$//')
+          if [[ "${{ github.repository }}" == $cleaned_url ]]; then
+            echo "repo=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "repo=false" >> "$GITHUB_OUTPUT"
   check_program_compilation:
     name: compilation
     runs-on: ubuntu-latest
