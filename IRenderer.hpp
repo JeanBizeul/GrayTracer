@@ -17,8 +17,10 @@ class IRenderer : public I3dObject {
         IRenderer();
         ~IRenderer();
 
-    Camera _camera;
-    Screen _screen;
+    virtual void getCamera() = 0;
+    virtual void getScreen() = 0;
+    virtual void setCamera(Camera) = 0;
+    virtual void setScreen(Screen) = 0;
     //RENDERING
     //PIPELINE
 };

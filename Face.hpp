@@ -5,20 +5,17 @@
 ** header
 */
 
+#include <array>
 #include "Line.hpp"
 
 #ifndef face
 #define face
 
-class Face {
-    public:
-        Face();
-        ~Face() = default;
+template <unsigned int N>
 
-    Line Upper;
-    Line Bottom;
-    Line Left;
-    Line Right;
+class Face
+{
+    std::array<Line, N> _lines;
 };
 
 #endif /* !face */

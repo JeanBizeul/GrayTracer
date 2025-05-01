@@ -15,7 +15,7 @@ class Screen {
         Screen();
         ~Screen() = default;
 
-    Face screen;
+    static Face<4> screen;
 };
 
 #endif /* !SCREEN */

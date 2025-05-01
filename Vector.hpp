@@ -15,6 +15,7 @@ class Vector3D {
         ~Vector3D() = default;
     int dot(Vector3D other);
     int lenght();
+    
 
     double x, y, z;
 };
