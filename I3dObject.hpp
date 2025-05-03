@@ -16,7 +16,7 @@ class I3dObject {
     protected:
         I3dObject();
         ~I3dObject() = default;
-
+    public:
         virtual double getScale() = 0;
         virtual Point3D getPosition() = 0;
         virtual Vector3D getRotation() = 0;
