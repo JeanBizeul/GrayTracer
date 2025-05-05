@@ -62,10 +62,10 @@ jobs:
     needs: check_mirror_repo
     runs-on: ubuntu-latest
     steps:
-      - name: Check for source code in root
+      - name: Check for .hpp or .cpp files in root
         run: |
-          if [ "$(ls -A . | grep -v '.github')" ]; then
-            echo "::error title="Source code found in root directory!"::"
+          if ls *.hpp 1> /dev/null 2>&1 || ls *.cpp 1> /dev/null 2>&1; then
+            echo "::error title=Source code found in root directory!::"
             exit 1
           fi
   run_tests:
