@@ -63,11 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check for .hpp or .cpp files in root
-        run: |
-          if ls *.hpp 1> /dev/null 2>&1 || ls *.cpp 1> /dev/null 2>&1; then
-            echo "::error title=Source code found in root directory!::"
-            exit 1
-          fi
+        run: ./.github/scripts/no_code_in_root.sh
   run_tests:
     name: tests
     needs: check_program_compilation
