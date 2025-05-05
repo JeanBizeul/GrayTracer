@@ -5,8 +5,7 @@
 ** header
 */
 
-#ifndef PROTOTYPE
-#define PROTOTYPE
+#ifndef SRC_MAIN_HPP_
+#define SRC_MAIN_HPP_
 
-
-#endif /* !main */
+#endif  // SRC_MAIN_HPP_

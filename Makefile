@@ -26,7 +26,7 @@ INCLUDE_PATH	=	./include
 
 SRCS		=
 
-MAIN		=	main.cpp
+MAIN		=	src/main.cpp
 
 TEST_OUTPUT	=	unit_tests
 

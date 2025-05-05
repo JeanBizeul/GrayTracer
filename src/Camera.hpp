@@ -8,17 +8,18 @@
 #include "I3dObject.hpp"
 #include "Ray.hpp"
 
-#ifndef CAMERA
-#define CAMERA
+#ifndef SRC_CAMERA_HPP_
+#define SRC_CAMERA_HPP_
 
 class Camera {
-    public:
+ public:
     Camera();
     ~Camera() = default;
 
     Point3D origin;
     Screen screen;
-    Ray GenerateRay(double u, double v); //return ray from the camera to the screen
+    Ray GenerateRay(double u,
+                    double v);  // return ray from the camera to the screen
 };
 
-#endif /* !CAMERA */
+#endif  // SRC_CAMERA_HPP_

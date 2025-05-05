@@ -5,24 +5,24 @@
 ** header
 */
 
-#include "I3dObject.hpp"
 #include "Camera.hpp"
+#include "I3dObject.hpp"
 #include "Screen.hpp"
 
-#ifndef IRENDERER
-#define IRENDERER
+#ifndef SRC_IRENDERER_HPP_
+#define SRC_IRENDERER_HPP_
 
 class IRenderer : public I3dObject {
-    public:
-        IRenderer();
-        ~IRenderer();
+ public:
+    IRenderer();
+    ~IRenderer();
 
     virtual void getCamera() = 0;
     virtual void getScreen() = 0;
     virtual void setCamera(Camera) = 0;
     virtual void setScreen(Screen) = 0;
-    //RENDERING
-    //PIPELINE
+    // RENDERING
+    // PIPELINE
 };
 
-#endif /* !IRENDERER */
+#endif  // SRC_IRENDERER_HPP_

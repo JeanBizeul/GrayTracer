@@ -6,16 +6,16 @@
 */
 
 #include <array>
+
 #include "Line.hpp"
 
-#ifndef face
-#define face
+#ifndef SRC_FACE_HPP_
+#define SRC_FACE_HPP_
 
 template <unsigned int N>
 
-class Face
-{
+class Face {
     std::array<Line, N> _lines;
 };
 
-#endif /* !face */
+#endif  // SRC_FACE_HPP_
