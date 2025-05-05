@@ -57,6 +57,17 @@ jobs:
         run: apt-get update && apt-get install -y make
       - name: Run C++ linter
         run: make linter
+  no_code_in_root:
+    name: "No source code in repository root"
+    needs: check_mirror_repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for source code in root
+        run: |
+          if [ "$(ls -A . | grep -v '.github')" ]; then
+            echo "::error title="Source code found in root directory!"::"
+            exit 1
+          fi
   run_tests:
     name: tests
     needs: check_program_compilation
@@ -74,6 +85,8 @@ jobs:
     needs:
       - run_tests
       - check_mirror_repo
+      - check_cpp_linter
+      - no_code_in_root
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
