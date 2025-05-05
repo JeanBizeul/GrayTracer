@@ -51,6 +51,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 1
       - name: Install cpplint
         run: apt-get update && apt-get install -y python3-pip && pip install --upgrade pip && pip3 install cpplint
       - name: Install Make
@@ -62,10 +64,14 @@ jobs:
     needs: check_mirror_repo
     runs-on: ubuntu-latest
     steps:
-      - name: Check for source code in root
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Check for .hpp or .cpp files in root
         run: |
-          if [ "$(ls -A . | grep -v '.github')" ]; then
-            echo "::error title="Source code found in root directory!"::"
+          if ls *.hpp 1> /dev/null 2>&1 || ls *.cpp 1> /dev/null 2>&1; then
+            echo "::error title=Source code found in root directory!::"
             exit 1
           fi
   run_tests:
