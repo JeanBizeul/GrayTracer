@@ -7,8 +7,8 @@
 
 #include "Face.hpp"
 
-#ifndef SRC_SCREEN_HPP_
-    #define SRC_SCREEN_HPP_
+#ifndef RAYTRACER_SCREEN_HPP_
+    #define RAYTRACER_SCREEN_HPP_
 
 namespace RayTracer {
 class Screen {
@@ -20,4 +20,4 @@ class Screen {
 };
 }  // namespace RayTracer
 
-#endif  // SRC_SCREEN_HPP_
+#endif  // RAYTRACER_SCREEN_HPP_

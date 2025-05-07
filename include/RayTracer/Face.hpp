@@ -5,8 +5,8 @@
 ** header
 */
 
-#ifndef SRC_FACE_HPP_
-    #define SRC_FACE_HPP_
+#ifndef RAYTRACER_FACE_HPP_
+    #define RAYTRACER_FACE_HPP_
     #include <array>
 
     #include "Segment.hpp"
@@ -16,8 +16,8 @@ template <unsigned int N>
 class Face {
  public:
     Face() = delete;
-    Face(std::array<RayTracer::Segment, N> segments)
-        : _segs(segments) {};
+    explicit Face(std::array<RayTracer::Segment, N> segments)
+        : _segs(segments) {}
     ~Face() = default;
 
  private:
@@ -25,4 +25,4 @@ class Face {
 };
 }  // namespace RayTracer
 
-#endif  // SRC_FACE_HPP_
+#endif  // RAYTRACER_FACE_HPP_

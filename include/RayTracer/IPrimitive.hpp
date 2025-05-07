@@ -7,8 +7,8 @@
 
 #include "I3dObject.hpp"
 
-#ifndef SRC_IPRIMITIVE_HPP_
-#define SRC_IPRIMITIVE_HPP_
+#ifndef RAYTRACER_IPRIMITIVE_HPP_
+    #define RAYTRACER_IPRIMITIVE_HPP_
 
 namespace RayTracer {
 class IPrimitive : public RayTracer::I3dObject {
@@ -21,4 +21,4 @@ class IPrimitive : public RayTracer::I3dObject {
 };
 }  // namespace RayTracer
 
-#endif  // SRC_IPRIMITIVE_HPP_
+#endif  // RAYTRACER_IPRIMITIVE_HPP_

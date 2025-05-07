@@ -9,8 +9,8 @@
 #include "I3dObject.hpp"
 #include "Screen.hpp"
 
-#ifndef SRC_IRENDERER_HPP_
-#define SRC_IRENDERER_HPP_
+#ifndef RAYTRACER_IRENDERER_HPP_
+    #define RAYTRACER_IRENDERER_HPP_
 
 namespace RayTracer {
 class IRenderer : public I3dObject {
@@ -27,4 +27,4 @@ class IRenderer : public I3dObject {
 };
 }  // namespace RayTracer
 
-#endif  // SRC_IRENDERER_HPP_
+#endif  // RAYTRACER_IRENDERER_HPP_

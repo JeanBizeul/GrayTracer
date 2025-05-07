@@ -7,8 +7,8 @@
 
 #include "I3dObject.hpp"
 
-#ifndef SRC_ILIGHT_HPP_
-#define SRC_ILIGHT_HPP_
+#ifndef RAYTRACER_ILIGHT_HPP_
+    #define RAYTRACER_ILIGHT_HPP_
 
 namespace RayTracer {
 class ILight : public RayTracer::I3dObject {
@@ -22,4 +22,4 @@ class ILight : public RayTracer::I3dObject {
 };
 }  // namespace RayTracer
 
-#endif  // SRC_ILIGHT_HPP_
+#endif  // RAYTRACER_ILIGHT_HPP_

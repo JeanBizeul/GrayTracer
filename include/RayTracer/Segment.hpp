@@ -8,15 +8,15 @@
 #include "Math/Point.hpp"
 #include "Math/Vec.hpp"
 
-#ifndef SRC_SEGMENTHPP_
-#define SRC_SEGMENTHPP_
+#ifndef RAYTRACER_SEGMENT_HPP_
+    #define RAYTRACER_SEGMENT_HPP_
 
-namespace RayTracer{
+namespace RayTracer {
 class Segment {
  public:
-    Segment() : _p1(0), _p2(0) {};
+    Segment() : _p1(0), _p2(0) {}
     Segment(Math::Point<3> p1, Math::Point<3> p2)
-        : _p1(p1), _p2(p2) {};
+        : _p1(p1), _p2(p2) {}
     ~Segment() = default;
 
     Math::Point<3> _p1;
@@ -24,4 +24,4 @@ class Segment {
 };
 }  // namespace RayTracer
 
-#endif  // SRC_SEGMENTHPP_
+#endif  // RAYTRACER_SEGMENT_HPP_
