@@ -14,7 +14,7 @@
 namespace RayTracer {
 class Camera {
  public:
-   Camera();
+   Camera() = default;
    ~Camera() = default;
 
    Math::Point<3> origin;

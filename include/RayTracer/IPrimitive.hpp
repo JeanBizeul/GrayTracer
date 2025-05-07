@@ -10,7 +10,8 @@
 #ifndef SRC_IPRIMITIVE_HPP_
 #define SRC_IPRIMITIVE_HPP_
 
-class IPrimitive : public I3dObject {
+namespace RayTracer {
+class IPrimitive : public RayTracer::I3dObject {
  public:
     IPrimitive();
     ~IPrimitive();
@@ -18,5 +19,6 @@ class IPrimitive : public I3dObject {
     // 3D MODEL
     // MATERIALS
 };
+}  // namespace RayTracer
 
 #endif  // SRC_IPRIMITIVE_HPP_
