@@ -7,10 +7,11 @@
 
 #include "I3dObject.hpp"
 
-#ifndef SRC_ILIGHT_HPP_
-#define SRC_ILIGHT_HPP_
+#ifndef RAYTRACER_ILIGHT_HPP_
+    #define RAYTRACER_ILIGHT_HPP_
 
-class ILight : public I3dObject {
+namespace RayTracer {
+class ILight : public RayTracer::I3dObject {
  public:
     ILight();
     ~ILight();
@@ -19,5 +20,6 @@ class ILight : public I3dObject {
     // OPERTURE
     // INTENSITY
 };
+}  // namespace RayTracer
 
-#endif  // SRC_ILIGHT_HPP_
+#endif  // RAYTRACER_ILIGHT_HPP_
