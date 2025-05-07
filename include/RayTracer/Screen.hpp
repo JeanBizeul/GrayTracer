@@ -8,14 +8,16 @@
 #include "Face.hpp"
 
 #ifndef SRC_SCREEN_HPP_
-#define SRC_SCREEN_HPP_
+    #define SRC_SCREEN_HPP_
 
+namespace RayTracer {
 class Screen {
  public:
-    Screen();
+    Screen(Math::Point<3> pos, Math::Vec<3> size);
     ~Screen() = default;
 
-    static Face<4> screen;
+    static RayTracer::Face<4> screen;
 };
+}  // namespace RayTracer
 
 #endif  // SRC_SCREEN_HPP_
