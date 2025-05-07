@@ -14,7 +14,7 @@
 
 namespace RayTracer {
 class IRenderer : public I3dObject {
- public:
+    public:
     IRenderer();
     ~IRenderer();
 

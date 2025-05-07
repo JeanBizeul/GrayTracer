@@ -13,7 +13,7 @@
 namespace Math {
 template<std::size_t N>
 class Vec {
- public:
+    public:
     Vec();
     explicit Vec(double val);
     explicit Vec(std::array<double, N> vals);
@@ -55,7 +55,7 @@ class Vec {
     double u() const;
     double v() const;
 
- private:
+    private:
     std::array<double, N> _arr;
 };
 }  // namespace Math

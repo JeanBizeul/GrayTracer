@@ -12,7 +12,7 @@
 
 namespace RayTracer {
 class ILight : public RayTracer::I3dObject {
- public:
+    public:
     ILight();
     ~ILight();
 
