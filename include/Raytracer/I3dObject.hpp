@@ -10,6 +10,7 @@
    #include "Math/Point.hpp"
    #include "Math/Vec.hpp"
 
+namespace RayTracer {
 class I3dObject {
  public:
    I3dObject() = delete;
@@ -23,5 +24,6 @@ class I3dObject {
  protected:
    ~I3dObject() = default;
 };
+}  // namespace rayTracer
 
 #endif  // SRC_I3DOBJECT_HPP_
