@@ -12,17 +12,17 @@
 
 namespace RayTracer {
 class ILight : public RayTracer::I3dObject {
-    public:
+     public:
     ILight();
     ~ILight();
 
-    //COLOR
+    // COLOR
     virtual Math::Vec<4> getColor() = 0;
     virtual void setColor(Math::Vec<4> Color) = 0;
-    //BEAM ANGLE //DOUBLE °
+    // BEAM ANGLE //DOUBLE °
     virtual double getBeamAngle() = 0;
     virtual void setBeamColor(double angle) = 0;
-    //INTENSITY
+    // INTENSITY
     virtual double getIntesity() = 0;
     virtual void setIntesity(double) = 0;
 };

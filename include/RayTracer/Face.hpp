@@ -14,13 +14,13 @@
 namespace RayTracer {
 template <unsigned int N>
 class Face {
-    public:
+     public:
     Face() = delete;
     explicit Face(std::array<RayTracer::Segment, N> segments)
         : _segs(segments) {}
     ~Face() = default;
 
-    private:
+     private:
     std::array<RayTracer::Segment, N> _segs;
 };
 }  // namespace RayTracer

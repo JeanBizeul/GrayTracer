@@ -15,7 +15,7 @@
 namespace Math {
 template<std::size_t N>
 class Point {
-    public:
+     public:
     Point();
     explicit Point(double val);
     explicit Point(std::array<double, N> vals);
@@ -47,7 +47,7 @@ class Point {
     double u() const;
     double v() const;
 
-    private:
+     private:
     std::array<double, N> _arr;
 };
 }  // namespace Math
