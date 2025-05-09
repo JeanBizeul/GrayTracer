@@ -6,21 +6,24 @@
 */
 
 #ifndef RAYTRACER_FACE_HPP_
-    #define RAYTRACER_FACE_HPP_
-    #include <array>
+#define RAYTRACER_FACE_HPP_
+#include <array>
 
-    #include "Segment.hpp"
+#include "Segment.hpp"
 
 namespace RayTracer {
 template <unsigned int N>
 class Face {
-     public:
+ public:
     Face() = delete;
+
     explicit Face(std::array<RayTracer::Segment, N> segments)
-        : _segs(segments) {}
+        : _segs(segments) {
+    }
+
     ~Face() = default;
 
-     private:
+ private:
     std::array<RayTracer::Segment, N> _segs;
 };
 }  // namespace RayTracer

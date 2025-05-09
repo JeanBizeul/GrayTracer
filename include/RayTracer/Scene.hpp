@@ -5,16 +5,17 @@
 ** header
 */
 
-#ifndef scene
-#define scene
+#ifndef RAYTRACER_SCENE_HPP_
+#define RAYTRACER_SCENE_HPP_
 
 #include <vector>
-#include "ILight.hpp"
+
 #include "Camera.hpp"
+#include "ILight.hpp"
 #include "IPrimitive.hpp"
 
 class Scene {
-     public:
+ public:
     Scene();
     ~Scene() = default;
 
