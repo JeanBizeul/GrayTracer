@@ -12,7 +12,7 @@
 
 namespace RayTracer {
 class IPrimitive : public RayTracer::I3dObject {
-    public:
+     public:
     IPrimitive();
     ~IPrimitive();
 

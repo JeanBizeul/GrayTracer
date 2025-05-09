@@ -14,7 +14,7 @@
 #include "IPrimitive.hpp"
 
 class Scene {
-    public:
+     public:
         Scene();
         ~Scene() = default;
 
