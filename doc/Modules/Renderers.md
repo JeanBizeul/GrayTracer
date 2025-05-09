@@ -1,5 +1,5 @@
 # Renderers
-When loaded, must comminucate what level of illum  they support :
+When loaded, must communicate what level of illumination they support:
 
 | 1   | Color on ambient and diffuse only       |
 | --- | --------------------------------------- |

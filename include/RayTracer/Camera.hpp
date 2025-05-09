@@ -5,11 +5,11 @@
 ** header
 */
 
-#include "Screen.hpp"
 #include "Ray.hpp"
+#include "Screen.hpp"
 
 #ifndef RAYTRACER_CAMERA_HPP_
-    #define RAYTRACER_CAMERA_HPP_
+#define RAYTRACER_CAMERA_HPP_
 
 namespace RayTracer {
 class Camera {

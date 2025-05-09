@@ -6,14 +6,14 @@
 */
 
 #ifndef MATH_POINT_HPP_
-    #define MATH_POINT_HPP_
-    #include <cstddef>
-    #include <array>
+#define MATH_POINT_HPP_
+#include <array>
+#include <cstddef>
 
-    #include "Vec.hpp"
+#include "Vec.hpp"
 
 namespace Math {
-template<std::size_t N>
+template <std::size_t N>
 class Point {
  public:
     Point();
@@ -30,7 +30,7 @@ class Point {
     void operator+=(const Vec<N> &vector);
     void operator-=(const Vec<N> &vector);
 
-    template<std::size_t P>
+    template <std::size_t P>
     double get() const;
     double operator[](std::size_t index) const;
 
