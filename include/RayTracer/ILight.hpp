@@ -16,9 +16,15 @@ class ILight : public RayTracer::I3dObject {
     ILight();
     ~ILight();
 
-    // COLOR
-    // OPERTURE
-    // INTENSITY
+    //COLOR
+    virtual Math::Vec<4> getColor() = 0;
+    virtual void setColor(Math::Vec<4> Color) = 0;
+    //BEAM ANGLE //DOUBLE °
+    virtual double getBeamAngle() = 0;
+    virtual void setBeamColor(double angle) = 0;
+    //INTENSITY
+    virtual double getIntesity() = 0;
+    virtual void setIntesity(double) = 0;
 };
 }  // namespace RayTracer
 
