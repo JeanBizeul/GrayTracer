@@ -13,7 +13,7 @@
 
 namespace RayTracer {
 class Ray {
-    public:
+     public:
     Ray() : _origin(0), _direction(0) {}
     Ray(Math::Point<3> origin, Math::Vec<3> direction)
         : _origin(origin), _direction(direction) {}

@@ -15,12 +15,12 @@
 
 class Scene {
      public:
-        Scene();
-        ~Scene() = default;
+    Scene();
+    ~Scene() = default;
 
     std::vector<RayTracer::IPrimitive> primitives;
     std::vector<RayTracer::Camera> cameras;
     std::vector<RayTracer::ILight> lights;
 };
 
-#endif /* !scene */
+#endif  // RAYTRACER_SCENE_HPP_

@@ -13,7 +13,7 @@
 
 namespace RayTracer {
 class Camera {
-    public:
+     public:
     Camera() = default;
     ~Camera() = default;
 

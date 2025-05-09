@@ -12,7 +12,7 @@
 
 namespace RayTracer {
 class I3dObject {
-    public:
+     public:
     I3dObject() = delete;
     virtual Math::Point<3> getPosition() = 0;
     virtual Math::Vec<3> getRotation() = 0;
@@ -21,7 +21,7 @@ class I3dObject {
     virtual void setRotation(Math::Vec<3>) = 0;
     virtual double getScale() = 0;
 
-    protected:
+     protected:
     ~I3dObject() = default;
 };
 }  // namespace RayTracer
