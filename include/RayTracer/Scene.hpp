@@ -11,13 +11,14 @@
 #include <vector>
 #include "ILight.hpp"
 #include "Camera.hpp"
+#include "IPrimitive.hpp"
 
 class Scene {
     public:
         Scene();
         ~Scene() = default;
 
-    //std::vector<> primitives;
+    std::vector<RayTracer::IPrimitive> primitives;
     std::vector<RayTracer::Camera> cameras;
     std::vector<RayTracer::ILight> lights;
 };
