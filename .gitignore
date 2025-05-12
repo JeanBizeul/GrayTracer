@@ -1,6 +1,7 @@
 raytracer
 
 *.log
+*.so
 
 objs/
 .vscode/
