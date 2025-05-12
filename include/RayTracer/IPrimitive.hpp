@@ -14,7 +14,7 @@ namespace RayTracer {
 class IPrimitive : public RayTracer::I3dObject {
  public:
     IPrimitive();
-    ~IPrimitive();
+    ~IPrimitive() = default;
 
     // 3D MODEL
     // MATERIALS
