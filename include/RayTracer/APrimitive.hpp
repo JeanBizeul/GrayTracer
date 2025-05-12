@@ -5,6 +5,8 @@
 ** header
 */
 
+#include <vector>
+
 #include "I3dObject.hpp"
 #include "IFace.hpp"
 #include "Math/Point.hpp"

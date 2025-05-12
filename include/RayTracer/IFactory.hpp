@@ -5,10 +5,12 @@
 ** IFactory
 */
 
-#ifndef IFACTORY_HPP_
-#define IFACTORY_HPP_
-#include <libconfig.h++>
+#ifndef RAYTRACER_IFACTORY_HPP_
+#define RAYTRACER_IFACTORY_HPP_
 #include <memory>
+#include <string>
+
+#include <libconfig.h++>
 
 namespace RayTracer {
 template <typename T>
@@ -24,4 +26,4 @@ template <typename T>
 using FactoryReturnType = std::unique_ptr<RayTracer::IFactory<T>>;
 }  // namespace RayTracer
 
-#endif /* !IFACTORY_HPP_ */
+#endif  // RAYTRACER_IFACTORY_HPP_

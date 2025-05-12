@@ -5,8 +5,11 @@
 ** SphereFactory
 */
 
-#ifndef SPHEREFACTORY_HPP_
-#define SPHEREFACTORY_HPP_
+#ifndef SRC_LIB_FACTORIES_PRIMITIVES_SQUARE_SRC_SPHEREFACTORY_HPP_
+#define SRC_LIB_FACTORIES_PRIMITIVES_SQUARE_SRC_SPHEREFACTORY_HPP_
+#include <memory>
+#include <string>
+
 #include "RayTracer/IFactory.hpp"
 #include "Sphere.hpp"
 
@@ -16,13 +19,13 @@ class SphereFactory : public IFactory<RayTracer::Sphere> {
     SphereFactory() = default;
     ~SphereFactory() = default;
 
-    virtual std::unique_ptr<RayTracer::Sphere> createObject(
+    std::unique_ptr<RayTracer::Sphere> createObject(
         libconfig::Setting &settings) final;
-    virtual const std::string &getObjectTag() const final;
+    const std::string &getObjectTag() const final;
 
  private:
     const std::string _tag = "sphere";
 };
 }  // namespace RayTracer
 
-#endif /* !SPHEREFACTORY_HPP_ */
+#endif  // SRC_LIB_FACTORIES_PRIMITIVES_SQUARE_SRC_SPHEREFACTORY_HPP_

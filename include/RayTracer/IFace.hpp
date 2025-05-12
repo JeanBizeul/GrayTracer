@@ -5,8 +5,8 @@
 ** IFace
 */
 
-#ifndef IFACE_HPP_
-#define IFACE_HPP_
+#ifndef RAYTRACER_IFACE_HPP_
+#define RAYTRACER_IFACE_HPP_
 #include <vector>
 
 #include "Ray.hpp"
@@ -22,4 +22,4 @@ class IFace {
 };
 }  // namespace RayTracer
 
-#endif /* !IFACE_HPP_ */
+#endif  // RAYTRACER_IFACE_HPP_

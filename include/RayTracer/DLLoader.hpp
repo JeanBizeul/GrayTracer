@@ -5,8 +5,8 @@
 ** DLLoader
 */
 
-#ifndef DLLOADER_HPP_
-#define DLLOADER_HPP_
+#ifndef RAYTRACER_DLLOADER_HPP_
+#define RAYTRACER_DLLOADER_HPP_
 #include <dlfcn.h>
 
 #include <memory>
@@ -30,16 +30,16 @@ class DLLoader {
         if (!_entryPoint)
             throw DLLoaderError("Could not find entry point in " + _libName +
                                 ": " + dlerror());
-    };
+    }
 
     ~DLLoader() {
         if (dlclose(_handler) != 0)
             throw DLLoaderError("Cannot unload " + _libName + ": " + dlerror());
-    };
+    }
 
     std::unique_ptr<T> getInstance() {
         return _entryPoint();
-    };
+    }
 
  private:
     void *_handler;
@@ -49,7 +49,7 @@ class DLLoader {
 
 class DLLoaderError : std::runtime_error {
  public:
-    DLLoaderError(const std::string &msg) : std::runtime_error(msg) {};
+    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {}
 };
 
-#endif /* !DLLOADER_HPP_ */
+#endif  // RAYTRACER_DLLOADER_HPP_
