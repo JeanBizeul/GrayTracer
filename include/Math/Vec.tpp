@@ -163,13 +163,13 @@ void Vec<N>::operator/=(double val)
 
 template<std::size_t N>
 template<std::size_t P>
-double Vec<N>::get() const {
+double &Vec<N>::get() {
     static_assert(P < N, "Vec.get<P>(): Index out of range");
     return _arr[P];
 }
 
 template<std::size_t N>
-double Vec<N>::operator[](std::size_t index) const
+double &Vec<N>::operator[](std::size_t index)
 {
     if (index < _arr.size())
         throw std::out_of_range("Vec[]: Index out of range");
@@ -180,27 +180,27 @@ double Vec<N>::operator[](std::size_t index) const
 // xyzw
 
 template <std::size_t N>
-double Vec<N>::x() const
+double &Vec<N>::x()
 {
     return _arr[0];
 }
 
 template <std::size_t N>
-double Vec<N>::y() const
+double &Vec<N>::y()
 {
     static_assert(N >= 2, "Vec::y is only available on Vectors of size 2 and more");
     return _arr[1];
 }
 
 template <std::size_t N>
-double Vec<N>::z() const
+double &Vec<N>::z()
 {
     static_assert(N >= 3, "Vec::z is only available on Vectors of size 3 and more");
     return _arr[2];
 }
 
 template <std::size_t N>
-double Vec<N>::w() const
+double &Vec<N>::w()
 {
     static_assert(N >= 4, "Vec::w is only available on Vectors of size 4 and more");
     return _arr[3];
@@ -209,27 +209,27 @@ double Vec<N>::w() const
 // rgba
 
 template <std::size_t N>
-double Vec<N>::r() const
+double &Vec<N>::r()
 {
     return _arr[0];
 }
 
 template <std::size_t N>
-double Vec<N>::g() const
+double &Vec<N>::g()
 {
     static_assert(N >= 2, "Vec::g is only available on Vectors of size 2 and more");
     return _arr[1];
 }
 
 template <std::size_t N>
-double Vec<N>::b() const
+double &Vec<N>::b()
 {
     static_assert(N >= 3, "Vec::b is only available on Vectors of size 3 and more");
     return _arr[2];
 }
 
 template <std::size_t N>
-double Vec<N>::a() const
+double &Vec<N>::a()
 {
     static_assert(N >= 4, "Vec::a is only available on Vectors of size 4 and more");
     return _arr[3];
@@ -238,13 +238,13 @@ double Vec<N>::a() const
 // uv
 
 template <std::size_t N>
-double Vec<N>::u() const
+double &Vec<N>::u()
 {
     return _arr[0];
 }
 
 template <std::size_t N>
-double Vec<N>::v() const
+double &Vec<N>::v()
 {
     static_assert(N >= 2, "Vec::v is only available on Vectors of size 2 and more");
     return _arr[1];
