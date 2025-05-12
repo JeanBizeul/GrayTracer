@@ -1,4 +1,5 @@
 # How to read this documentation
+
 Hello fellow Raytracer !
 
 This documentation aims to give you all the necessary knowledge to create [Modules](Modules.md) for the Raytracer project.

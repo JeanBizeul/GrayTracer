@@ -1,4 +1,5 @@
 # Renderers
+
 When loaded, must comminucate what level of illum  they support :
 
 | 1   | Color on ambient and diffuse only       |
