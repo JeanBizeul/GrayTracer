@@ -6,7 +6,11 @@
 */
 
 #include "main.hpp"
+#include "../include/RayTracer/Scene.hpp"
 
-int main(int ac, char **av) {
+int main(int ac, char **av)
+{
+    //parsing
+    createRayWindown();
     return 0;
 }

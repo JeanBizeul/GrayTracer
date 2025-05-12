@@ -9,25 +9,44 @@
 #define MAX_WIDHT 1000
 
 #include "../include/RayTracer/Scene.hpp"
+#include <SFML/Window.hpp>
+
+bool lookingForAHit(/*vector of primitives, ray*/)
+{
+    //if the ray touches one of the primitives == true
+    //How can I know which color
+    return false;
+}
 
 void initRender()
 {
     Scene scenario;
     double u, v;
     //vector of primitives
-    //create a sfml window
 
     for (int i = 0; i != MAX_HEIGHT; i++) {
         for (int j = 0; j != MAX_WIDHT; j++) {
             double u = j;
             double v = i;
             RayTracer::Ray r = scenario.camera.GenerateRay(u, v);
-            if (i.hits()) {
+            if (lookingForAHit(/*vector of primitives, ray*/)) { //list of primitives // the first hit
                 //primitive color
             } else {
                 //black
             }
 
+        }
+    }
+}
+
+void createRayWindown()
+{
+    sf::Window window(sf::VideoMode(MAX_WIDHT, MAX_HEIGHT), "RayTracer");
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
         }
     }
 }

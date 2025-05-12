@@ -9,7 +9,7 @@
 
 NAME		=	raytracer
 CXX			=	g++
-CXXFLAGS	=	-Wall -Wextra -std=c++20
+CXXFLAGS	=	-Wall -Wextra -std=c++20 -lsfml-graphics -lsfml-window -lsfml-system
 DFLAGS		=	-MMD -MF $(@:.o=.d)
 LDFLAGS		=
 CPPLINT_FLAGS		=														\
@@ -24,7 +24,7 @@ CPPLINT_FLAGS		=														\
 FILE_EXTENSION	=	.cpp
 INCLUDE_PATH	=	./include
 
-SRCS		=
+SRCS		=	src/Render.cpp
 
 MAIN		=	src/main.cpp
 
