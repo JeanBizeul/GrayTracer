@@ -20,8 +20,8 @@ class Scene {
     ~Scene() = default;
 
     std::vector<RayTracer::IPrimitive> primitives;
-    std::vector<RayTracer::Camera> cameras;
-    std::vector<RayTracer::ILight> lights;
+    RayTracer::Camera camera;
+    Math::Vec<3> Ambient_light;
 };
 
 #endif  // RAYTRACER_SCENE_HPP_
