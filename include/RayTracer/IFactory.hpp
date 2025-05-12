@@ -21,7 +21,7 @@ class IFactory {
 };
 
 template <typename T>
-using FactoryEntryPoint = std::unique_ptr<RayTracer::IFactory<T>> (*)();
+using FactoryReturnType = std::unique_ptr<RayTracer::IFactory<T>>;
 }  // namespace RayTracer
 
 #endif /* !IFACTORY_HPP_ */
