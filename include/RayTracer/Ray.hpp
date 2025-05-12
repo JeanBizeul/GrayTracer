@@ -5,18 +5,20 @@
 ** header
 */
 
-
 #ifndef RAYTRACER_RAY_HPP_
-    #define RAYTRACER_RAY_HPP_
-    #include "Math/Point.hpp"
-    #include "Math/Vec.hpp"
+#define RAYTRACER_RAY_HPP_
+#include "Math/Point.hpp"
+#include "Math/Vec.hpp"
 
 namespace RayTracer {
 class Ray {
  public:
-    Ray() : _origin(0), _direction(0) {}
+    Ray() = default;
+
     Ray(Math::Point<3> origin, Math::Vec<3> direction)
-        : _origin(origin), _direction(direction) {}
+        : _origin(origin), _direction(direction) {
+    }
+
     ~Ray() = default;
 
     Math::Point<3> _origin;

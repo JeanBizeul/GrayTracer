@@ -9,14 +9,18 @@
 #define RAYTRACER_AFACE_HPP_
 
 #include "IFace.hpp"
+
 namespace RayTracer {
 template <unsigned int N>
 class AFace : public RayTracer::IFace {
  public:
     AFace() = delete;
-    explicit Face(std::vector<RayTracer::Segment> segments)
-      : _segs(segments) {}
+
+    explicit Face(std::vector<RayTracer::Segment> segments) : _segs(segments) {
+    }
+
     ~AFace() = default;
+
  protected:
     std::array<RayTracer::Segment, N> _segs;
 };
