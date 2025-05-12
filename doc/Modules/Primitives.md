@@ -1,6 +1,9 @@
 # Primitives
+
 Objects 3D
-#### Contient :
+
+**Contient :**
+
 - point3 position
 - double scale
 - vec3 rotation
