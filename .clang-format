@@ -1,0 +1,18 @@
+BasedOnStyle: Google
+IndentWidth: 4
+AccessModifierOffset: -3
+IncludeBlocks: Regroup
+IncludeCategories:
+    - Regex: '<.*\.h>'
+      Priority: 0
+    - Regex: '<.*\.hpp>'
+      Priority: 2
+    - Regex: '<.*>'
+      Priority: 1
+    - Regex: '".*\.hpp"'
+      Priority: 3
+PointerAlignment: Right
+ReferenceAlignment: Right
+DerivePointerAlignment: false
+SeparateDefinitionBlocks: Always
+AllowShortFunctionsOnASingleLine: None

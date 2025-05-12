@@ -12,6 +12,12 @@ CXX			=	g++
 CXXFLAGS	=	-Wall -Wextra -std=c++20
 DFLAGS		=	-MMD -MF $(@:.o=.d)
 LDFLAGS		=
+CPPLINT_FLAGS		=														\
+	--root=./include														\
+	--repository=. 															\
+	--filter=-legal/copyright,-build/c++17,+build/c++20,-runtime/references,$\
+-build/include_subdir,-build/c++11											\
+	--recursive
 
 ## SRC - Put your sources files here
 
@@ -20,7 +26,7 @@ INCLUDE_PATH	=	./include
 
 SRCS		=
 
-MAIN		=	main.cpp
+MAIN		=	src/main.cpp
 
 TEST_OUTPUT	=	unit_tests
 
@@ -63,4 +69,11 @@ tests_run: unit_tests
 tests_coverage:	tests_run
 	gcovr
 
-.PHONY:	all clean fclean re tests_run tests_coverage
+linter: clean
+	cpplint $(CPPLINT_FLAGS) ./src/ ./include/
+
+format: clean
+	find . -type f \( -name "*.cpp" -o -name "*.hpp" \) ! -path "./tests/*"	\
+	-exec clang-format -i {} +
+
+.PHONY:	all clean fclean re tests_run tests_coverage linter format

@@ -10,8 +10,23 @@ env:
   MIRROR_URL: "git@github.com:EpitechPromo2028/B-OOP-400-NAN-4-1-raytracer-jean.bizeul.git"
   BINARY: "raytracer"
 jobs:
+  check_mirror_repo:
+    name: "Check mirror repository"
+    runs-on: ubuntu-latest
+    outputs:
+        check_repo: ${{ steps.check_repo.outputs.repo }}
+    steps:
+      - id: check_repo
+        run: |
+          cleaned_url=$(echo "$MIRROR_URL" | sed 's/git@github.com://' | sed 's/.git$//')
+          if [[ "${{ github.repository }}" == $cleaned_url ]]; then
+            echo "repo=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "repo=false" >> "$GITHUB_OUTPUT"
   check_program_compilation:
     name: compilation
+    needs: check_mirror_repo
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker:latest
     steps:
@@ -28,6 +43,37 @@ jobs:
           exit 1
       - name: clean
         run: make clean
+  check_cpp_linter:
+    name: "Check C++ linter"
+    needs: check_mirror_repo
+    runs-on: ubuntu-latest
+    container: sharaku/cpplint:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 1
+      - name: Install cpplint
+        run: apt-get update && apt-get install -y python3-pip && pip install --upgrade pip && pip3 install cpplint
+      - name: Install Make
+        run: apt-get update && apt-get install -y make
+      - name: Run C++ linter
+        run: make linter
+  no_code_in_root:
+    name: "No source code in repository root"
+    needs: check_mirror_repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Check for .hpp or .cpp files in root
+        run: |
+          if ls *.hpp 1> /dev/null 2>&1 || ls *.cpp 1> /dev/null 2>&1; then
+            echo "::error title=Source code found in root directory!::"
+            exit 1
+          fi
   run_tests:
     name: tests
     needs: check_program_compilation
@@ -42,7 +88,11 @@ jobs:
         run: make tests_run
   push_to_mirror:
     name: pushing
-    needs: run_tests
+    needs:
+      - run_tests
+      - check_mirror_repo
+      - check_cpp_linter
+      - no_code_in_root
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
