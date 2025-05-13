@@ -5,12 +5,12 @@
 ** header
 */
 
-#include <vector>
 #include <memory>
+#include <vector>
 
+#include "Face.hpp"
 #include "I3dObject.hpp"
 #include "Math/Point.hpp"
-#include "Face.hpp"
 #include "Ray.hpp"
 #ifndef RAYTRACER_APRIMITIVE_HPP_
 #define RAYTRACER_APRIMITIVE_HPP_

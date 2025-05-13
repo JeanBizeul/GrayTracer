@@ -7,10 +7,9 @@
 
 #ifndef RAYTRACER_IFACTORY_HPP_
 #define RAYTRACER_IFACTORY_HPP_
+#include <libconfig.h++>
 #include <memory>
 #include <string>
-
-#include <libconfig.h++>
 
 namespace RayTracer {
 template <typename T>
