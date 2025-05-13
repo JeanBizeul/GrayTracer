@@ -58,6 +58,7 @@ Vec<N> Vec<N>::cross(const Vec<N> &other) const
     });
 }
 
+template <std::size_t N>
 double Vec<N>::lenght() const
 {
     double sum = 0.0f;
@@ -86,19 +87,21 @@ Vec<N> Vec<N>::normalize() const
 template <std::size_t N>
 Vec<N> Vec<N>::operator+(const Vec<N> &other) const
 {
-    Vec<N> result;
+    std::array<double, N> result;
+
     for (std::size_t i = 0; i < _arr.size(); i++)
         result[i] = _arr[i] + other[i];
-    return vec<N>(result);
+    return Vec<N>(result);
 }
 
 template <std::size_t N>
 Vec<N> Vec<N>::operator-(const Vec<N> &other) const
 {
-    Vec<N> result;
+    std::array<double, N> result;
+
     for (std::size_t i = 0; i < _arr.size(); i++)
         result[i] = _arr[i] - other[i];
-    return vec<N>(result);
+    return Vec<N>(result);
 }
 
 template <std::size_t N>
@@ -108,7 +111,7 @@ Vec<N> Vec<N>::operator*(const Vec<N> &other) const
 
     for (std::size_t i = 0; i < result.size(); i ++)
         result[i] = _arr[i] * other[i];
-    return vec<N>(result);
+    return Vec<N>(result);
 }
 
 template <std::size_t N>

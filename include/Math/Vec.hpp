@@ -52,9 +52,6 @@ class Vec {
     double &operator[](std::size_t index);
     const double &operator[](std::size_t index) const;
 
-    double operator[](std::size_t index) const;
-
-
     double &x();
     double &y();
     double &z();
