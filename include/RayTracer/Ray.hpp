@@ -7,22 +7,22 @@
 
 #ifndef RAYTRACER_RAY_HPP_
 #define RAYTRACER_RAY_HPP_
-#include "Math/Point.hpp"
-#include "Math/Vec.hpp"
+#include "Math/Point3.hpp"
+#include "Math/Vec3.hpp"
 
 namespace RayTracer {
 class Ray {
  public:
     Ray() = default;
 
-    Ray(Math::Vec<3> origin, Math::Vec<3> direction)
+    Ray(Math::Point3 origin, Math::Vec3 direction)
         : _origin(origin), _direction(direction) {
     }
 
     ~Ray() = default;
 
-    Math::Vec<3> _origin;
-    Math::Vec<3> _direction;
+    Math::Point3 _origin;
+    Math::Vec3 _direction;
 };
 }  // namespace RayTracer
 
