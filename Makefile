@@ -9,7 +9,7 @@
 
 NAME		=	raytracer
 CXX			=	g++
-CXXFLAGS	=	-Wall -Wextra -std=c++20 -lconfig++
+CXXFLAGS	=	-Wall -Wextra -std=c++20
 DFLAGS		=	-MMD -MF $(@:.o=.d)
 LDFLAGS		=	-lconfig++
 CPPLINT_FLAGS		=														\
