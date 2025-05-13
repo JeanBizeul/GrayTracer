@@ -33,6 +33,9 @@ class APrimitive : public RayTracer::I3dObject {
     void setPosition(const Math::Point<3> &center) final;
     void setRotation(const Math::Vec<3> &direction) final;
 
+    void rotate(const Math::Vec<3> &rotation);
+    void translate(const Math::Vec<3> &translation);
+
  protected:
     Math::Point<3> _center;
     Math::Vec<3> _direction;

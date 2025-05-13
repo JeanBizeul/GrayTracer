@@ -54,6 +54,16 @@ void APrimitive::setRotation
     _direction = direction;
 }
 
+void APrimitive::rotate(const Math::Vec<3> &rotation)
+{
+    _direction += rotation;
+}
+
+void APrimitive::translate(const Math::Vec<3> &translation)
+{
+    _center += translation;
+}
+
 }  // namespace RayTracer
 
 #endif  // RAYTRACER_APRIMITIVE_TPP_
