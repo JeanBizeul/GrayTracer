@@ -25,6 +25,7 @@ class SceneParser {
 
  private:
     void writeScene(std::unique_ptr<Scene> &toFill);
+    void parsePrimitives(const libconfig::Setting &primitivesSetting);
     libconfig::Config _cfg;
 };
 
