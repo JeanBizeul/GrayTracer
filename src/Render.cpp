@@ -5,15 +5,19 @@
 ** render
 */
 
-#include <iostream>
+#include <memory>
 #define MAX_HEIGHT 700
 #define MAX_WIDHT 1000
 
-
+#include <iostream>
 #include <SFML/Window.hpp>
+#include "../include/RayTracer/IFactory.hpp"
+#include "../include/RayTracer/DLLoader.hpp"
+#include "lib/Factories/Primitives/Square/src/SphereFactory.hpp"
+
 #include "../include/RayTracer/Scene.hpp"
 
-bool lookingForAHit(std::vector<RayTracer::APrimitive> primit, RayTracer::Ray ray, bool *hit)
+bool lookingForAHit(std::vector<RayTracer::I3dObject> primit, RayTracer::Ray ray, bool *hit)
 {
     for (auto &i: primit) {
         if (i.hit(ray))
@@ -51,8 +55,16 @@ void createRayWindown()
 void initRender(bool DisplayMode) //get the infos if PPM the call PPM if not sfml
 {
     Scene scenario;
+    std::unique_ptr<RayTracer::IFactory<RayTracer::Sphere>> factory_sphere;
+    std::unique_ptr<DLLoader<RayTracer::IFactory<RayTracer::Sphere>>> factory_loader;
+
     double u, v;
-    std::vector<RayTracer::APrimitive> primitives;
+    libconfig::Config cfg;
+    cfg.readFile("file.conf");
+    libconfig::Setting &enemySettings = cfg.lookup("scene");
+    
+    factory_loader = std::make_unique<DLLoader<RayTracer::IFactory<RayTracer::Sphere>>>("libname");
+    //std::vector<RayTracer::I3dObject> primitives; // appeller les factories std::vector<std::unique_ptr<nts::IComponent>>&
     bool hit;
 
     for (int i = 0; i != MAX_HEIGHT; i++) {
@@ -60,7 +72,7 @@ void initRender(bool DisplayMode) //get the infos if PPM the call PPM if not sfm
             double u = j;
             double v = i;
             RayTracer::Ray r = scenario.camera.GenerateRay(u, v);
-            lookingForAHit(primitives, r, &hit);
+            //lookingForAHit(primitives, r, &hit);
             if (hit) {
                 //primitive
             } else {

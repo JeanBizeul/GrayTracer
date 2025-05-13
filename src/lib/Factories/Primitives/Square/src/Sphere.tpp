@@ -9,8 +9,6 @@
 #define SPHERE_TPP_
 #include <math.h>
 
-#include "RayTracer/APrimitive.hpp"
-
 namespace RayTracer
 {
 Sphere::Sphere(Math::Point<3> center, Math::Vec<3> direction, double scale)

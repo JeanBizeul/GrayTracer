@@ -12,8 +12,8 @@
 
 int main(int ac, char **av)
 {
-    /*Try and catch Parsing*/
-    //createRayWindown();
+    //Parsing
+
     initRender(false);
     return 0;
 }

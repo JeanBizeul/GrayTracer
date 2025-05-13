@@ -10,7 +10,7 @@
 #include <memory>
 #include <string>
 
-#include "RayTracer/IFactory.hpp"
+#include "../../../../../../include/RayTracer/IFactory.hpp"
 #include "Sphere.hpp"
 
 namespace RayTracer {

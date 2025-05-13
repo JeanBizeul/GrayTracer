@@ -9,8 +9,8 @@
 #define SRC_MAIN_HPP_
 
 #include "../include/RayTracer/Scene.hpp"
-//#include "../include/RayTracer/Camera.hpp"
-//#include "../include/RayTracer/IPrimitive.hpp"
+#include "../include/RayTracer/Camera.hpp"
+#include "../include/RayTracer/APrimitive.hpp"
 
 void createRayWindown();
 void initRender(bool);
