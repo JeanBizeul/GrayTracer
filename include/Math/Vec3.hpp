@@ -5,14 +5,13 @@
 ** Vec3
 */
 
-#ifndef VEC3_HPP_
-#define VEC3_HPP_
+#ifndef MATH_VEC3_HPP_
+#define MATH_VEC3_HPP_
 
 #include "Vec.hpp"
 
-namespace Math
-{
+namespace Math {
 using Vec3 = Vec<3>;
 }  // namespace Math
 
-#endif  // VEC3_HPP_
+#endif  // MATH_VEC3_HPP_
