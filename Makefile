@@ -83,6 +83,8 @@ format: clean
 	-path "./tests/*" -exec clang-format -i {} +
 
 factories:
+	mkdir -p ./lib/
 	$(MAKE) -C src/lib/Factories/$(FACTORIES)
+	cp src/lib/Factories/$(FACTORIES)/**.so ./lib/
 
 .PHONY:	all clean fclean re tests_run tests_coverage linter format factories

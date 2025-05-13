@@ -10,17 +10,18 @@
 
 #include <vector>
 
+// #include "APrimitive.hpp"
 #include "Camera.hpp"
 #include "ILight.hpp"
-#include "IPrimitive.hpp"
 
 class Scene {
  public:
-    Scene() = default;
+    Scene() : camera(), lights() {}
+
     ~Scene() = default;
 
-    std::vector<RayTracer::IPrimitive> primitives;
-    std::vector<RayTracer::Camera> cameras;
+    // std::vector<RayTracer::APrimitive> primitives;
+    RayTracer::Camera camera;
     std::vector<RayTracer::ILight> lights;
 };
 
