@@ -10,13 +10,12 @@
 #include "Screen.hpp"
 
 #ifndef RAYTRACER_IRENDERER_HPP_
-    #define RAYTRACER_IRENDERER_HPP_
+#define RAYTRACER_IRENDERER_HPP_
 
 namespace RayTracer {
 class IRenderer : public I3dObject {
  public:
-    IRenderer();
-    ~IRenderer();
+    virtual ~IRenderer() = default;
 
     virtual void getCamera() = 0;
     virtual void getScreen() = 0;
