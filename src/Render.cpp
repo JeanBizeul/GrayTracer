@@ -16,21 +16,43 @@ bool lookingForAHit(std::vector<RayTracer::IPrimitive> primit, RayTracer::Ray ra
 {
     for (auto &i: primit) {
         if (i.hit(ray))
-            return //struct
+            return true;  //struct
     }
     return false;
 }
 
-void initRender()
+void GeneratePPM() //Generate PPM Output
 {
-    Scene scenario;
-    double u, v;
-    std::vector<RayTracer::IPrimitive> primitives; //vector of primitives
-    bool hit;
     std::cout << "P3" << std::endl;
     std::cout << MAX_WIDHT << " " << MAX_HEIGHT << std::endl;
     std::cout << "255" << std::endl;
 
+    //Read the 2D Vector of the struct
+}
+
+void createRayWindown()
+{
+    bool set = false;
+    sf::Window window(sf::VideoMode(MAX_WIDHT, MAX_HEIGHT), "RayTracer");
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        if (!set) {
+            //draw image
+            set = true;
+        }
+    }
+}
+
+void initRender(bool DisplayMode) //get the infos if PPM the call PPM if not sfml
+{
+    Scene scenario;
+    double u, v;
+    std::vector<RayTracer::IPrimitive> primitives;
+    bool hit;
 
     for (int i = 0; i != MAX_HEIGHT; i++) {
         for (int j = 0; j != MAX_WIDHT; j++) {
@@ -45,16 +67,9 @@ void initRender()
             }
         }
     }
-}
-
-void createRayWindown()
-{
-    sf::Window window(sf::VideoMode(MAX_WIDHT, MAX_HEIGHT), "RayTracer");
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+    if (DisplayMode) {
+        createRayWindown();
+    } else {
+        GeneratePPM();
     }
 }

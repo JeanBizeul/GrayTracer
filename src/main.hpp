@@ -13,6 +13,6 @@
 //#include "../include/RayTracer/IPrimitive.hpp"
 
 void createRayWindown();
-void initRender();
+void initRender(bool);
 
 #endif  // SRC_MAIN_HPP_
