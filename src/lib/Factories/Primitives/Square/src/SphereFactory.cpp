@@ -6,17 +6,19 @@
 */
 
 #include "SphereFactory.hpp"
-
 #include <iostream>
 #include <string>
 #include <memory>
+#include "Math/Point3.hpp"
+#include "Math/Vec3.hpp"
+
 
 namespace RayTracer {
 std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(
 libconfig::Setting &settings) {
     try {
-        auto position = Math::Point<3>(settings["position"]);
-        auto rotation = Math::Vec<3>(settings["rotation"]);
+        auto position = Math::Point3(settings["position"]);
+        auto rotation = Math::Vec3(settings["rotation"]);
         double scale = settings["scale"];
 
         return std::make_unique<RayTracer::Sphere>(position, rotation, scale);
