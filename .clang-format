@@ -1,18 +1,32 @@
 BasedOnStyle: Google
-IndentWidth: 4
 AccessModifierOffset: -3
+AlignEscapedNewlines: Left
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowAllArgumentsOnNextLine: true
+DerivePointerAlignment: false
+InsertNewlineAtEOF: true
+IndentWidth: 4
 IncludeBlocks: Regroup
 IncludeCategories:
-    - Regex: '<.*\.h>'
-      Priority: 0
-    - Regex: '<.*\.(hpp|h\+\+)>'
-      Priority: 2
-    - Regex: '<.*>'
-      Priority: 1
-    - Regex: '".*\.hpp"'
-      Priority: 3
+  - Regex: '<.*\.h>'
+    Priority: 0
+  - Regex: '<.*\.(hpp|h\+\+)>'
+    Priority: 2
+  - Regex: '<.*>'
+    Priority: 1
+  - Regex: '".*\.hpp"'
+    Priority: 3
 PointerAlignment: Right
 ReferenceAlignment: Right
-DerivePointerAlignment: false
 SeparateDefinitionBlocks: Always
-AllowShortFunctionsOnASingleLine: None
+SpacesInParentheses: false
+SpaceBeforeCaseColon: false
+SpaceBeforeJsonColon: false
+SpaceBeforeSquareBrackets: false
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
