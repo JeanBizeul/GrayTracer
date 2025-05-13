@@ -15,8 +15,7 @@
 namespace RayTracer {
 class IRenderer : public I3dObject {
  public:
-    IRenderer();
-    ~IRenderer();
+    virtual ~IRenderer() = default;
 
     virtual void getCamera() = 0;
     virtual void getScreen() = 0;
