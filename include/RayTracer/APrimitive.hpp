@@ -10,7 +10,6 @@
 
 #include "I3dObject.hpp"
 #include "IFace.hpp"
-#include "Math/Point.hpp"
 
 #ifndef RAYTRACER_APRIMITIVE_HPP_
 #define RAYTRACER_APRIMITIVE_HPP_

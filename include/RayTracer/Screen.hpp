@@ -5,6 +5,7 @@
 ** header
 */
 
+#include "AFace.hpp"
 #include "IFace.hpp"
 
 #ifndef RAYTRACER_SCREEN_HPP_
@@ -16,7 +17,7 @@ class Screen {
     Screen(Math::Point<3> pos, Math::Vec<3> size);
     ~Screen() = default;
 
-    static RayTracer::Face<4> screen;
+    static RayTracer::AFace<4> screen;
     Math::Point<3> pointAt(double u, double v);
     }; // namespace RayTracer
 }

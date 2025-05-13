@@ -9,10 +9,11 @@
 #define MAX_HEIGHT 700
 #define MAX_WIDHT 1000
 
-#include "../include/RayTracer/Scene.hpp"
-#include <SFML/Window.hpp>
 
-bool lookingForAHit(std::vector<RayTracer::IPrimitive> primit, RayTracer::Ray ray, bool *hit)
+#include <SFML/Window.hpp>
+#include "../include/RayTracer/Scene.hpp"
+
+bool lookingForAHit(std::vector<RayTracer::APrimitive> primit, RayTracer::Ray ray, bool *hit)
 {
     for (auto &i: primit) {
         if (i.hit(ray))
@@ -51,7 +52,7 @@ void initRender(bool DisplayMode) //get the infos if PPM the call PPM if not sfm
 {
     Scene scenario;
     double u, v;
-    std::vector<RayTracer::IPrimitive> primitives;
+    std::vector<RayTracer::APrimitive> primitives;
     bool hit;
 
     for (int i = 0; i != MAX_HEIGHT; i++) {

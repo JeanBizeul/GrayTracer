@@ -16,12 +16,12 @@ template <unsigned int N>
 class AFace : public RayTracer::IFace {
  public:
     AFace() = delete;
+    ~AFace() = default;
 
-    explicit Face(std::vector<RayTracer::Segment> segments)
+    explicit AFace(std::vector<RayTracer::Segment> segments)
     : _segs(segments) {
     }
 
-    ~AFace() = default;
 
  protected:
     std::array<RayTracer::Segment, N> _segs;

@@ -13,6 +13,11 @@
 #include <stdexcept>
 #include <string>
 
+class DLLoaderError : std::runtime_error {
+ public:
+    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {}
+};
+
 template <typename T>
 class DLLoader {
  public:
@@ -47,9 +52,5 @@ class DLLoader {
     const std::string _libName;
 };
 
-class DLLoaderError : std::runtime_error {
- public:
-    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {}
-};
 
 #endif  // RAYTRACER_DLLOADER_HPP_

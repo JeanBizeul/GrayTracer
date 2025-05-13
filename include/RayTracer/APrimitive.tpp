@@ -8,11 +8,6 @@
 #ifndef RAYTRACER_APRIMITIVE_TPP_
 #define RAYTRACER_APRIMITIVE_TPP_
 
-#include "Math/Point.hpp"
-#include "IFace.hpp"
-
-#include "I3dObject.hpp"
-
 namespace RayTracer {
 APrimitive::APrimitive(Math::Point<3> center, Math::Vec<3> direction,
     const std::vector<std::shared_ptr<RayTracer::IFace>> &faces,
