@@ -61,9 +61,13 @@ void initRender(bool DisplayMode) //get the infos if PPM the call PPM if not sfm
     double u, v;
     libconfig::Config cfg;
     cfg.readFile("file.conf");
-    libconfig::Setting &enemySettings = cfg.lookup("scene");
-    
+    libconfig::Setting &file = cfg.lookup("scene");
+
     factory_loader = std::make_unique<DLLoader<RayTracer::IFactory<RayTracer::Sphere>>>("libname");
+    auto instance = factory_loader->getInstance();
+    factory_sphere = std::move(instance);
+    factory_sphere->createObject(file);
+
     //std::vector<RayTracer::I3dObject> primitives; // appeller les factories std::vector<std::unique_ptr<nts::IComponent>>&
     bool hit;
 
