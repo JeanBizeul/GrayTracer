@@ -24,7 +24,23 @@ class SceneParser {
     std::unique_ptr<Scene> getScene();
 
  private:
-    libconfig::Config cfg;
+    void writeScene(std::unique_ptr<Scene> &toFill);
+    libconfig::Config _cfg;
 };
+
+namespace libconfig {
+class ExtendedConfigException : public libconfig::ConfigException {
+ public:
+    explicit ExtendedConfigException(std::string msg)
+        : libconfig::ConfigException(), _msg(msg) {}
+
+    const char *what() const noexcept {
+        return _msg.c_str();
+    }
+
+ private:
+    std::string _msg;
+};
+};  // namespace libconfig
 
 #endif  // SRC_PARSING_SCENEPARSER_HPP_
