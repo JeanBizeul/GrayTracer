@@ -11,6 +11,7 @@
 #include <cstddef>
 
 namespace Math {
+
 template <std::size_t N>
 class Vec {
  public:
