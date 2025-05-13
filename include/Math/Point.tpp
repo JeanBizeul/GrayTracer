@@ -92,16 +92,15 @@ void Point<N>::operator-=(const Vec<N> &other) {
 
 #pragma region Getters Setters
 
-template<std::size_t N>
-template<std::size_t P>
+template <std::size_t N>
+template <std::size_t P>
 double &Point<N>::get() {
     static_assert(P < N, "point.get<P>(): Index out of range");
     return _arr[P];
 }
 
-template<std::size_t N>
-double &Point<N>::operator[](std::size_t index)
-{
+template <std::size_t N>
+double &Point<N>::operator[](std::size_t index) {
     if (index < _arr.size())
         throw std::out_of_range("point[]: Index out of range");
     else
@@ -111,31 +110,30 @@ double &Point<N>::operator[](std::size_t index)
 // xyzw
 
 template <std::size_t N>
-double &Point<N>::x()
-{
+double &Point<N>::x() {
     return _arr[0];
 }
 
 template <std::size_t N>
-double &Point<N>::y()
-{
-    static_assert(N >= 2,
+double &Point<N>::y() {
+    static_assert(
+        N >= 2,
         "point::y is only available on point with 2 dimansions and more");
     return _arr[1];
 }
 
 template <std::size_t N>
-double &Point<N>::z()
-{
-    static_assert(N >= 3,
+double &Point<N>::z() {
+    static_assert(
+        N >= 3,
         "point::z is only available on point with 3 dimansions and more");
     return _arr[2];
 }
 
 template <std::size_t N>
-double &Point<N>::w()
-{
-    static_assert(N >= 4,
+double &Point<N>::w() {
+    static_assert(
+        N >= 4,
         "point::w is only available on point with 4 dimansions and more");
     return _arr[3];
 }
@@ -143,31 +141,30 @@ double &Point<N>::w()
 // rgba
 
 template <std::size_t N>
-double &Point<N>::r()
-{
+double &Point<N>::r() {
     return _arr[0];
 }
 
 template <std::size_t N>
-double &Point<N>::g()
-{
-    static_assert(N >= 2,
+double &Point<N>::g() {
+    static_assert(
+        N >= 2,
         "point::g is only available on point with 2 dimansions and more");
     return _arr[1];
 }
 
 template <std::size_t N>
-double &Point<N>::b()
-{
-    static_assert(N >= 3,
+double &Point<N>::b() {
+    static_assert(
+        N >= 3,
         "point::b is only available on point with 3 dimansions and more");
     return _arr[2];
 }
 
 template <std::size_t N>
-double &Point<N>::a()
-{
-    static_assert(N >= 4,
+double &Point<N>::a() {
+    static_assert(
+        N >= 4,
         "point::a is only available on point with 4 dimansions and more");
     return _arr[3];
 }
@@ -175,15 +172,14 @@ double &Point<N>::a()
 // uv
 
 template <std::size_t N>
-double &Point<N>::u()
-{
+double &Point<N>::u() {
     return _arr[0];
 }
 
 template <std::size_t N>
-double &Point<N>::v()
-{
-    static_assert(N >= 2,
+double &Point<N>::v() {
+    static_assert(
+        N >= 2,
         "point::v is only available on point with 2 dimansions and more");
     return _arr[1];
 }

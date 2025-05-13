@@ -16,8 +16,7 @@ class Ray {
     Ray() = default;
 
     Ray(Math::Point<3> origin, Math::Vec<3> direction)
-        : _origin(origin), _direction(direction) {
-    }
+        : _origin(origin), _direction(direction) {}
 
     ~Ray() = default;
 

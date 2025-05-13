@@ -8,12 +8,12 @@
 #include "SphereFactory.hpp"
 
 #include <iostream>
-#include <string>
 #include <memory>
+#include <string>
 
 namespace RayTracer {
 std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(
-libconfig::Setting &settings) {
+    libconfig::Setting &settings) {
     try {
         auto position = Math::Point<3>(settings["position"]);
         auto rotation = Math::Vec<3>(settings["rotation"]);

@@ -11,15 +11,11 @@
 
 #include "RayTracer/APrimitive.hpp"
 
-namespace RayTracer
-{
+namespace RayTracer {
 Sphere::Sphere(Math::Point<3> center, Math::Vec<3> direction, double scale)
-    : APrimitive(center, direction, {}, scale)
-{
-}
+    : APrimitive(center, direction, {}, scale) {}
 
-bool Sphere::hit(const RayTracer::Ray &ray) const
-{
+bool Sphere::hit(const RayTracer::Ray &ray) const {
     (void)ray;
     return false;
 }

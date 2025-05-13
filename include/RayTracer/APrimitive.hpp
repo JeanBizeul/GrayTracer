@@ -5,8 +5,8 @@
 ** header
 */
 
-#include <vector>
 #include <memory>
+#include <vector>
 
 #include "I3dObject.hpp"
 #include "IFace.hpp"
