@@ -243,28 +243,28 @@ double &Vec<N>::w()
 template <std::size_t N>
 double Vec<N>::x() const
 {
-    return _arr.get<0>();
+    return _arr[0];
 }
 
 template <std::size_t N>
 double Vec<N>::y() const
 {
     static_assert(N >= 2, "Vec::y() is only available on Vectors of size 2 and more");
-    return _arr.get<1>();
+    return _arr[1];
 }
 
 template <std::size_t N>
 double Vec<N>::z() const
 {
     static_assert(N >= 3, "Vec::z() is only available on Vectors of size 3 and more");
-    return _arr.get<2>();
+    return _arr[2];
 }
 
 template <std::size_t N>
 double Vec<N>::w() const
 {
     static_assert(N >= 4, "Vec::w() is only available on Vectors of size 4 and more");
-    return _arr.get<3>();
+    return _arr[3];
 }
 
 // rgba
@@ -300,28 +300,28 @@ double &Vec<N>::a()
 template <std::size_t N>
 double Vec<N>::r() const
 {
-    return _arr.get<0>();
+    return _arr[0];
 }
 
 template <std::size_t N>
 double Vec<N>::g() const
 {
     static_assert(N >= 2, "Vec::g() is only available on Vectors of size 2 and more");
-    return _arr.get<1>();
+    return _arr[1];
 }
 
 template <std::size_t N>
 double Vec<N>::b() const
 {
     static_assert(N >= 3, "Vec::b() is only available on Vectors of size 3 and more");
-    return _arr.get<2>();
+    return _arr[2];
 }
 
 template <std::size_t N>
 double Vec<N>::a() const
 {
     static_assert(N >= 4, "Vec::a() is only available on Vectors of size 4 and more");
-    return _arr.get<3>();
+    return _arr[3];
 }
 
 // uv
@@ -343,14 +343,14 @@ double &Vec<N>::v()
 template <std::size_t N>
 double Vec<N>::u() const
 {
-    return _arr.get<0>();
+    return _arr[0];
 }
 
 template <std::size_t N>
 double Vec<N>::v() const
 {
     static_assert(N >= 2, "Vec::v() is only available on Vectors of size 2 and more");
-    return _arr.get<1>();
+    return _arr[1];
 }
 
 #pragma endregion Getters Setters
