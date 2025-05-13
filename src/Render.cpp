@@ -17,14 +17,14 @@
 
 #include "../include/RayTracer/Scene.hpp"
 
-bool lookingForAHit(std::vector<RayTracer::I3dObject> primit, RayTracer::Ray ray, bool *hit)
-{
-    for (auto &i: primit) {
-        if (i.hit(ray))
-            return true;  //struct
-    }
-    return false;
-}
+//bool lookingForAHit(std::vector<RayTracer::I3dObject> primit, RayTracer::Ray ray, bool *hit)
+//{
+//    for (auto &i: primit) {
+//        if (i.hit(ray))
+//            return true;  //struct
+//    }
+//    return false;
+//}
 
 void GeneratePPM() //Generate PPM Output
 {
@@ -55,6 +55,7 @@ void createRayWindown()
 void initRender(bool DisplayMode) //get the infos if PPM the call PPM if not sfml
 {
     Scene scenario;
+    std::unique_ptr<RayTracer::Sphere> sphere;
     std::unique_ptr<RayTracer::IFactory<RayTracer::Sphere>> factory_sphere;
     std::unique_ptr<DLLoader<RayTracer::IFactory<RayTracer::Sphere>>> factory_loader;
 
@@ -66,7 +67,8 @@ void initRender(bool DisplayMode) //get the infos if PPM the call PPM if not sfm
     factory_loader = std::make_unique<DLLoader<RayTracer::IFactory<RayTracer::Sphere>>>("libname");
     auto instance = factory_loader->getInstance();
     factory_sphere = std::move(instance);
-    factory_sphere->createObject(file);
+    sphere = factory_sphere->createObject(file);
+
 
     //std::vector<RayTracer::I3dObject> primitives; // appeller les factories std::vector<std::unique_ptr<nts::IComponent>>&
     bool hit;
@@ -77,7 +79,7 @@ void initRender(bool DisplayMode) //get the infos if PPM the call PPM if not sfm
             double v = i;
             RayTracer::Ray r = scenario.camera.GenerateRay(u, v);
             //lookingForAHit(primitives, r, &hit);
-            if (hit) {
+            if (sphere->hit(r)) {
                 //primitive
             } else {
                 std::cout << "0 0 0" << std::endl; //black

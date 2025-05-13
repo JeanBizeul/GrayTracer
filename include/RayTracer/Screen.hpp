@@ -14,11 +14,11 @@
 namespace RayTracer {
 class Screen {
  public:
-    Screen(Math::Point<3> pos, Math::Vec<3> size);
+    Screen(Math::Point3 pos, Math::Vec<3> size);
     ~Screen() = default;
 
     static RayTracer::AFace<4> screen;
-    Math::Point<3> pointAt(double u, double v);
+    Math::Point3 pointAt(double u, double v);
     }; // namespace RayTracer
 }
 #endif  // RAYTRACER_SCREEN_HPP_

@@ -9,7 +9,7 @@
 #define RAYTRACER_APRIMITIVE_TPP_
 
 namespace RayTracer {
-APrimitive::APrimitive(Math::Point<3> center, Math::Vec<3> direction,
+APrimitive::APrimitive(Math::Point3 center, Math::Vec3 direction,
     const std::vector<std::shared_ptr<RayTracer::IFace>> &faces,
     double scale)
     : _center(center), _direction(direction), _faces(faces), _scale(scale)
@@ -22,12 +22,12 @@ double APrimitive::getScale() const
     return _scale;
 }
 
-const Math::Point<3> &APrimitive::getPosition() const
+const Math::Point3 &APrimitive::getPosition() const
 {
     return _center;
 }
 
-const Math::Vec<3> &APrimitive::getRotation() const
+const Math::Vec3 &APrimitive::getRotation() const
 {
     return _direction;
 }
@@ -38,13 +38,13 @@ void APrimitive::setScale(double scale)
 }
 
 void APrimitive::setPosition
-    (const Math::Point<3> &center)
+    (const Math::Point3 &center)
 {
     _center = center;
 }
 
 void APrimitive::setRotation
-    (const Math::Vec<3> &direction)
+    (const Math::Vec3 &direction)
 {
     _direction = direction;
 }

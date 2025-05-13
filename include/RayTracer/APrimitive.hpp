@@ -8,6 +8,9 @@
 #include <vector>
 #include <memory>
 
+#include "../Math/Point3.hpp"
+#include "../Math/Vec3.hpp"
+
 #include "I3dObject.hpp"
 #include "IFace.hpp"
 
@@ -18,7 +21,7 @@ namespace RayTracer {
 class APrimitive : public RayTracer::I3dObject {
  public:
     APrimitive() = default;
-    APrimitive(Math::Point<3> center, Math::Vec<3> direction,
+    APrimitive(Math::Point3 center, Math::Vec3 direction,
                const std::vector<std::shared_ptr<RayTracer::IFace>> &faces,
                double scale = 1);
     ~APrimitive() = default;
@@ -26,15 +29,15 @@ class APrimitive : public RayTracer::I3dObject {
     virtual bool hit(const RayTracer::Ray &ray) const = 0;
 
     double getScale() const final;
-    const Math::Point<3> &getPosition() const final;
-    const Math::Vec<3> &getRotation() const final;
+    const Math::Point3 &getPosition() const final;
+    const Math::Vec3 &getRotation() const final;
     void setScale(double scale) final;
-    void setPosition(const Math::Point<3> &center) final;
-    void setRotation(const Math::Vec<3> &direction) final;
+    void setPosition(const Math::Point3 &center) final;
+    void setRotation(const Math::Vec3 &direction) final;
 
  protected:
-    Math::Point<3> _center;
-    Math::Vec<3> _direction;
+    Math::Point3 _center;
+    Math::Vec3 _direction;
     std::vector<std::shared_ptr<RayTracer::IFace>> _faces;
     double _scale;
 };
