@@ -6,12 +6,12 @@
 */
 
 #ifndef MATH_VEC_HPP_
-    #define MATH_VEC_HPP_
-    #include <cstddef>
-    #include <array>
+#define MATH_VEC_HPP_
+#include <array>
+#include <cstddef>
 
 namespace Math {
-template<std::size_t N>
+template <std::size_t N>
 class Vec {
  public:
     Vec();
@@ -38,7 +38,7 @@ class Vec {
     void operator*=(double val);
     void operator/=(double val);
 
-    template<std::size_t P>
+    template <std::size_t P>
     double get() const;
     double operator[](std::size_t index) const;
 

@@ -6,9 +6,9 @@
 */
 
 #ifndef RAYTRACER_I3DOBJECT_HPP_
-    #define RAYTRACER_I3DOBJECT_HPP_
-    #include "Math/Point.hpp"
-    #include "Math/Vec.hpp"
+#define RAYTRACER_I3DOBJECT_HPP_
+#include "Math/Point.hpp"
+#include "Math/Vec.hpp"
 
 namespace RayTracer {
 class I3dObject {
