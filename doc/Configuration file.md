@@ -21,14 +21,14 @@ scene:
     primitives = (
         {
             name = "Cube";
-            position = array[3] { x, y, z };
-            rotation = array[3] { x, y, z };
+            position = [ x, y, z ];
+            rotation = [ x, y, z ];
             material = "material.mtl"; // Path to material file, optional
         },
         {
             name = "Monkey.obj";
-            position = array[3] { x, y, z };
-            rotation = array[3] { x, y, z };
+            position = [ x, y, z ];
+            rotation = [ x, y, z ];
             material = "material.mtl";
         }
     );
@@ -47,9 +47,9 @@ scene:
     lights = (
         {
             name = "Directional";
-            position = array[3] { x, y, z };
-            rotation = array[3] { x, y, z };
-            color = array[3] { r, g, b };
+            position = [ x, y, z ];
+            rotation = [ x, y, z ];
+            color = [ r, g, b ];
             range = 100.0; // Range of the light / power
         }
     );
@@ -65,7 +65,7 @@ The ambient light is part of the whole scene it is a global illumination indepen
 scene:
 {
     [...]
-    ambient = array[3] { r, g, b };
+    ambient = [ r, g, b ];
     [...]
 };
 ```
@@ -80,8 +80,8 @@ scene:
     [...]
     camera:
     {
-        position = array[3] { x, y, z };
-        rotation = array[3] { x, y, z };
+        position = [ x, y, z ];
+        rotation = [ x, y, z ];
         fov = 1.0;
     };
     [...]
@@ -96,25 +96,25 @@ scene:
     primitives = (
         {
             name = "Cube";
-            position = array[3] { x, y, z };
-            rotation = array[3] { x, y, z };
+            position = [ x, y, z ];
+            rotation = [ x, y, z ];
             material = "material.mtl"; // Path to material file, optional
         }
     );
     lights = (
         {
             name = "Directional";
-            position = array[3] { x, y, z };
-            rotation = array[3] { x, y, z };
-            color = array[3] { r, g, b };
+            position = [ x, y, z ];
+            rotation = [ x, y, z ];
+            color = [ r, g, b ];
             range = 100.0; // Range of the light / power
         }
     );
-    ambient = array[3] { r, g, b };
+    ambient = [ r, g, b ];
     camera:
     {
-        position = array[3] { x, y, z };
-        rotation = array[3] { x, y, z };
+        position = [ x, y, z ];
+        rotation = [ x, y, z ];
         fov = 1.0;
     };
 };
