@@ -2,6 +2,7 @@ raytracer
 Notes.txt
 
 *.log
+*.so
 
 objs/
 .vscode/

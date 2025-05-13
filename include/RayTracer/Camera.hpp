@@ -6,7 +6,6 @@
 */
 
 #include "Ray.hpp"
-#include "../Math/Point.hpp"
 #include "Screen.hpp"
 
 #ifndef RAYTRACER_CAMERA_HPP_

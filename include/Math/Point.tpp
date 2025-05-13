@@ -104,13 +104,13 @@ void Point<N>::operator-=(const Vec<N> &other)
 
 template<std::size_t N>
 template<std::size_t P>
-double Point<N>::get() const {
+double &Point<N>::get() {
     static_assert(P < N, "point.get<P>(): Index out of range");
     return _arr[P];
 }
 
 template<std::size_t N>
-double Point<N>::operator[](std::size_t index) const
+double &Point<N>::operator[](std::size_t index)
 {
     if (index < _arr.size())
         throw std::out_of_range("point[]: Index out of range");
@@ -121,13 +121,13 @@ double Point<N>::operator[](std::size_t index) const
 // xyzw
 
 template <std::size_t N>
-double Point<N>::x() const
+double &Point<N>::x()
 {
     return _arr[0];
 }
 
 template <std::size_t N>
-double Point<N>::y() const
+double &Point<N>::y()
 {
     static_assert(N >= 2,
         "point::y is only available on point with 2 dimensions and more");
@@ -135,7 +135,7 @@ double Point<N>::y() const
 }
 
 template <std::size_t N>
-double Point<N>::z() const
+double &Point<N>::z()
 {
     static_assert(N >= 3,
         "point::z is only available on point with 3 dimensions and more");
@@ -143,7 +143,7 @@ double Point<N>::z() const
 }
 
 template <std::size_t N>
-double Point<N>::w() const
+double &Point<N>::w()
 {
     static_assert(N >= 4,
         "point::w is only available on point with 4 dimensions and more");
@@ -153,13 +153,13 @@ double Point<N>::w() const
 // rgba
 
 template <std::size_t N>
-double Point<N>::r() const
+double &Point<N>::r()
 {
     return _arr[0];
 }
 
 template <std::size_t N>
-double Point<N>::g() const
+double &Point<N>::g()
 {
     static_assert(N >= 2,
         "point::g is only available on point with 2 dimensions and more");
@@ -167,7 +167,7 @@ double Point<N>::g() const
 }
 
 template <std::size_t N>
-double Point<N>::b() const
+double &Point<N>::b()
 {
     static_assert(N >= 3,
         "point::b is only available on point with 3 dimensions and more");
@@ -175,7 +175,7 @@ double Point<N>::b() const
 }
 
 template <std::size_t N>
-double Point<N>::a() const
+double &Point<N>::a()
 {
     static_assert(N >= 4,
         "point::a is only available on point with 4 dimensions and more");
@@ -185,13 +185,13 @@ double Point<N>::a() const
 // uv
 
 template <std::size_t N>
-double Point<N>::u() const
+double &Point<N>::u()
 {
     return _arr[0];
 }
 
 template <std::size_t N>
-double Point<N>::v() const
+double &Point<N>::v()
 {
     static_assert(N >= 2,
         "point::v is only available on point with 2 dimensions and more");

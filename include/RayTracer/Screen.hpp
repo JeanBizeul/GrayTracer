@@ -5,7 +5,7 @@
 ** header
 */
 
-#include "Face.hpp"
+#include "IFace.hpp"
 
 #ifndef RAYTRACER_SCREEN_HPP_
 #define RAYTRACER_SCREEN_HPP_

@@ -14,8 +14,7 @@
 namespace RayTracer {
 class Segment {
  public:
-    Segment() : _p1(0), _p2(0) {
-    }
+    Segment() = default;
 
     Segment(Math::Point<3> p1, Math::Point<3> p2) : _p1(p1), _p2(p2) {
     }

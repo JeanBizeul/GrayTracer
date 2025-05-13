@@ -39,21 +39,21 @@ class Vec {
     void operator/=(double val);
 
     template <std::size_t P>
-    double get() const;
-    double operator[](std::size_t index) const;
+    double &get();
+    double &operator[](std::size_t index);
 
-    double x() const;
-    double y() const;
-    double z() const;
-    double w() const;
+    double &x();
+    double &y();
+    double &z();
+    double &w();
 
-    double r() const;
-    double g() const;
-    double b() const;
-    double a() const;
+    double &r();
+    double &g();
+    double &b();
+    double &a();
 
-    double u() const;
-    double v() const;
+    double &u();
+    double &v();
 
  private:
     std::array<double, N> _arr;

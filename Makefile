@@ -11,7 +11,7 @@ NAME		=	raytracer
 CXX			=	g++
 CXXFLAGS	=	-Wall -Wextra -std=c++20 -lsfml-graphics -lsfml-window -lsfml-system
 DFLAGS		=	-MMD -MF $(@:.o=.d)
-LDFLAGS		=
+LDFLAGS		=	-lconfig++
 CPPLINT_FLAGS		=														\
 	--root=./include														\
 	--repository=. 															\
@@ -31,6 +31,11 @@ MAIN		=	src/main.cpp
 TEST_OUTPUT	=	unit_tests
 
 SRCS_TEST	=
+
+## Put the path of the factories Makefiles here
+
+FACTORIES	=	Primitives/Square
+
 ## OBJS
 
 OBJS		=	$(addprefix objs/, ${SRCS:$(FILE_EXTENSION)=.o})
@@ -41,16 +46,17 @@ DEPS_MAIN	=	$(addprefix objs/, ${MAIN:$(FILE_EXTENSION)=.d})
 
 ## RULES
 
-all: $(NAME)
+all: factories $(NAME)
 
 -include $(DEPS) $(DEPS_MAIN)
 
 $(NAME):	$(OBJS) $(OBJ_MAIN)
-	$(CXX) $(CXXFLAGS) $(DFLAGS) $(OBJS) $(OBJ_MAIN) -o $@ -I $(INCLUDE_PATH)
+	$(CXX) $(CXXFLAGS) $(DFLAGS) $(OBJS) $(OBJ_MAIN)	\
+	-o $@ -I $(INCLUDE_PATH) $(LDFLAGS)
 
 objs/%.o:	%$(FILE_EXTENSION)
 	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) $(DFLAGS) -c $< -o $@ -I $(INCLUDE_PATH)
+	$(CXX) $(CXXFLAGS) $(DFLAGS) -c $< -o $@ -I $(INCLUDE_PATH) $(LDFLAGS)
 
 clean:
 	rm -rf objs *.gcda *.gcno
@@ -76,4 +82,7 @@ format: clean
 	find . -type f \( -name "*.cpp" -o -name "*.hpp" \) ! -path "./tests/*"	\
 	-exec clang-format -i {} +
 
-.PHONY:	all clean fclean re tests_run tests_coverage linter format
+factories:
+	$(MAKE) -C src/lib/Factories/$(FACTORIES)
+
+.PHONY:	all clean fclean re tests_run tests_coverage linter format factories
