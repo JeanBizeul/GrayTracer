@@ -6,6 +6,7 @@
 */
 
 #include "Ray.hpp"
+#include "../Math/Point.hpp"
 #include "Screen.hpp"
 
 #ifndef RAYTRACER_CAMERA_HPP_
@@ -14,14 +15,15 @@
 namespace RayTracer {
 class Camera {
  public:
-    Camera() = default;
+    Camera();
     ~Camera() = default;
 
     Math::Point<3> origin;
     RayTracer::Screen screen;
     RayTracer::Ray GenerateRay(double u, double v);
+};
     // return ray from the camera to the screen
 };
-}  // namespace RayTracer
+ // namespace RayTracer
 
 #endif  // RAYTRACER_CAMERA_HPP_

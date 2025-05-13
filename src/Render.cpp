@@ -5,16 +5,19 @@
 ** render
 */
 
+#include <iostream>
 #define MAX_HEIGHT 700
 #define MAX_WIDHT 1000
 
 #include "../include/RayTracer/Scene.hpp"
 #include <SFML/Window.hpp>
 
-bool lookingForAHit(/*vector of primitives, ray*/)
+bool lookingForAHit(std::vector<RayTracer::IPrimitive> primit, RayTracer::Ray ray, bool *hit)
 {
-    //if the ray touches one of the primitives == true
-    //How can I know which color
+    for (auto &i: primit) {
+        if (i.hit(ray))
+            return //struct
+    }
     return false;
 }
 
@@ -22,19 +25,24 @@ void initRender()
 {
     Scene scenario;
     double u, v;
-    //vector of primitives
+    std::vector<RayTracer::IPrimitive> primitives; //vector of primitives
+    bool hit;
+    std::cout << "P3" << std::endl;
+    std::cout << MAX_WIDHT << " " << MAX_HEIGHT << std::endl;
+    std::cout << "255" << std::endl;
+
 
     for (int i = 0; i != MAX_HEIGHT; i++) {
         for (int j = 0; j != MAX_WIDHT; j++) {
             double u = j;
             double v = i;
             RayTracer::Ray r = scenario.camera.GenerateRay(u, v);
-            if (lookingForAHit(/*vector of primitives, ray*/)) { //list of primitives // the first hit
-                //primitive color
+            lookingForAHit(primitives, r, &hit);
+            if (hit) {
+                //primitive
             } else {
-                //black
+                std::cout << "0 0 0" << std::endl; //black
             }
-
         }
     }
 }

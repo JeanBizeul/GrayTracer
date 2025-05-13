@@ -8,9 +8,12 @@
 #include "main.hpp"
 #include "../include/RayTracer/Scene.hpp"
 
+
+
 int main(int ac, char **av)
 {
-    //parsing
-    createRayWindown();
+    /*Try and catch Parsing*/
+    //createRayWindown();
+    initRender();
     return 0;
 }

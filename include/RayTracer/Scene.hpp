@@ -16,7 +16,7 @@
 
 class Scene {
  public:
-    Scene();
+    Scene() {};
     ~Scene() = default;
 
     std::vector<RayTracer::IPrimitive> primitives;

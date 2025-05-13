@@ -130,7 +130,7 @@ template <std::size_t N>
 double Point<N>::y() const
 {
     static_assert(N >= 2,
-        "point::y is only available on point with 2 dimansions and more");
+        "point::y is only available on point with 2 dimensions and more");
     return _arr[1];
 }
 
@@ -138,7 +138,7 @@ template <std::size_t N>
 double Point<N>::z() const
 {
     static_assert(N >= 3,
-        "point::z is only available on point with 3 dimansions and more");
+        "point::z is only available on point with 3 dimensions and more");
     return _arr[2];
 }
 
@@ -146,7 +146,7 @@ template <std::size_t N>
 double Point<N>::w() const
 {
     static_assert(N >= 4,
-        "point::w is only available on point with 4 dimansions and more");
+        "point::w is only available on point with 4 dimensions and more");
     return _arr[3];
 }
 
@@ -162,7 +162,7 @@ template <std::size_t N>
 double Point<N>::g() const
 {
     static_assert(N >= 2,
-        "point::g is only available on point with 2 dimansions and more");
+        "point::g is only available on point with 2 dimensions and more");
     return _arr[1];
 }
 
@@ -170,7 +170,7 @@ template <std::size_t N>
 double Point<N>::b() const
 {
     static_assert(N >= 3,
-        "point::b is only available on point with 3 dimansions and more");
+        "point::b is only available on point with 3 dimensions and more");
     return _arr[2];
 }
 
@@ -178,7 +178,7 @@ template <std::size_t N>
 double Point<N>::a() const
 {
     static_assert(N >= 4,
-        "point::a is only available on point with 4 dimansions and more");
+        "point::a is only available on point with 4 dimensions and more");
     return _arr[3];
 }
 
@@ -194,7 +194,7 @@ template <std::size_t N>
 double Point<N>::v() const
 {
     static_assert(N >= 2,
-        "point::v is only available on point with 2 dimansions and more");
+        "point::v is only available on point with 2 dimensions and more");
     return _arr[1];
 }
 
