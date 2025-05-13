@@ -28,7 +28,7 @@ jobs:
     name: compilation
     needs: check_mirror_repo
     runs-on: ubuntu-latest
-    container: epitechcontent/epitest-docker:latest
+    container: epitechcontent/epitest-docker:devel
     steps:
       - uses: actions/checkout@v4
         with:
@@ -78,7 +78,7 @@ jobs:
     name: tests
     needs: check_program_compilation
     runs-on: ubuntu-latest
-    container: epitechcontent/epitest-docker:latest
+    container: epitechcontent/epitest-docker:devel
     steps:
       - uses: actions/checkout@v4
         with:
