@@ -9,9 +9,9 @@
 #include <memory>
 
 #include "I3dObject.hpp"
-#include "IFace.hpp"
 #include "Math/Point.hpp"
-
+#include "Face.hpp"
+#include "Ray.hpp"
 #ifndef RAYTRACER_APRIMITIVE_HPP_
 #define RAYTRACER_APRIMITIVE_HPP_
 
@@ -20,7 +20,7 @@ class APrimitive : public RayTracer::I3dObject {
  public:
     APrimitive() = default;
     APrimitive(Math::Point<3> center, Math::Vec<3> direction,
-               const std::vector<std::shared_ptr<RayTracer::IFace>> &faces,
+               const std::vector<std::shared_ptr<RayTracer::Face>> &faces,
                double scale = 1);
     ~APrimitive() = default;
 
@@ -36,7 +36,7 @@ class APrimitive : public RayTracer::I3dObject {
  protected:
     Math::Point<3> _center;
     Math::Vec<3> _direction;
-    std::vector<std::shared_ptr<RayTracer::IFace>> _faces;
+    std::vector<std::shared_ptr<RayTracer::Face>> _faces;
     double _scale;
 };
 }  // namespace RayTracer
