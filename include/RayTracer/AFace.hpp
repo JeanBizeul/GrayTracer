@@ -7,6 +7,7 @@
 
 #ifndef RAYTRACER_AFACE_HPP_
 #define RAYTRACER_AFACE_HPP_
+#include <vector>
 
 #include "IFace.hpp"
 
@@ -16,7 +17,8 @@ class AFace : public RayTracer::IFace {
  public:
     AFace() = delete;
 
-    explicit Face(std::vector<RayTracer::Segment> segments) : _segs(segments) {
+    explicit Face(std::vector<RayTracer::Segment> segments)
+    : _segs(segments) {
     }
 
     ~AFace() = default;

@@ -6,6 +6,7 @@
 */
 
 #include <vector>
+#include <memory>
 
 #include "I3dObject.hpp"
 #include "IFace.hpp"
