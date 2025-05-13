@@ -15,13 +15,13 @@ class Ray {
  public:
     Ray() = default;
 
-    Ray(Math::Point<3> origin, Math::Vec<3> direction)
+    Ray(Math::Vec<3> origin, Math::Vec<3> direction)
         : _origin(origin), _direction(direction) {
     }
 
     ~Ray() = default;
 
-    Math::Point<3> _origin;
+    Math::Vec<3> _origin;
     Math::Vec<3> _direction;
 };
 }  // namespace RayTracer
