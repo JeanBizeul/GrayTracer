@@ -73,7 +73,7 @@ linter: clean
 	cpplint $(CPPLINT_FLAGS) ./src/ ./include/
 
 format: clean
-	find . -type f \( -name "*.cpp" -o -name "*.hpp" \) ! -path "./tests/*"	\
-	-exec clang-format -i {} +
+	find . -type f \( -name "*.cpp" -o -name "*.hpp" -o -name "*.tpp" \) ! \
+	-path "./tests/*" -exec clang-format -i {} +
 
 .PHONY:	all clean fclean re tests_run tests_coverage linter format
