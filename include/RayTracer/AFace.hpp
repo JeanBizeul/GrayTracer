@@ -16,7 +16,8 @@ class AFace : public RayTracer::IFace {
  public:
     AFace() = delete;
 
-    explicit Face(std::vector<RayTracer::Segment> segments) : _segs(segments) {
+    explicit Face(std::vector<RayTracer::Segment> segments)
+    : _segs(segments) {
     }
 
     ~AFace() = default;
