@@ -10,16 +10,16 @@
 
 #include <vector>
 
-#include "APrimitive.hpp"
+//#include "APrimitive.hpp"
 #include "Camera.hpp"
 #include "ILight.hpp"
 
 class Scene {
  public:
-    Scene() {}
+    Scene();
     ~Scene() = default;
 
-    std::vector<RayTracer::I3dObject> primitives;
+    //std::vector<RayTracer::APrimitive> primitives;
     RayTracer::Camera camera;
     Math::Vec<3> Ambient_light;
 };

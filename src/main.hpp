@@ -8,11 +8,10 @@
 #ifndef SRC_MAIN_HPP_
 #define SRC_MAIN_HPP_
 
-#include "../include/RayTracer/APrimitive.hpp"
-#include "../include/RayTracer/Camera.hpp"
-#include "../include/RayTracer/Scene.hpp"
+#include "Render.hpp"
 
 void createRayWindown();
+void GeneratePPM(/*vector of primitives*/std::unique_ptr<RayTracer::Sphere> sphere, Scene scenario);
 void initRender(bool);
 
 #endif  // SRC_MAIN_HPP_

@@ -24,7 +24,10 @@ CPPLINT_FLAGS		=														\
 FILE_EXTENSION	=	.cpp
 INCLUDE_PATH	=	./include
 
-SRCS		=	src/Render.cpp
+SRCS		=	src/Render.cpp \
+		        src/Camera.cpp \
+				src/Screen.cpp \
+		    	src/Scene.cpp
 
 MAIN		=	src/main.cpp
 

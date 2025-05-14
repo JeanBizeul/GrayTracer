@@ -12,12 +12,12 @@
 
 namespace RayTracer
 {
-Sphere::Sphere(Math::Point3 center, Math::Vec3 direction, double scale)
+inline Sphere::Sphere(Math::Point3 center, Math::Vec3 direction, double scale)
     : APrimitive(center, direction, {}, scale)
 {
 }
 
-bool Sphere::hit(const RayTracer::Ray &ray) const
+inline bool Sphere::hit(const RayTracer::Ray &ray) const
 {
     (void)ray;
     return false;

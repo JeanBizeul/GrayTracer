@@ -5,10 +5,11 @@
 ** header
 */
 
-#include "I3dObject.hpp"
 
 #ifndef RAYTRACER_ILIGHT_HPP_
 #define RAYTRACER_ILIGHT_HPP_
+
+#include "I3dObject.hpp"
 
 namespace RayTracer {
 class ILight : public RayTracer::I3dObject {

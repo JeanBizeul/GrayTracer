@@ -5,12 +5,14 @@
 ** header
 */
 
-#include "Camera.hpp"
-#include "I3dObject.hpp"
-#include "Screen.hpp"
+
 
 #ifndef RAYTRACER_IRENDERER_HPP_
 #define RAYTRACER_IRENDERER_HPP_
+
+#include "Camera.hpp"
+#include "I3dObject.hpp"
+#include "Screen.hpp"
 
 namespace RayTracer {
 class IRenderer : public I3dObject {

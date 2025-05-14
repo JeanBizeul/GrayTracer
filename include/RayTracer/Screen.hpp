@@ -5,11 +5,11 @@
 ** header
 */
 
-#include "AFace.hpp"
-#include "IFace.hpp"
-
 #ifndef RAYTRACER_SCREEN_HPP_
 #define RAYTRACER_SCREEN_HPP_
+
+#include "AFace.hpp"
+
 
 namespace RayTracer {
 class Screen {
@@ -19,6 +19,6 @@ class Screen {
 
     static RayTracer::AFace<4> screen;
     Math::Point3 pointAt(double u, double v);
-};  // namespace RayTracer
+};
 }  // namespace RayTracer
 #endif  // RAYTRACER_SCREEN_HPP_

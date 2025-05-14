@@ -8,8 +8,7 @@
 #ifndef SRC_LIB_FACTORIES_PRIMITIVES_SQUARE_SRC_SPHERE_HPP_
 #define SRC_LIB_FACTORIES_PRIMITIVES_SQUARE_SRC_SPHERE_HPP_
 
-#include "../../../../../../include/Math/Point3.hpp"
-#include "../../../../../../include/Math/Vec3.hpp"
+
 #include "../../../../../../include/RayTracer/APrimitive.hpp"
 
 namespace RayTracer {
