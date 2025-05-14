@@ -12,6 +12,7 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <iostream>
 
 template <typename T>
 class DLLoader {
@@ -33,8 +34,10 @@ class DLLoader {
     }
 
     ~DLLoader() {
-        if (dlclose(_handler) != 0)
-            throw DLLoaderError("Cannot unload " + _libName + ": " + dlerror());
+        if (dlclose(_handler) != 0) {
+            std:cerr << "Cannot unload " + _libName + ": ";
+            std::cerr << dlerror() << std::endl;
+        }
     }
 
     std::unique_ptr<T> getInstance() {
