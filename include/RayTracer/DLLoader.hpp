@@ -14,10 +14,10 @@
 #include <stdexcept>
 #include <string>
 
-
 class DLLoaderError : std::runtime_error {
  public:
-    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {}
+    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {
+    }
 };
 
 template <typename T>
@@ -26,8 +26,7 @@ class DLLoader {
     DLLoader(const DLLoader &) = delete;
     DLLoader &operator=(const DLLoader &) = delete;
 
-    DLLoader(const std::string &libName)
-        : _libName(libName) {
+    explicit DLLoader(const std::string &libName) : _libName(libName) {
         _handler = dlopen(_libName.c_str(), RTLD_LAZY);
         if (!_handler)
             throw DLLoaderError("Cannot load library " + _libName + ": " +
@@ -41,7 +40,8 @@ class DLLoader {
 
     ~DLLoader() {
         if (dlclose(_handler) != 0)
-            std::cerr << "Cannot unload " + _libName + ": " + dlerror() << std::endl ;
+            std::cerr << "Cannot unload " + _libName + ": " + dlerror()
+                      << std::endl;
     }
 
     std::unique_ptr<T> getInstance() {
@@ -53,6 +53,5 @@ class DLLoader {
     std::unique_ptr<T> (*_entryPoint)(void);
     const std::string _libName;
 };
-
 
 #endif  // RAYTRACER_DLLOADER_HPP_

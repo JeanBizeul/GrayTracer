@@ -6,13 +6,11 @@
 */
 
 #include "main.hpp"
+
 #include "../include/RayTracer/Scene.hpp"
 
-
-
-int main(int ac, char **av)
-{
-    //Parsing
+int main(int ac, char **av) {
+    // Parsing
 
     initRender(false);
     return 0;

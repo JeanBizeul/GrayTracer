@@ -19,6 +19,6 @@ class Screen {
 
     static RayTracer::AFace<4> screen;
     Math::Point3 pointAt(double u, double v);
-    }; // namespace RayTracer
-}
+};  // namespace RayTracer
+}  // namespace RayTracer
 #endif  // RAYTRACER_SCREEN_HPP_

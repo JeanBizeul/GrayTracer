@@ -18,10 +18,8 @@ class AFace : public RayTracer::IFace {
     AFace() = delete;
     ~AFace() = default;
 
-    explicit AFace(std::vector<RayTracer::Segment> segments)
-    : _segs(segments) {
+    explicit AFace(std::vector<RayTracer::Segment> segments) : _segs(segments) {
     }
-
 
  protected:
     std::array<RayTracer::Segment, N> _segs;

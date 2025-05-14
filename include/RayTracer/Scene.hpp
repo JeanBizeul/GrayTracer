@@ -10,13 +10,13 @@
 
 #include <vector>
 
-#include "Camera.hpp"
 #include "APrimitive.hpp"
+#include "Camera.hpp"
 #include "ILight.hpp"
 
 class Scene {
  public:
-    Scene() {};
+    Scene() {}
     ~Scene() = default;
 
     std::vector<RayTracer::I3dObject> primitives;

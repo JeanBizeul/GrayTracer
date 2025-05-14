@@ -18,7 +18,7 @@ class IFace {
     IFace() = delete;
     virtual ~IFace() = default;
 
-    //virtual bool hit(const RayTracer::Ray &ray) const = 0;
+    // virtual bool hit(const RayTracer::Ray &ray) const = 0;
 };
 }  // namespace RayTracer
 

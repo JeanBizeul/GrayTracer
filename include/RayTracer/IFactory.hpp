@@ -9,7 +9,6 @@
 #define RAYTRACER_IFACTORY_HPP_
 #include <memory>
 #include <string>
-
 #include <libconfig.h++>
 
 namespace RayTracer {

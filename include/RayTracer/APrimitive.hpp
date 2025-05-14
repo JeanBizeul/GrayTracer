@@ -5,12 +5,11 @@
 ** header
 */
 
-#include <vector>
 #include <memory>
+#include <vector>
 
 #include "../Math/Point3.hpp"
 #include "../Math/Vec3.hpp"
-
 #include "I3dObject.hpp"
 #include "IFace.hpp"
 
