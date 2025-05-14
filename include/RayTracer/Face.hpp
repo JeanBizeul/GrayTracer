@@ -8,6 +8,8 @@
 #ifndef RAYTRACER_FACE_HPP_
 #define RAYTRACER_FACE_HPP_
 
+#include <tuple>
+
 #include "Math/Vec.hpp"
 #include "Ray.hpp"
 
@@ -28,14 +30,12 @@ class Face {
 
  private:
     Math::Vec3 _position;   // relative to the object
-    Math::Vec3 _direction;  // relative to the object
+    Math::Vec3 _normal;  // relative to the object
     Math::Vec3 _a;          // relative to the face
     Math::Vec3 _b;          // relative to the face
     Math::Vec3 _c;          // relative to the face
     // Material _material;
 };
 }  // namespace RayTracer
-
-#include "Face.tpp"
 
 #endif  // RAYTRACER_FACE_HPP_

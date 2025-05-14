@@ -14,6 +14,7 @@
 #include <tuple>
 #include "Math/Vec.hpp"
 #include "Ray.hpp"
+#include "Face.hpp"
 
 namespace RayTracer {
 
@@ -48,7 +49,7 @@ std::tuple<Math::Vec3, Math::Vec3, Math::Vec3> Face::getWorldVertices(
     const Math::Vec3& obj_pos,
     const Math::Vec3& obj_dir) const
 {
-    Math::Vec3 total_rotation = obj_dir + _direction;
+    Math::Vec3 total_rotation = obj_dir + _normal;
     Math::Vec3 base_pos = obj_pos + _position;
 
     Math::Vec3 v0 = base_pos + rotateVec(_a, total_rotation);
