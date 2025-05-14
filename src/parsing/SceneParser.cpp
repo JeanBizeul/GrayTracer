@@ -68,8 +68,36 @@ void SceneParser::writeScene(std::unique_ptr<Scene> &toFill) {
     const libconfig::Setting &primitivesSetting = sceneSetting["primitives"];
     parsePrimitives(primitivesSetting);
     const libconfig::Setting &camerasSetting = sceneSetting["camera"];
+    parseCamera(camerasSetting);
     const libconfig::Setting &ambientSetting = sceneSetting["ambient"];
     const libconfig::Setting &lightsSetting = sceneSetting["lights"];
+}
+
+void SceneParser::parseCamera(const libconfig::Setting &cameraSetting) {
+    if (cameraSetting.getType() != libconfig::Setting::TypeGroup)
+        errorThrow("\"camera\" must be a group");
+    if (cameraSetting.getLength() != 3)
+        errorThrow(
+            "\"camera\" must have 3 elements: \"position\", "
+            "\"rotation\" and \"fov\"");
+    const libconfig::Setting &positionSetting = cameraSetting["position"];
+    if (positionSetting.getType() != libconfig::Setting::TypeArray ||
+        positionSetting.getLength() != 3)
+        errorThrow(
+            "\"position\" must be an array of 3 elements: \"[x, y, z]\"");
+    const libconfig::Setting &rotationSetting = cameraSetting["rotation"];
+    if (rotationSetting.getType() != libconfig::Setting::TypeArray ||
+        rotationSetting.getLength() != 3)
+        errorThrow(
+            "\"rotation\" must be an array of 3 elements: \"[x, y, z]\"");
+    const libconfig::Setting &fovSetting = cameraSetting["fov"];
+    if (fovSetting.getType() != libconfig::Setting::TypeFloat)
+        errorThrow("\"fov\" must be a float");
+    float fov;
+    if (!cameraSetting.lookupValue("fov", fov) || fov <= 0.0 || fov >= 180.0) {
+        std::cout << fov << std::endl;
+        errorThrow("\"fov\" must be between 0 and 180");
+    }
 }
 
 static void parseSinglePrimitive(const libconfig::Setting &primitiveSetting) {
