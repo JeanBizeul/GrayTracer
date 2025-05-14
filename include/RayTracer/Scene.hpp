@@ -18,6 +18,9 @@ class Scene {
  public:
     Scene() : camera(), lights() {}
 
+    Scene(Math::Point3 screenPos, Math::Vec3 screenSize)
+        : camera(screenPos, screenSize), lights() {}
+
     ~Scene() = default;
 
     // std::vector<RayTracer::APrimitive> primitives;
