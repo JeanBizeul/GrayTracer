@@ -5,6 +5,7 @@
 ** header
 */
 
+#include "Math/Point3.hpp"
 #include "Ray.hpp"
 #include "Screen.hpp"
 
@@ -21,7 +22,7 @@ class Camera {
 
     ~Camera() = default;
 
-    Math::Point<3> origin;
+    Math::Point3 origin;
     RayTracer::Screen screen;
     RayTracer::Ray GenerateRay(double u, double v);
     // return ray from the camera to the screen
