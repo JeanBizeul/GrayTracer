@@ -7,6 +7,7 @@
 
 #ifndef RAYTRACER_IFACTORY_HPP_
 #define RAYTRACER_IFACTORY_HPP_
+
 #include <memory>
 #include <string>
 

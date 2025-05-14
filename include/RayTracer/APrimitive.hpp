@@ -5,13 +5,14 @@
 ** header
 */
 
-#include <vector>
 #include <memory>
+#include <vector>
 
+#include "Face.hpp"
 #include "I3dObject.hpp"
-#include "IFace.hpp"
-#include "Math/Point3.hpp"
+#include "Ray.hpp"
 #include "Math/Vec3.hpp"
+#include "Math/Point3.hpp"
 
 #ifndef RAYTRACER_APRIMITIVE_HPP_
 #define RAYTRACER_APRIMITIVE_HPP_
@@ -21,7 +22,7 @@ class APrimitive : public RayTracer::I3dObject {
  public:
     APrimitive() = default;
     APrimitive(Math::Point3 center, Math::Vec3 direction,
-               const std::vector<std::shared_ptr<RayTracer::IFace>> &faces,
+               const std::vector<std::shared_ptr<RayTracer::Face>> &faces,
                double scale = 1);
     ~APrimitive() = default;
 
@@ -37,7 +38,7 @@ class APrimitive : public RayTracer::I3dObject {
  protected:
     Math::Point3 _center;
     Math::Vec3 _direction;
-    std::vector<std::shared_ptr<RayTracer::IFace>> _faces;
+    std::vector<std::shared_ptr<RayTracer::Face>> _faces;
     double _scale;
 };
 }  // namespace RayTracer
