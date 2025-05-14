@@ -9,10 +9,10 @@
 #define RAYTRACER_DLLOADER_HPP_
 #include <dlfcn.h>
 
+#include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
-#include <iostream>
 
 template <typename T>
 class DLLoader {
@@ -35,7 +35,8 @@ class DLLoader {
 
     ~DLLoader() {
         if (dlclose(_handler) != 0) {
-            std:cerr << "Cannot unload " + _libName + ": ";
+        std:
+            cerr << "Cannot unload " + _libName + ": ";
             std::cerr << dlerror() << std::endl;
         }
     }
