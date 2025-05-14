@@ -15,10 +15,9 @@ DFLAGS		=	-MMD -MF $(@:.o=.d)
 ## SRC - Put your sources files here
 
 FILE_EXTENSION	=	.cpp
-INCLUDE_PATH	=	../../../../../include
+INCLUDE_PATH	=	../../../../include
 
-SRCS		=	src/Material.cpp		\
-				src/MaterialFactory.cpp
+SRCS		=	src/MaterialFactory.cpp
 
 ## OBJS
 
