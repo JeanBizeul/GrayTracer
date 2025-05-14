@@ -6,8 +6,10 @@
 */
 
 #include "SphereFactory.hpp"
+
 #include <iostream>
 #include <memory>
+
 #include "Math/Point3.hpp"
 #include "Math/Vec3.hpp"
 

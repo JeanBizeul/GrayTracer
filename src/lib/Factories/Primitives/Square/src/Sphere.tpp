@@ -8,10 +8,12 @@
 #ifndef SPHERE_TPP_
 #define SPHERE_TPP_
 #include <math.h>
+#include <optional>
 
 #include "Math/Point3.hpp"
 #include "Math/Vec3.hpp"
 #include "RayTracer/APrimitive.hpp"
+#include "RayTracer/Impact.hpp"
 
 namespace RayTracer
 {
@@ -20,10 +22,10 @@ Sphere::Sphere(Math::Point3 center, Math::Vec3 direction, double scale)
 {
 }
 
-bool Sphere::hit(const RayTracer::Ray &ray) const
+std::optional<Impact> Sphere::hit(const RayTracer::Ray &ray) const
 {
     (void)ray;
-    return false;
+    return std::nullopt;
 }
 }  // namespace RayTracer
 

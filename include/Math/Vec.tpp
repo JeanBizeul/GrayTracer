@@ -41,7 +41,7 @@ template <std::size_t N>
 double Vec<N>::dot(const Vec<N> &other) const
 {
     double result = 0.0f;
-    
+
     for (std::size_t i = 0; i < _arr.size(); i++)
     result += _arr[i] * other[i];
     return result;
