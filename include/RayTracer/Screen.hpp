@@ -14,7 +14,7 @@ namespace RayTracer {
 class Screen {
  public:
     Screen() = default;
-    Screen(Math::Point<3> pos, Math::Vec<3> size);
+    Screen(Math::Point3 pos, Math::Vec3 size);
     ~Screen() = default;
 
     static RayTracer::AFace<4> screen;
