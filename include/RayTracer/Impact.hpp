@@ -24,4 +24,4 @@ class Impact {
 };
 }  // namespace RayTracer
 
-#endif // RAYTRACER_IMPACT_HPP_
+#endif  // RAYTRACER_IMPACT_HPP_
