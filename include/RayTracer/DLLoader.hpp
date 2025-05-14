@@ -9,9 +9,11 @@
 #define RAYTRACER_DLLOADER_HPP_
 #include <dlfcn.h>
 
+#include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
+
 
 class DLLoaderError : std::runtime_error {
  public:
@@ -39,7 +41,7 @@ class DLLoader {
 
     ~DLLoader() {
         if (dlclose(_handler) != 0)
-            throw DLLoaderError("Cannot unload " + _libName + ": " + dlerror());
+            std::cerr << "Cannot unload " + _libName + ": " + dlerror() << std::endl ;
     }
 
     std::unique_ptr<T> getInstance() {
