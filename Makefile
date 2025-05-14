@@ -60,14 +60,14 @@ objs/%.o:	%$(FILE_EXTENSION)
 
 clean:
 	rm -rf objs *.gcda *.gcno
-	$(MAKE) -C src/lib/Factories/$(FACTORIES) clean
+	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) clean
 
 fclean:		clean
-	rm -rf $(NAME) $(TEST_OUTPUT) plugins/
-	$(MAKE) -C src/lib/Factories/$(FACTORIES) fclean
+	rm -rf $(NAME) $(TEST_OUTPUT) Plugins/
+	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) fclean
 
 re:		fclean all
-	$(MAKE) -C src/lib/Factories/$(FACTORIES) re
+	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) re
 
 unit_tests: $(OBJS) $(OBJS_TEST)
 	$(CXX) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST) --coverage -lcriterion
@@ -86,8 +86,8 @@ format: clean
 	-exec clang-format -i {} +
 
 factories:
-	mkdir -p plugins
-	$(MAKE) -C src/lib/Factories/$(FACTORIES)
-	cp src/lib/Factories/$(FACTORIES)/**.so ./plugins/
+	mkdir -p Plugins
+	$(MAKE) -C src/Plugins/Factories/$(FACTORIES)
+	cp src/Plugins/Factories/$(FACTORIES)/**.so ./Plugins/
 
 .PHONY:	all clean fclean re tests_run tests_coverage linter format factories
