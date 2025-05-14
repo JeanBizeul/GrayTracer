@@ -8,11 +8,8 @@
 #include "SphereFactory.hpp"
 #include <iostream>
 #include <memory>
-#include <string>
-#include <memory>
 #include "Math/Point3.hpp"
 #include "Math/Vec3.hpp"
-
 
 namespace RayTracer {
 std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(

@@ -22,8 +22,12 @@ class Vec {
     ~Vec() = default;
 
     double dot(const Vec<N> &other) const;
+
+    Math::Vec<N> cross(const Vec<N> &other) const;
+
     double lenght() const;
     Vec<N> normalize() const;
+
 
     Vec<N> operator+(const Vec<N> &other) const;
     Vec<N> operator-(const Vec<N> &other) const;
@@ -46,7 +50,7 @@ class Vec {
     template <std::size_t P>
     double get() const;
     double &operator[](std::size_t index);
-    double operator[](std::size_t index) const;
+    const double &operator[](std::size_t index) const;
 
     double &x();
     double &y();
