@@ -5,11 +5,11 @@
 ** Sphere
 */
 
-#ifndef SRC_LIB_FACTORIES_PRIMITIVES_SQUARE_SRC_SPHERE_HPP_
-#define SRC_LIB_FACTORIES_PRIMITIVES_SQUARE_SRC_SPHERE_HPP_
+
+#ifndef SRC_PLUGINS_FACTORIES_PRIMITIVES_SPHERE_SRC_SPHERE_HPP_
+#define SRC_PLUGINS_FACTORIES_PRIMITIVES_SPHERE_SRC_SPHERE_HPP_
 
 #include <optional>
-
 #include "Math/Point3.hpp"
 #include "Math/Vec3.hpp"
 #include "RayTracer/APrimitive.hpp"
@@ -28,4 +28,4 @@ class Sphere : public APrimitive {
 
 #include "Sphere.tpp"
 
-#endif  // SRC_LIB_FACTORIES_PRIMITIVES_SQUARE_SRC_SPHERE_HPP_
+#endif  // SRC_PLUGINS_FACTORIES_PRIMITIVES_SPHERE_SRC_SPHERE_HPP_
