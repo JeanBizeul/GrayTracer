@@ -8,14 +8,14 @@
 #ifndef RAYTRACER_APRIMITIVE_TPP_
 #define RAYTRACER_APRIMITIVE_TPP_
 
-#include "APrimitive.hpp"
+#include "RayTracer/APrimitive.hpp"
 
 #include <optional>
 #include <vector>
 
-#include "Face.hpp"
-#include "I3dObject.hpp"
-#include "Impact.hpp"
+#include "RayTracer/Face.hpp"
+#include "RayTracer/I3dObject.hpp"
+#include "RayTracer/Impact.hpp"
 #include "Math/Point3.hpp"
 #include "Math/Vec3.hpp"
 
@@ -53,6 +53,10 @@ const Math::Vec3 &APrimitive::getRotation() const {
     return _direction;
 }
 
+const RayTracer::Material &APrimitive::getMaterial() const {
+    return *_material;
+}
+
 void APrimitive::setScale(double scale) {
     _scale = scale;
 }
@@ -63,6 +67,10 @@ void APrimitive::setPosition(const Math::Point3 &center) {
 
 void APrimitive::setRotation(const Math::Vec3 &direction) {
     _direction = direction;
+}
+
+void APrimitive::setMaterial(std::unique_ptr<RayTracer::Material> material) {
+    _material = std::move(material);
 }
 
 void APrimitive::translate(const Math::Vec3 &translation) {

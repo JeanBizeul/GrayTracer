@@ -24,7 +24,8 @@ CPPLINT_FLAGS		=														\
 FILE_EXTENSION	=	.cpp
 INCLUDE_PATH	=	./include
 
-SRCS		=
+SRCS		=	src/APrimitive.cpp	\
+				src/Face.cpp
 
 MAIN		=	src/main.cpp
 
