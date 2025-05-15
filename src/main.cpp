@@ -7,10 +7,8 @@
 
 #include "main.hpp"
 
-int main(int ac, char **av) {
-    // "Scene Loader"
-    Scene scene_elements;
-
+void SceneLoader(Scene &scene_elements) // For testing purposes
+{
     Math::Point3 origin({0, 0, 0});
     Math::Vec3 screenSize({2.0, 2.0, 0.0});
     Math::Point3 screenPos({0.0, 0.0, -1.0});
@@ -30,11 +28,12 @@ int main(int ac, char **av) {
     // Add both spheres to scene
     scene_elements.primitives.push_back(sphere1);
     scene_elements.primitives.push_back(sphere2);
-    // Threads
+}
 
-    // Sfml
+int main(int ac, char **av) {
+    Scene scene_elements;
 
-    // PPM file
-    initRender(scene_elements, false); // Asking for PPM Output
+    SceneLoader(scene_elements);
+    initRender(scene_elements, false);  // False => Asking for PPM Output
     return 0;
 }

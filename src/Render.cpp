@@ -8,41 +8,41 @@
 #define MAX_HEIGHT 700
 #define MAX_WIDHT 1000
 
-#include <cstddef>
-#include <optional>
 #include "Render.hpp"
+
+#include <cstddef>
 #include <iostream>
+#include <optional>
 #include <vector>
 
-std::optional<RayTracer::APrimitive> lookingForTheClosestHit(std::vector<RayTracer::APrimitive> primitive, RayTracer::Ray ray)
-{
+std::optional<RayTracer::APrimitive> lookingForTheClosestHit(
+    std::vector<RayTracer::APrimitive> primitive, RayTracer::Ray ray) {
     std::vector<RayTracer::APrimitive> _hitByRay;
     std::optional<RayTracer::APrimitive> closest = std::nullopt;
     bool set = false;
 
-    for (auto &i: primitive) {
+    for (auto &i : primitive) {
         if (i.hit(ray))
-            _hitByRay.push_back(i); // All primitives hit by the ray
+            _hitByRay.push_back(i);  // All primitives hit by the ray
     }
-    if (_hitByRay.empty())
-        return closest;
-    for (auto y :_hitByRay) {
+    if (_hitByRay.empty()) return closest;
+    for (auto y : _hitByRay) {
         if (!set) {
             closest = y;
             set = true;
         }
-        if (closest.value().hit(ray)->_distance > y.hit(ray)->_distance) // looking for the closest hit directly here
+        if (closest.value().hit(ray)->_distance >
+            y.hit(ray)->_distance)  // looking for the closest hit directly here
             closest = y;
     }
     return closest;
 }
 
-void GeneratePPM(Scene scenario)
-{
-    //Create a file if it doesn't exist in append Mode
-        //std::cout << "P3" << std::endl;
-        //std::cout << MAX_WIDHT << " " << MAX_HEIGHT << std::endl;
-        //std::cout << "255" << std::endl;
+void GeneratePPM(Scene scenario) {
+    // Create a file if it doesn't exist in append Mode
+    // std::cout << "P3" << std::endl;
+    // std::cout << MAX_WIDHT << " " << MAX_HEIGHT << std::endl;
+    // std::cout << "255" << std::endl;
 }
 
 void createRayWindown() {
@@ -61,7 +61,8 @@ void createRayWindown() {
 }
 
 void initRender(
-    Scene scenario, bool DisplayMode) {  // get the infos if PPM the call PPM if not sfml
+    Scene scenario,
+    bool DisplayMode) {  // get the infos if PPM the call PPM if not sfml
     std::vector<RayTracer::APrimitive> list;
     std::optional<RayTracer::APrimitive> ClosestPrimitive;
 
@@ -72,7 +73,7 @@ void initRender(
             RayTracer::Ray r = scenario.camera.GenerateRay(u, v);
             ClosestPrimitive = lookingForTheClosestHit(scenario.primitives, r);
             if (ClosestPrimitive.has_value()) {
-                //Light
+                // Light
                 if (DisplayMode) {
                     createRayWindown();
                 } else {
