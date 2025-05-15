@@ -34,7 +34,7 @@ SRCS_TEST	=
 
 ## Put the path of the factories Makefiles here
 
-FACTORIES	=	Primitives/Square
+FACTORIES	=	Primitives/Sphere
 
 ## OBJS
 
@@ -60,11 +60,14 @@ objs/%.o:	%$(FILE_EXTENSION)
 
 clean:
 	rm -rf objs *.gcda *.gcno
+	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) clean
 
 fclean:		clean
-	rm -rf $(NAME) $(TEST_OUTPUT)
+	rm -rf $(NAME) $(TEST_OUTPUT) Plugins/
+	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) fclean
 
 re:		fclean all
+	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) re
 
 unit_tests: $(OBJS) $(OBJS_TEST)
 	$(CXX) $(CXXFLAGS) $(DFLAGS) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST)	\
@@ -84,8 +87,8 @@ format: clean
 	-path "./tests/*" -exec clang-format -i {} +
 
 factories:
-	mkdir -p ./lib/
-	$(MAKE) -C src/lib/Factories/$(FACTORIES)
-	cp src/lib/Factories/$(FACTORIES)/**.so ./lib/
+	mkdir -p Plugins
+	$(MAKE) -C src/Plugins/Factories/$(FACTORIES)
+	cp src/Plugins/Factories/$(FACTORIES)/**.so ./Plugins/
 
 .PHONY:	all clean fclean re tests_run tests_coverage linter format factories
