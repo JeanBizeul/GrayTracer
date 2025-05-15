@@ -13,6 +13,7 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <iostream>
 
 class DLLoaderError : std::runtime_error {
  public:
@@ -39,9 +40,10 @@ class DLLoader {
     }
 
     ~DLLoader() {
-        if (dlclose(_handler) != 0)
-            std::cerr << "Cannot unload " + _libName + ": " + dlerror()
-                      << std::endl;
+        if (dlclose(_handler) != 0) {
+            std::cerr << "Cannot unload " + _libName + ": ";
+            std::cerr << dlerror() << std::endl;
+        }
     }
 
     std::unique_ptr<T> getInstance() {
@@ -53,5 +55,7 @@ class DLLoader {
     std::unique_ptr<T> (*_entryPoint)(void);
     const std::string _libName;
 };
+
+
 
 #endif  // RAYTRACER_DLLOADER_HPP_

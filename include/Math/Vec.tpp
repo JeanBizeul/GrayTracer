@@ -41,10 +41,21 @@ template <std::size_t N>
 double Vec<N>::dot(const Vec<N> &other) const
 {
     double result = 0.0f;
-    
+
     for (std::size_t i = 0; i < _arr.size(); i++)
     result += _arr[i] * other[i];
     return result;
+}
+
+template <std::size_t N>
+Vec<N> Vec<N>::cross(const Vec<N> &other) const
+{
+    static_assert(N == 3, "Cross product is only defined for 3D vectors");
+    return Vec<N>({
+        _arr[1] * other[2] - _arr[2] * other[1],
+        _arr[2] * other[0] - _arr[0] * other[2],
+        _arr[0] * other[1] - _arr[1] * other[0]
+    });
 }
 
 template <std::size_t N>
@@ -78,9 +89,9 @@ Vec<N> Vec<N>::operator+(const Vec<N> &other) const
 {
     std::array<double, N> result;
 
-    for (std::size_t i = 0; i < result.size(); i ++)
+    for (std::size_t i = 0; i < _arr.size(); i++)
         result[i] = _arr[i] + other[i];
-    return vec<N>(result);
+    return Vec<N>(result);
 }
 
 template <std::size_t N>
@@ -88,9 +99,9 @@ Vec<N> Vec<N>::operator-(const Vec<N> &other) const
 {
     std::array<double, N> result;
 
-    for (std::size_t i = 0; i < result.size(); i ++)
+    for (std::size_t i = 0; i < _arr.size(); i++)
         result[i] = _arr[i] - other[i];
-    return vec<N>(result);
+    return Vec<N>(result);
 }
 
 template <std::size_t N>
@@ -100,7 +111,7 @@ Vec<N> Vec<N>::operator*(const Vec<N> &other) const
 
     for (std::size_t i = 0; i < result.size(); i ++)
         result[i] = _arr[i] * other[i];
-    return vec<N>(result);
+    return Vec<N>(result);
 }
 
 template <std::size_t N>
@@ -204,6 +215,15 @@ template<std::size_t N>
 double &Vec<N>::operator[](std::size_t index)
 {
     if (index >= _arr.size())
+        throw std::out_of_range("Vec[]: Index out of range");
+    else
+        return _arr[index];
+}
+
+template<std::size_t N>
+const double &Vec<N>::operator[](std::size_t index) const
+{
+    if (index < _arr.size())
         throw std::out_of_range("Vec[]: Index out of range");
     else
         return _arr[index];
