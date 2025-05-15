@@ -30,4 +30,4 @@ class FactoryContext {
 
 #include "FactoryContext.tpp"
 
-#endif /* !RAYTRACER_FACTORYCONTEXT_HPP_ */
+#endif  // RAYTRACER_FACTORYCONTEXT_HPP_
