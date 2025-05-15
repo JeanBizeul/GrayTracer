@@ -25,7 +25,8 @@ class Light {
           _angle(angle) {
     }
 
-    const std::optional<LightInfo> hit(Math::Point3 _impact) const;
+    const std::optional<LightInfo> hit(Math::Point3 _impact,
+                                       Math::Vec3 _faceNormal) const;
 
  private:
     Math::Point3 _position;
