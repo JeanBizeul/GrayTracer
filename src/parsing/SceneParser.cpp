@@ -70,7 +70,22 @@ void SceneParser::writeScene(std::unique_ptr<Scene> &toFill) {
     const libconfig::Setting &camerasSetting = sceneSetting["camera"];
     parseCamera(camerasSetting);
     const libconfig::Setting &ambientSetting = sceneSetting["ambient"];
+    parseAmbient(ambientSetting);
     const libconfig::Setting &lightsSetting = sceneSetting["lights"];
+    // parseAmbient(lightsSetting);
+}
+
+void SceneParser::parseAmbient(const libconfig::Setting &ambientSetting) {
+    if (ambientSetting.getType() != libconfig::Setting::TypeArray ||
+        ambientSetting.getLength() != 3)
+        errorThrow("\"ambient\" must be an array of 3 elements: \"[r, g, b]\"");
+    int r = ambientSetting[0], g = ambientSetting[1], b = ambientSetting[2];
+    if (r < 0 || r > 255)
+        errorThrow("\"r\" must be between 0 and 255");
+    if (g < 0 || g > 255)
+        errorThrow("\"g\" must be between 0 and 255");
+    if (b < 0 || b > 255)
+        errorThrow("\"b\" must be between 0 and 255");
 }
 
 void SceneParser::parseCamera(const libconfig::Setting &cameraSetting) {

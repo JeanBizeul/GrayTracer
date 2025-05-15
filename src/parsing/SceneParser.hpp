@@ -27,6 +27,7 @@ class SceneParser {
     void writeScene(std::unique_ptr<Scene> &toFill);
     void parsePrimitives(const libconfig::Setting &primitivesSetting);
     void parseCamera(const libconfig::Setting &cameraSetting);
+    void parseAmbient(const libconfig::Setting &ambientSetting);
     libconfig::Config _cfg;
 };
 
