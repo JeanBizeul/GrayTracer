@@ -17,7 +17,7 @@ inline Sphere::Sphere(Math::Point3 center, Math::Vec3 direction, double scale)
 {
 }
 
-std::optional<Impact> Sphere::hit(const RayTracer::Ray &ray) const
+inline std::optional<Impact> Sphere::hit(const RayTracer::Ray &ray) const
 {
     (void)ray;
     return std::nullopt;
