@@ -35,6 +35,6 @@ int main(int ac, char **av) {
     // Sfml
 
     // PPM file
-    initRender(scene_elements, false);
+    initRender(scene_elements, false); // Asking for PPM Output
     return 0;
 }
