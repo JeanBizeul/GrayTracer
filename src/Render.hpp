@@ -13,9 +13,6 @@
 #include <memory>
 #include <utility>
 #include <vector>
-
-#include <SFML/Window.hpp>
-
 #include "../include/RayTracer/DLLoader.hpp"
 #include "../include/RayTracer/I3dObject.hpp"
 #include "../include/RayTracer/Scene.hpp"
