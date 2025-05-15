@@ -25,9 +25,14 @@ class SceneParser {
 
  private:
     void writeScene(std::unique_ptr<Scene> &toFill);
-    void parsePrimitives(const libconfig::Setting &primitivesSetting);
-    void parseCamera(const libconfig::Setting &cameraSetting);
-    void parseAmbient(const libconfig::Setting &ambientSetting);
+    void parsePrimitives(const libconfig::Setting &primitivesSetting,
+                         std::vector<RayTracer::APrimitive> &primitives);
+    void parseCamera(const libconfig::Setting &cameraSetting,
+                     RayTracer::Camera &camera);
+    void parseAmbient(const libconfig::Setting &ambientSetting,
+                      Math::Vec3 &ambient);
+    void parseLights(const libconfig::Setting &lightsSetting,
+                     std::vector<RayTracer::ILight> &lights);
     libconfig::Config _cfg;
 };
 

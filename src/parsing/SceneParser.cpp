@@ -10,6 +10,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <vector>
 
 #include <libconfig.h++>
 
@@ -66,29 +67,88 @@ void SceneParser::writeScene(std::unique_ptr<Scene> &toFill) {
             "\"scene\" must have 4 elements: \"primitives\", \"cameras\", "
             "\"lights\" and \"background\"");
     const libconfig::Setting &primitivesSetting = sceneSetting["primitives"];
-    parsePrimitives(primitivesSetting);
+    parsePrimitives(primitivesSetting, toFill->primitives);
     const libconfig::Setting &camerasSetting = sceneSetting["camera"];
-    parseCamera(camerasSetting);
+    parseCamera(camerasSetting, toFill->camera);
     const libconfig::Setting &ambientSetting = sceneSetting["ambient"];
-    parseAmbient(ambientSetting);
+    parseAmbient(ambientSetting, toFill->ambient);
     const libconfig::Setting &lightsSetting = sceneSetting["lights"];
-    // parseAmbient(lightsSetting);
+    parseLights(lightsSetting, toFill->lights);
 }
 
-void SceneParser::parseAmbient(const libconfig::Setting &ambientSetting) {
-    if (ambientSetting.getType() != libconfig::Setting::TypeArray ||
-        ambientSetting.getLength() != 3)
-        errorThrow("\"ambient\" must be an array of 3 elements: \"[r, g, b]\"");
-    int r = ambientSetting[0], g = ambientSetting[1], b = ambientSetting[2];
+static void parseCoordinates(const libconfig::Setting &setting, Math::Vec3 &vec,
+                             const std::string &name) {
+    if (setting.getType() != libconfig::Setting::TypeArray ||
+        setting.getLength() != 3)
+        errorThrow("\"" + name +
+                   "\" must be an array of 3 elements: \"[x, y, z]\"");
+    vec.x() = static_cast<int>(setting[0]);
+    vec.y() = static_cast<int>(setting[1]);
+    vec.z() = static_cast<int>(setting[2]);
+}
+
+static void parseRgb(const libconfig::Setting &setting, Math::Vec3 &vec,
+                     const std::string &name) {
+    if (setting.getType() != libconfig::Setting::TypeArray ||
+        setting.getLength() != 3)
+        errorThrow("\"" + name +
+                   "\" must be an array of 3 elements: \"[r, g, b]\"");
+    int r = setting[0], g = setting[1], b = setting[2];
     if (r < 0 || r > 255)
-        errorThrow("\"r\" must be between 0 and 255");
+        errorThrow("\"" + name + "[0]\" must be between 0 and 255");
     if (g < 0 || g > 255)
-        errorThrow("\"g\" must be between 0 and 255");
+        errorThrow("\"" + name + "[1]\" must be between 0 and 255");
     if (b < 0 || b > 255)
-        errorThrow("\"b\" must be between 0 and 255");
+        errorThrow("\"" + name + "[2]\" must be between 0 and 255");
+    vec.r() = r;
+    vec.g() = g;
+    vec.b() = b;
 }
 
-void SceneParser::parseCamera(const libconfig::Setting &cameraSetting) {
+static void parseSingleLight(const libconfig::Setting &lightSetting) {
+    if (lightSetting.getType() != libconfig::Setting::TypeGroup)
+        errorThrow("Light must be a group");
+    if (lightSetting.getLength() > 5)
+        errorThrow(
+            "Light must have 5 elements: \"name\", \"position\", "
+            "\"rotation\", \"color\" and \"range\"");
+    const libconfig::Setting &nameSetting = lightSetting["name"];
+    if (nameSetting.getType() != libconfig::Setting::TypeString)
+        errorThrow("\"name\" must be a string");
+    const libconfig::Setting &positionSetting = lightSetting["position"];
+    Math::Vec3 position;
+    parseCoordinates(positionSetting, position, "position");
+    const libconfig::Setting &rotationSetting = lightSetting["rotation"];
+    Math::Vec3 rotation;
+    parseCoordinates(rotationSetting, rotation, "rotation");
+    const libconfig::Setting &colorSetting = lightSetting["color"];
+    Math::Vec3 color;
+    parseRgb(colorSetting, color, "color");
+    const libconfig::Setting &rangeSetting = lightSetting["range"];
+    if (rangeSetting.getType() != libconfig::Setting::TypeFloat)
+        errorThrow("\"range\" must be a float");
+    float range;
+    if (!lightSetting.lookupValue("range", range) || range <= 0.0)
+        errorThrow("\"range\" must be greater than 0");
+}
+
+void SceneParser::parseLights(const libconfig::Setting &lightsSetting,
+                              std::vector<RayTracer::ILight> &lights) {
+    if (lightsSetting.getType() != libconfig::Setting::TypeList)
+        errorThrow("\"lights\" must be a list of lights");
+    for (int i = 0; i < lightsSetting.getLength(); ++i) {
+        const libconfig::Setting &lightSetting = lightsSetting[i];
+        parseSingleLight(lightSetting);
+    }
+}
+
+void SceneParser::parseAmbient(const libconfig::Setting &ambientSetting,
+                               Math::Vec3 &ambient) {
+    parseRgb(ambientSetting, ambient, "ambient");
+}
+
+void SceneParser::parseCamera(const libconfig::Setting &cameraSetting,
+                              RayTracer::Camera &camera) {
     if (cameraSetting.getType() != libconfig::Setting::TypeGroup)
         errorThrow("\"camera\" must be a group");
     if (cameraSetting.getLength() != 3)
@@ -96,23 +156,18 @@ void SceneParser::parseCamera(const libconfig::Setting &cameraSetting) {
             "\"camera\" must have 3 elements: \"position\", "
             "\"rotation\" and \"fov\"");
     const libconfig::Setting &positionSetting = cameraSetting["position"];
-    if (positionSetting.getType() != libconfig::Setting::TypeArray ||
-        positionSetting.getLength() != 3)
-        errorThrow(
-            "\"position\" must be an array of 3 elements: \"[x, y, z]\"");
+    Math::Vec3 position;
+    parseCoordinates(positionSetting, position, "position");
+    camera.origin = position;
     const libconfig::Setting &rotationSetting = cameraSetting["rotation"];
-    if (rotationSetting.getType() != libconfig::Setting::TypeArray ||
-        rotationSetting.getLength() != 3)
-        errorThrow(
-            "\"rotation\" must be an array of 3 elements: \"[x, y, z]\"");
+    Math::Vec3 rotation;
+    parseCoordinates(rotationSetting, rotation, "rotation");
     const libconfig::Setting &fovSetting = cameraSetting["fov"];
     if (fovSetting.getType() != libconfig::Setting::TypeFloat)
         errorThrow("\"fov\" must be a float");
-    float fov;
-    if (!cameraSetting.lookupValue("fov", fov) || fov <= 0.0 || fov >= 180.0) {
-        std::cout << fov << std::endl;
+    float fov = cameraSetting["fov"];
+    if (fov <= 0.0 || fov >= 180.0)
         errorThrow("\"fov\" must be between 0 and 180");
-    }
 }
 
 static void parseSinglePrimitive(const libconfig::Setting &primitiveSetting) {
@@ -120,16 +175,11 @@ static void parseSinglePrimitive(const libconfig::Setting &primitiveSetting) {
     if (nameSetting.getType() != libconfig::Setting::TypeString)
         errorThrow("\"name\" must be a string");
     const libconfig::Setting &positionSetting = primitiveSetting["position"];
-    if (positionSetting.getType() != libconfig::Setting::TypeArray ||
-        positionSetting.getLength() != 3)
-        errorThrow(
-            "\"position\" must be an array of 3 elements: \"[x, y, z]\"");
+    Math::Vec3 position;
+    parseCoordinates(positionSetting, position, "position");
     const libconfig::Setting &rotationSetting = primitiveSetting["rotation"];
-    if (rotationSetting.getType() != libconfig::Setting::TypeArray ||
-        rotationSetting.getLength() != 3) {
-        errorThrow(
-            "\"rotation\" must be an array of 3 elements: \"[x, y, z]\"");
-    }
+    Math::Vec3 rotation;
+    parseCoordinates(rotationSetting, rotation, "rotation");
     if (primitiveSetting.getLength() == 4) {
         const libconfig::Setting &materialSetting =
             primitiveSetting["material"];
@@ -144,7 +194,9 @@ static void parseSinglePrimitive(const libconfig::Setting &primitiveSetting) {
     }
 }
 
-void SceneParser::parsePrimitives(const libconfig::Setting &primitivesSetting) {
+void SceneParser::parsePrimitives(
+    const libconfig::Setting &primitivesSetting,
+    std::vector<RayTracer::APrimitive> &primitives) {
     if (primitivesSetting.getType() != libconfig::Setting::TypeList)
         errorThrow("\"primitives\" must be a list of primitives");
     for (int i = 0; i < primitivesSetting.getLength(); ++i) {

@@ -10,7 +10,7 @@
 
 #include <vector>
 
-// #include "APrimitive.hpp"
+#include "APrimitive.hpp"
 #include "Camera.hpp"
 #include "ILight.hpp"
 
@@ -23,9 +23,10 @@ class Scene {
 
     ~Scene() = default;
 
-    // std::vector<RayTracer::APrimitive> primitives;
+    std::vector<RayTracer::APrimitive> primitives;
     RayTracer::Camera camera;
     std::vector<RayTracer::ILight> lights;
+    Math::Vec3 ambient;
 };
 
 #endif  // RAYTRACER_SCENE_HPP_
