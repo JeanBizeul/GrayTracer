@@ -32,12 +32,12 @@ TEST_OUTPUT	=	unit_tests
 
 SRCS_TEST	=
 
-## Put the path of the factories Makefiles here from src/Plugins/Factories/
+## Put the path of the factories Makefiles here from src/plugins/Factories/
 
 FACTORIES	=	Primitives/Sphere	\
 				Material			\
 
-FACTORIES_DIRS = $(addprefix src/Plugins/Factories/, $(FACTORIES))
+FACTORIES_DIRS = $(addprefix src/plugins/Factories/, $(FACTORIES))
 
 ## OBJS
 
@@ -68,7 +68,7 @@ clean:
 	done
 
 fclean:		clean
-	rm -rf $(NAME) $(TEST_OUTPUT) Plugins/
+	rm -rf $(NAME) $(TEST_OUTPUT) plugins/
 	for dir in $(FACTORIES_DIRS); do \
 		$(MAKE) -C $$dir fclean; \
 	done
@@ -95,10 +95,10 @@ format: clean
 	-exec clang-format -i {} +
 
 factories:
-	mkdir -p Plugins
+	mkdir -p plugins
 	for dir in $(FACTORIES_DIRS); do \
 		$(MAKE) -C $$dir; \
 	done
-	cp $$(find src/Plugins/Factories -name '*.so') ./Plugins/
+	cp $$(find src/plugins/Factories -name '*.so') ./plugins/
 
 .PHONY:	all clean fclean re tests_run tests_coverage linter format factories
