@@ -43,28 +43,6 @@ void GeneratePPM(Scene scenario)
         //std::cout << "P3" << std::endl;
         //std::cout << MAX_WIDHT << " " << MAX_HEIGHT << std::endl;
         //std::cout << "255" << std::endl;
-    std::vector<RayTracer::APrimitive> list;
-    std::optional<RayTracer::APrimitive> ClosestPrimitive;
-
-    //// Read the 2D Vector of the struct
-    for (int i = 0; i != MAX_HEIGHT; i++) {
-        for (int j = 0; j != MAX_WIDHT; j++) {
-            double u = j;
-            double v = i;
-            RayTracer::Ray r = scenario.camera.GenerateRay(u, v);
-            ClosestPrimitive = lookingForTheClosestHit(scenario.primitives, r);
-            if (ClosestPrimitive.has_value()) {
-
-            }
-            continue;
-            //if (->hit(r)) {
-            //    std::cout << "Hit a primitive" << std::endl;
-            //    // primitive
-            //} else {
-            //    std::cout << "0 0 0" << std::endl;  // black
-            //}
-        }
-    }
 }
 
 void createRayWindown() {
@@ -84,9 +62,24 @@ void createRayWindown() {
 
 void initRender(
     Scene scenario, bool DisplayMode) {  // get the infos if PPM the call PPM if not sfml
-    if (DisplayMode) {
-        createRayWindown();
-    } else {
-        GeneratePPM(scenario);
+    std::vector<RayTracer::APrimitive> list;
+    std::optional<RayTracer::APrimitive> ClosestPrimitive;
+
+    for (int i = 0; i != MAX_HEIGHT; i++) {
+        for (int j = 0; j != MAX_WIDHT; j++) {
+            double u = j;
+            double v = i;
+            RayTracer::Ray r = scenario.camera.GenerateRay(u, v);
+            ClosestPrimitive = lookingForTheClosestHit(scenario.primitives, r);
+            if (ClosestPrimitive.has_value()) {
+                //Light
+                if (DisplayMode) {
+                    createRayWindown();
+                } else {
+                    GeneratePPM(scenario);
+                }
+            }
+            continue;
+        }
     }
 }
