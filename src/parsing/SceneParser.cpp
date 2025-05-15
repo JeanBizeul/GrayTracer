@@ -108,28 +108,7 @@ static void parseRgb(const libconfig::Setting &setting, Math::Vec3 &vec,
 static void parseSingleLight(const libconfig::Setting &lightSetting) {
     if (lightSetting.getType() != libconfig::Setting::TypeGroup)
         errorThrow("Light must be a group");
-    if (lightSetting.getLength() > 5)
-        errorThrow(
-            "Light must have 5 elements: \"name\", \"position\", "
-            "\"rotation\", \"color\" and \"range\"");
-    const libconfig::Setting &nameSetting = lightSetting["name"];
-    if (nameSetting.getType() != libconfig::Setting::TypeString)
-        errorThrow("\"name\" must be a string");
-    const libconfig::Setting &positionSetting = lightSetting["position"];
-    Math::Vec3 position;
-    parseCoordinates(positionSetting, position, "position");
-    const libconfig::Setting &rotationSetting = lightSetting["rotation"];
-    Math::Vec3 rotation;
-    parseCoordinates(rotationSetting, rotation, "rotation");
-    const libconfig::Setting &colorSetting = lightSetting["color"];
-    Math::Vec3 color;
-    parseRgb(colorSetting, color, "color");
-    const libconfig::Setting &rangeSetting = lightSetting["range"];
-    if (rangeSetting.getType() != libconfig::Setting::TypeFloat)
-        errorThrow("\"range\" must be a float");
-    float range;
-    if (!lightSetting.lookupValue("range", range) || range <= 0.0)
-        errorThrow("\"range\" must be greater than 0");
+    // Parsing done by the factories
 }
 
 void SceneParser::parseLights(const libconfig::Setting &lightsSetting,
@@ -171,27 +150,9 @@ void SceneParser::parseCamera(const libconfig::Setting &cameraSetting,
 }
 
 static void parseSinglePrimitive(const libconfig::Setting &primitiveSetting) {
-    const libconfig::Setting &nameSetting = primitiveSetting["name"];
-    if (nameSetting.getType() != libconfig::Setting::TypeString)
-        errorThrow("\"name\" must be a string");
-    const libconfig::Setting &positionSetting = primitiveSetting["position"];
-    Math::Vec3 position;
-    parseCoordinates(positionSetting, position, "position");
-    const libconfig::Setting &rotationSetting = primitiveSetting["rotation"];
-    Math::Vec3 rotation;
-    parseCoordinates(rotationSetting, rotation, "rotation");
-    if (primitiveSetting.getLength() == 4) {
-        const libconfig::Setting &materialSetting =
-            primitiveSetting["material"];
-        if (materialSetting.getType() != libconfig::Setting::TypeString)
-            errorThrow("\"material\" must be a string");
-        std::string materialPath = materialSetting.c_str();
-        if (materialPath.size() < 4 ||
-            materialPath.substr(materialPath.size() - 4) != ".mtl")
-            errorThrow("\"material\" path must end with \".mtl\"");
-        if (access(materialPath.c_str(), F_OK) == -1)
-            errorThrow("\"material\" must be a valid filepath");
-    }
+    if (primitiveSetting.getType() != libconfig::Setting::TypeGroup)
+        errorThrow("Primitive must be a group");
+    // Parsing done by the factories
 }
 
 void SceneParser::parsePrimitives(
@@ -201,12 +162,6 @@ void SceneParser::parsePrimitives(
         errorThrow("\"primitives\" must be a list of primitives");
     for (int i = 0; i < primitivesSetting.getLength(); ++i) {
         const libconfig::Setting &primitiveSetting = primitivesSetting[i];
-        if (primitiveSetting.getType() != libconfig::Setting::TypeGroup)
-            errorThrow("Primitive must be a group");
-        if (primitiveSetting.getLength() > 4)
-            errorThrow(
-                "Primitive must have a maximum of 4 elements: \"name\", "
-                "\"position\", \"rotation\" and \"material\"");
         parseSinglePrimitive(primitiveSetting);
     }
 }
