@@ -8,7 +8,7 @@
 ## DEFS - Set your project infos and compilation preferences
 
 NAME		=	raytracer
-CXX			=	g++
+CXX			=	g++ -lsfml-graphics -lsfml-window -lsfml-system
 CXXFLAGS	=	-Wall -Wextra -std=c++20
 DFLAGS		=	-MMD -MF $(@:.o=.d)
 LDFLAGS		=	-lconfig++ -lsfml-graphics -lsfml-window -lsfml-system
