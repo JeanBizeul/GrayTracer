@@ -12,6 +12,7 @@
 
 #include <optional>
 #include <vector>
+#include <utility>
 
 #include "RayTracer/Face.hpp"
 #include "RayTracer/I3dObject.hpp"
