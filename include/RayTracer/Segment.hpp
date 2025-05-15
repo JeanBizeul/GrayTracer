@@ -5,7 +5,6 @@
 ** header
 */
 
-
 #ifndef RAYTRACER_SEGMENT_HPP_
 #define RAYTRACER_SEGMENT_HPP_
 

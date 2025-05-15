@@ -5,7 +5,6 @@
 ** header
 */
 
-
 #ifndef RAYTRACER_ILIGHT_HPP_
 #define RAYTRACER_ILIGHT_HPP_
 

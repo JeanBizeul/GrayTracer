@@ -8,10 +8,8 @@
 #ifndef RAYTRACER_CAMERA_HPP_
 #define RAYTRACER_CAMERA_HPP_
 
-
 #include "Ray.hpp"
 #include "Screen.hpp"
-
 
 namespace RayTracer {
 class Camera {

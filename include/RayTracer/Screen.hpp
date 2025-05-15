@@ -10,7 +10,6 @@
 
 #include "AFace.hpp"
 
-
 namespace RayTracer {
 class Screen {
  public:

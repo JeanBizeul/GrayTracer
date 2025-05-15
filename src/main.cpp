@@ -8,8 +8,33 @@
 #include "main.hpp"
 
 int main(int ac, char **av) {
-    // Parsing
+    // "Scene Loader"
+    Scene scene_elements;
 
-    initRender(false);
+    Math::Point3 origin({0, 0, 0});
+    Math::Vec3 screenSize({2.0, 2.0, 0.0});
+    Math::Point3 screenPos({0.0, 0.0, -1.0});
+    RayTracer::Screen screen(screenPos, screenSize);
+    RayTracer::Camera(origin, screen);
+
+    // First sphere - left side
+    Math::Point3 center1({-2.0, 1.0, -5.0});
+    Math::Vec3 direction1({0.0, 45.0, 30.0});
+    RayTracer::Sphere sphere1(center1, direction1);
+
+    // Second sphere - right side
+    Math::Point3 center2({2.0, 1.0, -5.0});
+    Math::Vec3 direction2({0.0, -45.0, 30.0});
+    RayTracer::Sphere sphere2(center2, direction2);
+
+    // Add both spheres to scene
+    scene_elements.primitives.push_back(sphere1);
+    scene_elements.primitives.push_back(sphere2);
+    // Threads
+
+    // Sfml
+
+    // PPM file
+    initRender(scene_elements, false);
     return 0;
 }

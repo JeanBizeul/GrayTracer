@@ -5,23 +5,15 @@
 ** Sphere
 */
 
-<<<<<<< HEAD:src/lib/Factories/Primitives/Square/src/Sphere.hpp
-#ifndef SRC_LIB_FACTORIES_PRIMITIVES_SQUARE_SRC_SPHERE_HPP_
-#define SRC_LIB_FACTORIES_PRIMITIVES_SQUARE_SRC_SPHERE_HPP_
-
-
-#include "../../../../../../include/RayTracer/APrimitive.hpp"
-=======
-
 #ifndef SRC_PLUGINS_FACTORIES_PRIMITIVES_SPHERE_SRC_SPHERE_HPP_
 #define SRC_PLUGINS_FACTORIES_PRIMITIVES_SPHERE_SRC_SPHERE_HPP_
 
 #include <optional>
-#include "Math/Point3.hpp"
-#include "Math/Vec3.hpp"
-#include "RayTracer/APrimitive.hpp"
-#include "RayTracer/Impact.hpp"
->>>>>>> main:src/Plugins/Factories/Primitives/Sphere/src/Sphere.hpp
+
+#include "../../../../../../include/Math/Point3.hpp"
+#include "../../../../../../include/Math/Vec3.hpp"
+#include "../../../../../../include/RayTracer/APrimitive.hpp"
+#include "../../../../../../include/RayTracer/Impact.hpp"
 
 namespace RayTracer {
 class Sphere : public APrimitive {

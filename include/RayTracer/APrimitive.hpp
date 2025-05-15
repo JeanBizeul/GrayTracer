@@ -8,12 +8,14 @@
 #include <memory>
 #include <vector>
 
+#include "../Math/Point3.hpp"
+#include "../Math/Vec3.hpp"
 #include "Face.hpp"
 #include "I3dObject.hpp"
-#include "Math/Point3.hpp"
-#include "Math/Vec3.hpp"
 #include "Ray.hpp"
 
+#ifndef RAYTRACER_APRIMITIVE_HPP_
+#define RAYTRACER_APRIMITIVE_HPP_
 
 namespace RayTracer {
 class APrimitive : public RayTracer::I3dObject {

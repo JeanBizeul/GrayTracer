@@ -13,7 +13,6 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
-#include <iostream>
 
 class DLLoaderError : std::runtime_error {
  public:
@@ -55,7 +54,5 @@ class DLLoader {
     std::unique_ptr<T> (*_entryPoint)(void);
     const std::string _libName;
 };
-
-
 
 #endif  // RAYTRACER_DLLOADER_HPP_

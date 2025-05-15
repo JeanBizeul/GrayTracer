@@ -27,6 +27,7 @@ INCLUDE_PATH	=	./include
 SRCS		=	src/Render.cpp \
 		        src/Camera.cpp \
 				src/Screen.cpp \
+				src/APrimitive.cpp	\
 		    	src/Scene.cpp
 
 MAIN		=	src/main.cpp

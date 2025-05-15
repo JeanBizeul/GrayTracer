@@ -10,14 +10,6 @@
 #include <math.h>
 #include <optional>
 
-<<<<<<< HEAD:src/lib/Factories/Primitives/Square/src/Sphere.tpp
-=======
-#include "Math/Point3.hpp"
-#include "Math/Vec3.hpp"
-#include "RayTracer/APrimitive.hpp"
-#include "RayTracer/Impact.hpp"
->>>>>>> main:src/Plugins/Factories/Primitives/Sphere/src/Sphere.tpp
-
 namespace RayTracer
 {
 inline Sphere::Sphere(Math::Point3 center, Math::Vec3 direction, double scale)
@@ -25,11 +17,7 @@ inline Sphere::Sphere(Math::Point3 center, Math::Vec3 direction, double scale)
 {
 }
 
-<<<<<<< HEAD:src/lib/Factories/Primitives/Square/src/Sphere.tpp
-inline bool Sphere::hit(const RayTracer::Ray &ray) const
-=======
 std::optional<Impact> Sphere::hit(const RayTracer::Ray &ray) const
->>>>>>> main:src/Plugins/Factories/Primitives/Sphere/src/Sphere.tpp
 {
     (void)ray;
     return std::nullopt;

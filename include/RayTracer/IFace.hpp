@@ -8,6 +8,7 @@
 #ifndef RAYTRACER_IFACE_HPP_
 #define RAYTRACER_IFACE_HPP_
 #include <vector>
+
 #include "Ray.hpp"
 #include "Segment.hpp"
 
@@ -16,7 +17,6 @@ class IFace {
  public:
     IFace() = delete;
     virtual ~IFace() = default;
-
 };
 }  // namespace RayTracer
 

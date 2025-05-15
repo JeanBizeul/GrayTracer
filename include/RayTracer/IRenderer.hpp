@@ -5,8 +5,6 @@
 ** header
 */
 
-
-
 #ifndef RAYTRACER_IRENDERER_HPP_
 #define RAYTRACER_IRENDERER_HPP_
 
