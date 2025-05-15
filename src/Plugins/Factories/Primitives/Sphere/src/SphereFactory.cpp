@@ -16,7 +16,7 @@
 
 namespace RayTracer {
 std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(
-libconfig::Setting &settings) {
+const libconfig::Setting &settings) {
     try {
         auto position = Math::Point3(settings["position"]);
         auto rotation = Math::Vec3(settings["rotation"]);

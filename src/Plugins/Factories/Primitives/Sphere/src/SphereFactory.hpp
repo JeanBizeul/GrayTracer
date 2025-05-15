@@ -20,7 +20,7 @@ class SphereFactory : public IFactory<RayTracer::Sphere> {
     ~SphereFactory() = default;
 
     std::unique_ptr<RayTracer::Sphere> createObject(
-        libconfig::Setting &settings) final;
+        const libconfig::Setting &settings) final;
     const std::string &getObjectTag() const final;
 
  private:

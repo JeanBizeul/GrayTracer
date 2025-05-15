@@ -22,7 +22,7 @@ class MaterialFactory : public IFactory<RayTracer::Material> {
     ~MaterialFactory() = default;
 
     std::unique_ptr<RayTracer::Material> createObject(
-        libconfig::Setting &settings) final;
+        const libconfig::Setting &settings) final;
 
     const std::string &getObjectTag() const final;
 

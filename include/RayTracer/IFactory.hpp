@@ -18,7 +18,8 @@ class IFactory {
  public:
     virtual ~IFactory() = default;
 
-    virtual std::unique_ptr<T> createObject(libconfig::Setting &settings) = 0;
+    virtual std::unique_ptr<T>
+    createObject(const libconfig::Setting &settings) = 0;
     virtual const std::string &getObjectTag() const = 0;
 };
 

@@ -75,7 +75,7 @@ MaterialFactory::MaterialFactory(const std::string &materialFilePath) {
 }
 
 std::unique_ptr<RayTracer::Material> MaterialFactory::createObject(
-libconfig::Setting &settings) {
+const libconfig::Setting &settings) {
     try {
         return std::make_unique<RayTracer::Material>(
             _materials.at(settings.lookup("name")));
