@@ -9,7 +9,7 @@
 
 NAME		=	raytracer
 CXX			=	g++
-CXXFLAGS	=	-Wall -Wextra -std=c++20  -lsfml-graphics -lsfml-window -lsfml-system
+CXXFLAGS	=	-Wall -Wextra -std=c++20
 DFLAGS		=	-MMD -MF $(@:.o=.d)
 LDFLAGS		=	-lconfig++ -lsfml-graphics -lsfml-window -lsfml-system
 CPPLINT_FLAGS		=														\
@@ -75,7 +75,7 @@ re:		fclean all
 	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) re
 
 unit_tests: $(OBJS) $(OBJS_TEST)
-	$(CXX) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST) --coverage -lcriterion
+	$(CXX) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST) --coverage -lcriterion -lsfml-graphics -lsfml-window -lsfml-system
 
 tests_run: unit_tests
 	./$(TEST_OUTPUT)
