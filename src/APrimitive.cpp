@@ -11,6 +11,7 @@
 #include "APrimitive.hpp"
 
 #include <optional>
+#include <vector>
 
 #include "Face.hpp"
 #include "I3dObject.hpp"

@@ -16,7 +16,7 @@ CPPLINT_FLAGS		=														\
 	--root=./include														\
 	--repository=. 															\
 	--filter=-legal/copyright,-build/c++17,+build/c++20,-runtime/references,$\
--build/include_subdir,-build/c++11											\
+-build/include_subdir,-build/c++11,-whitespace/indent_namespace				\
 	--recursive
 
 ## SRC - Put your sources files here
