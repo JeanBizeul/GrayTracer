@@ -5,19 +5,18 @@
 ** header
 */
 
-#ifndef rendering_header
-#define rendering_header
+#ifndef SRC_RENDER_HPP_
+#define SRC_RENDER_HPP_
 
 #include <cstddef>
 #include <iostream>
 #include <memory>
 #include <utility>
-
+#include <vector>
 #include <SFML/Window.hpp>
-
 #include "../include/RayTracer/DLLoader.hpp"
 #include "../include/RayTracer/I3dObject.hpp"
 #include "../include/RayTracer/Scene.hpp"
 #include "Plugins/Factories/Primitives/Sphere/src/Sphere.hpp"
 
-#endif /* !rendering_header */
+#endif  // SRC_RENDER_HPP_

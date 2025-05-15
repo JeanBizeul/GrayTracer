@@ -9,6 +9,8 @@
 #define MAX_WIDHT 1000
 
 #include "Render.hpp"
+#include <iostream>
+#include <vector>
 
 // bool lookingForAHit(std::vector<RayTracer::I3dObject> primit, RayTracer::Ray
 // ray, bool *hit)

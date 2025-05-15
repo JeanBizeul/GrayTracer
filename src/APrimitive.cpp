@@ -11,7 +11,7 @@
 #include "../include/RayTracer/APrimitive.hpp"
 
 #include <optional>
-
+#include <vector>
 #include "../include/RayTracer/Face.hpp"
 #include "../include/RayTracer/Impact.hpp"
 

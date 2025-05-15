@@ -8,8 +8,8 @@
 #ifndef SRC_MAIN_HPP_
 #define SRC_MAIN_HPP_
 
+#include <memory>
 #include "Render.hpp"
-
 
 void createRayWindown();
 void GeneratePPM(
