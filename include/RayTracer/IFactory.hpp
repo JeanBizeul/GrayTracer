@@ -10,6 +10,7 @@
 
 #include <memory>
 #include <string>
+
 #include <libconfig.h++>
 
 namespace RayTracer {
