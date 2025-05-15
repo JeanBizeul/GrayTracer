@@ -16,8 +16,9 @@
 #include "RayTracer/FactoryContext.hpp"
 
 namespace RayTracer {
-SphereFactory::SphereFactory(std::shared_ptr<RayTracer::FactoryContext> fcx)
-: _fcx(fcx) {
+
+void SphereFactory::init(std::shared_ptr<RayTracer::FactoryContext> fcx) {
+    _fcx = fcx;
 }
 
 std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(
@@ -42,7 +43,7 @@ const std::string &SphereFactory::getObjectTag() const {
 
 extern "C" {
 RayTracer::FactoryReturnType<RayTracer::Sphere>
-FactoryEntryPoint(std::shared_ptr<RayTracer::FactoryContext> fcx) {
-    return std::make_unique<RayTracer::SphereFactory>(fcx);
+FactoryEntryPoint() {
+    return std::make_unique<RayTracer::SphereFactory>();
 }
 }

@@ -17,9 +17,10 @@
 namespace RayTracer {
 class SphereFactory : public IFactory<RayTracer::Sphere> {
  public:
-    explicit SphereFactory(std::shared_ptr<RayTracer::FactoryContext> fcx);
+    explicit SphereFactory() = default;
     ~SphereFactory() = default;
 
+    void init(std::shared_ptr<RayTracer::FactoryContext> fcx) final;
     std::unique_ptr<RayTracer::Sphere> createObject(
         const libconfig::Setting &settings) final;
     const std::string &getObjectTag() const final;

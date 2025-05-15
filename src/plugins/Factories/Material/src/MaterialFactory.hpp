@@ -14,13 +14,15 @@
 
 #include "RayTracer/IFactory.hpp"
 #include "RayTracer/Material.hpp"
+#include "RayTracer/FactoryContext.hpp"
 
 namespace RayTracer {
 class MaterialFactory : public IFactory<RayTracer::Material> {
  public:
-    explicit MaterialFactory(const std::string &materialFilePath);
+    explicit MaterialFactory() = default;
     ~MaterialFactory() = default;
 
+    void init(std::shared_ptr<RayTracer::FactoryContext> fcx);
     std::unique_ptr<RayTracer::Material> createObject(
         const libconfig::Setting &settings) final;
 

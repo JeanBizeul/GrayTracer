@@ -14,6 +14,12 @@
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
+#include <filesystem>
+
+#include "RayTracer/FactoryContext.hpp"
+#include "RayTracer/Material.hpp"
+
+#define MATERIAL_FOLDER_PATH "assets/materials/"
 
 Math::Vec3 parseVec3(std::istringstream &iss) {
     double x, y, z;
@@ -69,9 +75,27 @@ static std::unordered_map<std::string, RayTracer::Material> parseMtlFile(
     return materials;
 }
 
+static std::unordered_map<std::string, RayTracer::Material>
+parseAllMtl() {
+    std::filesystem::directory_iterator it(MATERIAL_FOLDER_PATH);
+    std::unordered_map<std::string, RayTracer::Material> materials;
+
+    for (auto &file : it) {
+        if (file.is_regular_file())
+            materials.merge(parseMtlFile(file.path()));
+    }
+    return materials;
+}
+
 namespace RayTracer {
-MaterialFactory::MaterialFactory(const std::string &materialFilePath) {
-    _materials = parseMtlFile(materialFilePath);
+
+void MaterialFactory::init(std::shared_ptr<RayTracer::FactoryContext> fcx) {
+    std::cout << "Loading materials from "
+        + std::string(MATERIAL_FOLDER_PATH) + " : ";
+    _materials = parseAllMtl();
+    fcx->set<std::unordered_map<std::string, RayTracer::Material>>
+    ("materials", _materials);
+    std::cout << "OK" << std::endl;
 }
 
 std::unique_ptr<RayTracer::Material> MaterialFactory::createObject(
@@ -91,3 +115,10 @@ const std::string &MaterialFactory::getObjectTag() const {
 }
 
 }  // namespace RayTracer
+
+extern "C" {
+RayTracer::FactoryReturnType<RayTracer::Material>
+FactoryEntryPoint() {
+    return std::make_unique<RayTracer::MaterialFactory>();
+}
+}
