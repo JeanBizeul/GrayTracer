@@ -13,8 +13,13 @@
 
 #include "Math/Point3.hpp"
 #include "Math/Vec3.hpp"
+#include "RayTracer/FactoryContext.hpp"
 
 namespace RayTracer {
+SphereFactory::SphereFactory(std::shared_ptr<RayTracer::FactoryContext> fcx)
+: _fcx(fcx) {
+}
+
 std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(
 const libconfig::Setting &settings) {
     try {
@@ -36,7 +41,8 @@ const std::string &SphereFactory::getObjectTag() const {
 }  // namespace RayTracer
 
 extern "C" {
-RayTracer::FactoryReturnType<RayTracer::Sphere> FactoryEntryPoint() {
-    return std::make_unique<RayTracer::SphereFactory>();
+RayTracer::FactoryReturnType<RayTracer::Sphere>
+FactoryEntryPoint(std::shared_ptr<RayTracer::FactoryContext> fcx) {
+    return std::make_unique<RayTracer::SphereFactory>(fcx);
 }
 }
