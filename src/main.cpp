@@ -7,8 +7,7 @@
 
 #include "main.hpp"
 
-void SceneLoader(Scene &scene_elements) // For testing purposes
-{
+void SceneLoader(Scene &scene_elements) {  // For testing purposes
     Math::Point3 origin({0, 0, 0});
     Math::Vec3 screenSize({2.0, 2.0, 0.0});
     Math::Point3 screenPos({0.0, 0.0, -1.0});
@@ -34,6 +33,6 @@ int main(int ac, char **av) {
     Scene scene_elements;
 
     SceneLoader(scene_elements);
-    initRender(scene_elements, false);  // False => Asking for PPM Output
+    initRender(scene_elements, false);  //  False => Asking for PPM Output
     return 0;
 }
