@@ -10,15 +10,15 @@
 
 #define EPSILON 1e-6f
 
-#include "Face.hpp"
+#include "RayTracer/Face.hpp"
 
 #include <cmath>
 #include <optional>
 #include <tuple>
 
-#include "Impact.hpp"
+#include "RayTracer/Impact.hpp"
 #include "Math/Vec.hpp"
-#include "Ray.hpp"
+#include "RayTracer/Ray.hpp"
 
 namespace RayTracer {
 
