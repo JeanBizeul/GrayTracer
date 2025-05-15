@@ -24,6 +24,7 @@ class APrimitive : public RayTracer::I3dObject {
     APrimitive() = default;
     APrimitive(Math::Point3 center, Math::Vec3 direction,
                const std::vector<std::shared_ptr<RayTracer::Face>> &faces,
+               RayTracer::Material &material,
                double scale = 1);
     ~APrimitive() = default;
 
@@ -36,7 +37,7 @@ class APrimitive : public RayTracer::I3dObject {
     void setScale(double scale) final;
     void setPosition(const Math::Point3 &center) final;
     void setRotation(const Math::Vec3 &direction) final;
-    virtual void setMaterial(std::unique_ptr<RayTracer::Material> material);
+    virtual void setMaterial(RayTracer::Material &material);
 
     void translate(const Math::Vec3 &translation);
     void rotate(const Math::Vec3 &rotation);
@@ -46,7 +47,7 @@ class APrimitive : public RayTracer::I3dObject {
     Math::Vec3 _direction;
     std::vector<std::shared_ptr<RayTracer::Face>> _faces;
     double _scale;
-    std::unique_ptr<RayTracer::Material> _material;
+    RayTracer::Material &_material;
 };
 }  // namespace RayTracer
 

@@ -21,10 +21,15 @@
 #include "Math/Vec3.hpp"
 
 namespace RayTracer {
-APrimitive::APrimitive(
-Math::Point3 center, Math::Vec3 direction,
-const std::vector<std::shared_ptr<RayTracer::Face>> &faces, double scale)
-: _center(center), _direction(direction), _faces(faces), _scale(scale) {
+APrimitive::APrimitive(Math::Point3 center, Math::Vec3 direction,
+const std::vector<std::shared_ptr<RayTracer::Face>> &faces,
+RayTracer::Material &material,
+double scale)
+: _center(center),
+_direction(direction),
+_faces(faces),
+_scale(scale),
+_material(material) {
 }
 
 std::optional<Impact> APrimitive::hit(const RayTracer::Ray &ray) const {
@@ -55,7 +60,7 @@ const Math::Vec3 &APrimitive::getRotation() const {
 }
 
 const RayTracer::Material &APrimitive::getMaterial() const {
-    return *_material;
+    return _material;
 }
 
 void APrimitive::setScale(double scale) {
@@ -70,8 +75,8 @@ void APrimitive::setRotation(const Math::Vec3 &direction) {
     _direction = direction;
 }
 
-void APrimitive::setMaterial(std::unique_ptr<RayTracer::Material> material) {
-    _material = std::move(material);
+void APrimitive::setMaterial(RayTracer::Material &material) {
+    _material = material;
 }
 
 void APrimitive::translate(const Math::Vec3 &translation) {
