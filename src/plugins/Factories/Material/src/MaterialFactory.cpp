@@ -7,6 +7,7 @@
 
 #include "MaterialFactory.hpp"
 
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -14,7 +15,6 @@
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
-#include <filesystem>
 
 #include "RayTracer/FactoryContext.hpp"
 #include "RayTracer/Material.hpp"
@@ -49,9 +49,11 @@ static std::unordered_map<std::string, RayTracer::Material> parseMtlFile(
     std::string line;
     RayTracer::Material current("", Math::Vec3(0), Math::Vec3(0));
 
-    if (!file) throw std::runtime_error("Could not oppen file " + filePath);
+    if (!file)
+        throw std::runtime_error("Could not oppen file " + filePath);
     while (std::getline(file, line)) {
-        if (line.empty() || line[0] == '#') continue;
+        if (line.empty() || line[0] == '#')
+            continue;
 
         std::istringstream iss(line);
         std::string label;
@@ -75,8 +77,7 @@ static std::unordered_map<std::string, RayTracer::Material> parseMtlFile(
     return materials;
 }
 
-static std::unordered_map<std::string, RayTracer::Material>
-parseAllMtl() {
+static std::unordered_map<std::string, RayTracer::Material> parseAllMtl() {
     std::filesystem::directory_iterator it(MATERIAL_FOLDER_PATH);
     std::unordered_map<std::string, RayTracer::Material> materials;
 
@@ -90,16 +91,16 @@ parseAllMtl() {
 namespace RayTracer {
 
 void MaterialFactory::init(std::shared_ptr<RayTracer::FactoryContext> fcx) {
-    std::cout << "Loading materials from "
-        + std::string(MATERIAL_FOLDER_PATH) + " : ";
+    std::cout << "Loading materials from " + std::string(MATERIAL_FOLDER_PATH) +
+                     " : ";
     _materials = parseAllMtl();
-    fcx->set<std::unordered_map<std::string, RayTracer::Material>>
-    ("materials", _materials);
+    fcx->set<std::unordered_map<std::string, RayTracer::Material>>("materials",
+                                                                   _materials);
     std::cout << "OK" << std::endl;
 }
 
 std::unique_ptr<RayTracer::Material> MaterialFactory::createObject(
-const libconfig::Setting &settings) {
+    const libconfig::Setting &settings) {
     try {
         return std::make_unique<RayTracer::Material>(
             _materials.at(settings.lookup("name")));
@@ -117,8 +118,7 @@ const std::string &MaterialFactory::getObjectTag() const {
 }  // namespace RayTracer
 
 extern "C" {
-RayTracer::FactoryReturnType<RayTracer::Material>
-FactoryEntryPoint() {
+RayTracer::FactoryReturnType<RayTracer::Material> FactoryEntryPoint() {
     return std::make_unique<RayTracer::MaterialFactory>();
 }
 }

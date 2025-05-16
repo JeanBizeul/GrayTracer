@@ -11,26 +11,25 @@
 #include "RayTracer/APrimitive.hpp"
 
 #include <optional>
-#include <vector>
 #include <utility>
+#include <vector>
 
+#include "Math/Point3.hpp"
+#include "Math/Vec3.hpp"
 #include "RayTracer/Face.hpp"
 #include "RayTracer/I3dObject.hpp"
 #include "RayTracer/Impact.hpp"
-#include "Math/Point3.hpp"
-#include "Math/Vec3.hpp"
 
 namespace RayTracer {
-APrimitive::APrimitive(Math::Point3 center, Math::Vec3 direction,
-const std::vector<std::shared_ptr<RayTracer::Face>> &faces,
-RayTracer::Material &material,
-double scale)
-: _center(center),
-_direction(direction),
-_faces(faces),
-_scale(scale),
-_material(material) {
-}
+APrimitive::APrimitive(
+    Math::Point3 center, Math::Vec3 direction,
+    const std::vector<std::shared_ptr<RayTracer::Face>> &faces,
+    RayTracer::Material &material, double scale)
+    : _center(center),
+      _direction(direction),
+      _faces(faces),
+      _scale(scale),
+      _material(material) {}
 
 std::optional<Impact> APrimitive::hit(const RayTracer::Ray &ray) const {
     std::optional<Impact> impact = std::nullopt;

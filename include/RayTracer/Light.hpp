@@ -17,12 +17,11 @@
 namespace RayTracer {
 class LightInfo {
  public:
-      LightInfo(Math::Point4 color, double intensity)
-          : _color(color), _intensity(intensity) {
-      }
+    LightInfo(Math::Point4 color, double intensity)
+        : _color(color), _intensity(intensity) {}
 
-      Math::Point4 _color;
-      double _intensity;
+    Math::Point4 _color;
+    double _intensity;
 };
 
 class Light {
@@ -32,8 +31,7 @@ class Light {
         : _LightInfo(lightInfo),
           _position(position),
           _direction(direction),
-          _angle(angle) {
-    }
+          _angle(angle) {}
 
     const std::optional<LightInfo> hit(Math::Point3 _impact,
                                        Math::Vec3 _faceNormal) const;
