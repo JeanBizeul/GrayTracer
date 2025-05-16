@@ -8,8 +8,8 @@
 #ifndef RAYTRACER_SEGMENT_HPP_
 #define RAYTRACER_SEGMENT_HPP_
 
-#include "../Math/Point3.hpp"
-#include "../Math/Vec3.hpp"
+#include "Math/Point3.hpp"
+#include "Math/Vec3.hpp"
 
 namespace RayTracer {
 class Segment {

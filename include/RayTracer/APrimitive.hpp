@@ -8,8 +8,8 @@
 #include <memory>
 #include <vector>
 
-#include "../Math/Point3.hpp"
-#include "../Math/Vec3.hpp"
+#include "Math/Point3.hpp"
+#include "Math/Vec3.hpp"
 #include "Face.hpp"
 #include "I3dObject.hpp"
 #include "Ray.hpp"

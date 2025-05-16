@@ -8,13 +8,13 @@
 #ifndef RAYTRACER_APRIMITIVE_TPP_
 #define RAYTRACER_APRIMITIVE_TPP_
 
-#include "../include/RayTracer/APrimitive.hpp"
+#include "RayTracer/APrimitive.hpp"
 
 #include <optional>
 #include <vector>
 
-#include "../include/RayTracer/Face.hpp"
-#include "../include/RayTracer/Impact.hpp"
+#include "RayTracer/Face.hpp"
+#include "RayTracer/Impact.hpp"
 
 namespace RayTracer {
 APrimitive::APrimitive(

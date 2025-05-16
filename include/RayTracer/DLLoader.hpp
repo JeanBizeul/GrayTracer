@@ -9,10 +9,10 @@
 #define RAYTRACER_DLLOADER_HPP_
 #include <dlfcn.h>
 
-#include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <iostream>
 
 class DLLoaderError : std::runtime_error {
  public:
@@ -26,13 +26,14 @@ class DLLoader {
     DLLoader(const DLLoader &) = delete;
     DLLoader &operator=(const DLLoader &) = delete;
 
-    explicit DLLoader(const std::string &libName) : _libName(libName) {
+    DLLoader(const std::string &libName, const std::string &entryPoint)
+        : _libName(libName) {
         _handler = dlopen(_libName.c_str(), RTLD_LAZY);
         if (!_handler)
             throw DLLoaderError("Cannot load library " + _libName + ": " +
                                 dlerror());
         _entryPoint = reinterpret_cast<std::unique_ptr<T> (*)(void)>(
-            dlsym(_handler, "FactoryEntryPoint"));
+            dlsym(_handler, entryPoint.c_str()));
         if (!_entryPoint)
             throw DLLoaderError("Could not find entry point in " + _libName +
                                 ": " + dlerror());
@@ -54,5 +55,6 @@ class DLLoader {
     std::unique_ptr<T> (*_entryPoint)(void);
     const std::string _libName;
 };
+
 
 #endif  // RAYTRACER_DLLOADER_HPP_

@@ -5,7 +5,7 @@
 ** Scene implementation
 */
 
-#include "../include/RayTracer/Scene.hpp"
+#include "RayTracer/Scene.hpp"
 
 Scene::Scene()
     : camera(Math::Point3(), RayTracer::Screen(Math::Point3(), Math::Vec<3>())),

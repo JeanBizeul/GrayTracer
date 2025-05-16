@@ -5,7 +5,7 @@
 ** file
 */
 
-#include "../include/RayTracer/Camera.hpp"
+#include "RayTracer/Camera.hpp"
 
 RayTracer::Camera::Camera(Math::Point3 origin, RayTracer::Screen screen)
     : _origin(origin), _screen(screen) {

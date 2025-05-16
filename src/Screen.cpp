@@ -5,7 +5,7 @@
 ** screen
 */
 
-#include "../include/RayTracer/Screen.hpp"
+#include "RayTracer/Screen.hpp"
 
 RayTracer::Screen::Screen(Math::Point3 pos, Math::Vec<3> size) {
 }

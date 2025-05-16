@@ -10,10 +10,10 @@
 
 #include <optional>
 
-#include "../../../../../../include/Math/Point3.hpp"
-#include "../../../../../../include/Math/Vec3.hpp"
-#include "../../../../../../include/RayTracer/APrimitive.hpp"
-#include "../../../../../../include/RayTracer/Impact.hpp"
+#include "Math/Point3.hpp"
+#include "Math/Vec3.hpp"
+#include "RayTracer/APrimitive.hpp"
+#include "RayTracer/Impact.hpp"
 
 namespace RayTracer {
 class Sphere : public APrimitive {
