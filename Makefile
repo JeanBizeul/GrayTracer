@@ -75,7 +75,8 @@ re:		fclean all
 	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) re
 
 unit_tests: $(OBJS) $(OBJS_TEST)
-	$(CXX) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST) --coverage -lcriterion -lsfml-graphics -lsfml-window -lsfml-system
+	$(CXX) $(CXXFLAGS) $(DFLAGS) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST)	\
+	--coverage -lcriterion -lcriterion -lsfml-graphics -lsfml-window -lsfml-system -I $(INCLUDE_PATH) $(LDFLAGS)
 
 tests_run: unit_tests
 	./$(TEST_OUTPUT)
