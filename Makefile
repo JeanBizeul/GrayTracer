@@ -24,17 +24,12 @@ CPPLINT_FLAGS		=														\
 FILE_EXTENSION	=	.cpp
 INCLUDE_PATH	=	./include
 
-<<<<<<< HEAD
 SRCS		=	src/Render.cpp \
 		        src/Camera.cpp \
 				src/Screen.cpp \
 				src/APrimitive.cpp	\
 				src/Face.cpp	\
 		    	src/Scene.cpp	\
-=======
-SRCS		=	src/APrimitive.cpp	\
-				src/Face.cpp 		\
->>>>>>> main
 				src/parsing/SceneParser.cpp
 
 MAIN		=	src/main.cpp
