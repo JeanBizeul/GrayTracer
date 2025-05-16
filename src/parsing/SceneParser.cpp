@@ -112,7 +112,7 @@ static void parseSingleLight(const libconfig::Setting &lightSetting) {
 }
 
 void SceneParser::parseLights(const libconfig::Setting &lightsSetting,
-                              std::vector<RayTracer::ILight> &lights) {
+                              std::vector<RayTracer::Light> &lights) {
     if (lightsSetting.getType() != libconfig::Setting::TypeList)
         errorThrow("\"lights\" must be a list of lights");
     for (int i = 0; i < lightsSetting.getLength(); ++i) {

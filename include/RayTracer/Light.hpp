@@ -15,6 +15,16 @@
 #include "Math/Vec3.hpp"
 
 namespace RayTracer {
+class LightInfo {
+ public:
+      LightInfo(Math::Point4 color, double intensity)
+          : _color(color), _intensity(intensity) {
+      }
+
+      Math::Point4 _color;
+      double _intensity;
+};
+
 class Light {
  public:
     Light(Math::Point3 position, Math::Vec3 direction, double angle,
@@ -35,17 +45,6 @@ class Light {
 
     LightInfo _LightInfo;
 };
-
-class LightInfo {
- public:
-    LightInfo(Math::Point4 color, double intensity)
-        : _color(color), _intensity(intensity) {
-    }
-
-    Math::Point4 _color;
-    double _intensity;
-};
-
 }  // namespace RayTracer
 
 #endif  // RAYTRACER_LIGHT_HPP_
