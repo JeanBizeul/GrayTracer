@@ -11,7 +11,7 @@
 #include <optional>
 #include <tuple>
 
-#include "../Math/Vec.hpp"
+#include "Math/Vec.hpp"
 #include "Impact.hpp"
 #include "Ray.hpp"
 
