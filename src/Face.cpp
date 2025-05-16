@@ -10,15 +10,15 @@
 
 #define EPSILON 1e-6f
 
-#include "Face.hpp"
+#include "RayTracer/Face.hpp"
 
 #include <cmath>
 #include <optional>
 #include <tuple>
 
-#include "Impact.hpp"
+#include "RayTracer/Impact.hpp"
 #include "Math/Vec.hpp"
-#include "Ray.hpp"
+#include "RayTracer/Ray.hpp"
 
 namespace RayTracer {
 
@@ -40,7 +40,7 @@ Math::Vec3 rotateVec(const Math::Vec3 &v, const Math::Vec3 &rotation_deg) {
 }
 
 std::tuple<Math::Vec3, Math::Vec3, Math::Vec3> Face::getWorldVertices(
-    const Math::Vec3 &obj_pos, const Math::Vec3 &obj_dir) const {
+const Math::Vec3 &obj_pos, const Math::Vec3 &obj_dir) const {
     Math::Vec3 total_rotation = obj_dir + _normal;
     Math::Vec3 base_pos = obj_pos + _position;
 
@@ -52,7 +52,7 @@ std::tuple<Math::Vec3, Math::Vec3, Math::Vec3> Face::getWorldVertices(
 }
 
 std::optional<Impact> Face::hit(Math::Vec3 obj_pos, Math::Vec3 obj_dir,
-                                const RayTracer::Ray &ray) const {
+const RayTracer::Ray &ray) const {
     auto [v0, v1, v2] = getWorldVertices(obj_pos, obj_dir);
 
     Math::Vec3 edge1 = v1 - v0;

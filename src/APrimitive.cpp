@@ -8,22 +8,29 @@
 #ifndef RAYTRACER_APRIMITIVE_TPP_
 #define RAYTRACER_APRIMITIVE_TPP_
 
-#include "APrimitive.hpp"
+#include "RayTracer/APrimitive.hpp"
 
 #include <optional>
 #include <vector>
+#include <utility>
 
-#include "Face.hpp"
-#include "I3dObject.hpp"
-#include "Impact.hpp"
+#include "RayTracer/Face.hpp"
+#include "RayTracer/I3dObject.hpp"
+#include "RayTracer/Impact.hpp"
 #include "Math/Point3.hpp"
 #include "Math/Vec3.hpp"
 
 namespace RayTracer {
-APrimitive::APrimitive(
-    Math::Point3 center, Math::Vec3 direction,
-    const std::vector<std::shared_ptr<RayTracer::Face>> &faces, double scale)
-    : _center(center), _direction(direction), _faces(faces), _scale(scale) {}
+APrimitive::APrimitive(Math::Point3 center, Math::Vec3 direction,
+const std::vector<std::shared_ptr<RayTracer::Face>> &faces,
+RayTracer::Material &material,
+double scale)
+: _center(center),
+_direction(direction),
+_faces(faces),
+_scale(scale),
+_material(material) {
+}
 
 std::optional<Impact> APrimitive::hit(const RayTracer::Ray &ray) const {
     std::optional<Impact> impact = std::nullopt;
@@ -52,6 +59,10 @@ const Math::Vec3 &APrimitive::getRotation() const {
     return _direction;
 }
 
+const RayTracer::Material &APrimitive::getMaterial() const {
+    return _material;
+}
+
 void APrimitive::setScale(double scale) {
     _scale = scale;
 }
@@ -62,6 +73,10 @@ void APrimitive::setPosition(const Math::Point3 &center) {
 
 void APrimitive::setRotation(const Math::Vec3 &direction) {
     _direction = direction;
+}
+
+void APrimitive::setMaterial(RayTracer::Material &material) {
+    _material = material;
 }
 
 void APrimitive::translate(const Math::Vec3 &translation) {

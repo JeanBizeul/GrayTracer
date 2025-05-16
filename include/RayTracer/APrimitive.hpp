@@ -13,6 +13,7 @@
 #include "Math/Point3.hpp"
 #include "Math/Vec3.hpp"
 #include "Ray.hpp"
+#include "Material.hpp"
 
 #ifndef RAYTRACER_APRIMITIVE_HPP_
 #define RAYTRACER_APRIMITIVE_HPP_
@@ -23,6 +24,7 @@ class APrimitive : public RayTracer::I3dObject {
     APrimitive() = default;
     APrimitive(Math::Point3 center, Math::Vec3 direction,
                const std::vector<std::shared_ptr<RayTracer::Face>> &faces,
+               RayTracer::Material &material,
                double scale = 1);
     ~APrimitive() = default;
 
@@ -31,9 +33,11 @@ class APrimitive : public RayTracer::I3dObject {
     double getScale() const final;
     const Math::Point3 &getPosition() const final;
     const Math::Vec3 &getRotation() const final;
+    virtual const RayTracer::Material &getMaterial() const;
     void setScale(double scale) final;
     void setPosition(const Math::Point3 &center) final;
     void setRotation(const Math::Vec3 &direction) final;
+    virtual void setMaterial(RayTracer::Material &material);
 
     void translate(const Math::Vec3 &translation);
     void rotate(const Math::Vec3 &rotation);
@@ -43,6 +47,7 @@ class APrimitive : public RayTracer::I3dObject {
     Math::Vec3 _direction;
     std::vector<std::shared_ptr<RayTracer::Face>> _faces;
     double _scale;
+    RayTracer::Material &_material;
 };
 }  // namespace RayTracer
 

@@ -111,7 +111,7 @@ Vec<N> Vec<N>::operator/(const Vec<N> &other) const {
             throw std::invalid_argument("Division by zero");
         result[i] = _arr[i] / other[i];
     }
-    return vec<N>(result);
+    return Vec<N>(result);
 }
 
 // operators * / with doubles
@@ -122,7 +122,7 @@ Vec<N> Vec<N>::operator*(double val) const {
 
     for (std::size_t i = 0; i < result.size(); i++)
         result[i] = _arr[i] * val;
-    return vec<N>(result);
+    return Vec<N>(result);
 }
 
 template <std::size_t N>
@@ -133,7 +133,7 @@ Vec<N> Vec<N>::operator/(double val) const {
         throw std::invalid_argument("Division by zero");
     for (std::size_t i = 0; i < result.size(); i++)
         result[i] = _arr[i] / val;
-    return vec<N>(result);
+    return Vec<N>(result);
 }
 
 // operators += -= *= /= with other Vec

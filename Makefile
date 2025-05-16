@@ -24,7 +24,9 @@ CPPLINT_FLAGS		=														\
 FILE_EXTENSION	=	.cpp
 INCLUDE_PATH	=	./include
 
-SRCS		=	src/parsing/SceneParser.cpp			\
+SRCS		=	src/APrimitive.cpp	\
+				src/Face.cpp 		\
+				src/parsing/SceneParser.cpp
 
 MAIN		=	src/main.cpp
 
@@ -32,9 +34,12 @@ TEST_OUTPUT	=	unit_tests
 
 SRCS_TEST	=
 
-## Put the path of the factories Makefiles here
+## Put the path of the factories Makefiles here from src/plugins/Factories/
 
-FACTORIES	=	Primitives/Sphere
+FACTORIES	=	Primitives/Sphere	\
+				Material			\
+
+FACTORIES_DIRS = $(addprefix src/plugins/Factories/, $(FACTORIES))
 
 ## OBJS
 
@@ -60,14 +65,20 @@ objs/%.o:	%$(FILE_EXTENSION)
 
 clean:
 	rm -rf objs *.gcda *.gcno
-	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) clean
+	for dir in $(FACTORIES_DIRS); do \
+		$(MAKE) -C $$dir clean;	\
+	done
 
 fclean:		clean
-	rm -rf $(NAME) $(TEST_OUTPUT) Plugins/
-	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) fclean
+	rm -rf $(NAME) $(TEST_OUTPUT) plugins/
+	for dir in $(FACTORIES_DIRS); do \
+		$(MAKE) -C $$dir fclean; \
+	done
 
 re:		fclean all
-	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) re
+	for dir in $(FACTORIES_DIRS); do \
+		$(MAKE) -C $$dir re; \
+	done
 
 unit_tests: $(OBJS) $(OBJS_TEST)
 	$(CXX) $(CXXFLAGS) $(DFLAGS) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST)	\
@@ -87,8 +98,10 @@ format: clean
 	-path "./tests/*" -exec clang-format -i {} +
 
 factories:
-	mkdir -p Plugins
-	$(MAKE) -C src/Plugins/Factories/$(FACTORIES)
-	cp src/Plugins/Factories/$(FACTORIES)/**.so ./Plugins/
+	mkdir -p plugins
+	for dir in $(FACTORIES_DIRS); do \
+		$(MAKE) -C $$dir; \
+	done
+	cp $$(find src/plugins/Factories -name '*.so') ./plugins/
 
 .PHONY:	all clean fclean re tests_run tests_coverage linter format factories

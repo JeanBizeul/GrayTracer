@@ -5,8 +5,6 @@
 ** main
 */
 
-#include "main.hpp"
-
 #include "parsing/SceneParser.hpp"
 
 int main(int ac, char **av) {
