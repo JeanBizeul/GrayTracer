@@ -9,12 +9,14 @@
 #define MAX_WIDHT 1000
 
 #include "Render.hpp"
+
 #include <cstddef>
 #include <iostream>
 #include <optional>
 #include <vector>
-#include <SFML/Window.hpp>
+
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 std::optional<RayTracer::APrimitive> lookingForTheClosestHit(
     std::vector<RayTracer::APrimitive> primitive, RayTracer::Ray ray) {
