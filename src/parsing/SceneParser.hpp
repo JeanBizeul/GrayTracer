@@ -32,7 +32,7 @@ class SceneParser {
     void parseAmbient(const libconfig::Setting &ambientSetting,
                       Math::Vec3 &ambient);
     void parseLights(const libconfig::Setting &lightsSetting,
-                     std::vector<RayTracer::ILight> &lights);
+                     std::vector<RayTracer::Light> &lights);
     libconfig::Config _cfg;
 };
 
