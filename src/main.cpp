@@ -5,16 +5,16 @@
 ** main
 */
 
-#include "main.hpp"
-
 #include "Render.hpp"
+#include "parsing/SceneParser.hpp"
+#include "main.hpp"
 
 void SceneLoader(Scene &scene_elements) {  // For testing purposes
     Math::Point3 origin({0, 0, 0});
     Math::Vec3 screenSize({2.0, 2.0, 0.0});
     Math::Point3 screenPos({0.0, 0.0, -1.0});
     RayTracer::Screen screen(screenPos, screenSize);
-    RayTracer::Camera(origin, screen);
+    RayTracer::Camera(origin, screenSize);
 
     // First sphere - left side
     Math::Point3 center1({-2.0, 1.0, -5.0});
@@ -33,6 +33,12 @@ void SceneLoader(Scene &scene_elements) {  // For testing purposes
 
 int main(int ac, char **av) {
     Scene scene_elements;
+
+    SceneParser sceneParser("./tests/test.cfg");
+    (void)ac;
+    (void)av;
+
+    auto scene = sceneParser.getScene();
 
     SceneLoader(scene_elements);
     initRender(scene_elements, false);  //  False => Asking for PPM Output

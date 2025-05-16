@@ -10,6 +10,7 @@
 #include <dlfcn.h>
 
 #include <iostream>
+#include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>

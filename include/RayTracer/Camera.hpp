@@ -14,10 +14,14 @@
 namespace RayTracer {
 class Camera {
  public:
-    Camera(Math::Point3 origin, RayTracer::Screen screen);
+    Camera() = default;
+    Camera(Math::Point3 screenPos, Math::Vec3 screenSize)
+        : origin(), _screen(screenPos, screenSize) {}
+
     ~Camera() = default;
 
-    Math::Point3 _origin;
+    Math::Point3 origin;
+    Math::Vec3 _size;
     RayTracer::Screen _screen;
     RayTracer::Ray GenerateRay(double u, double v);
 };

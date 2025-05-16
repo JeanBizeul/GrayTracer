@@ -16,7 +16,7 @@ CPPLINT_FLAGS		=														\
 	--root=./include														\
 	--repository=. 															\
 	--filter=-legal/copyright,-build/c++17,+build/c++20,-runtime/references,$\
--build/include_subdir,-build/c++11											\
+-build/include_subdir,-build/c++11,-whitespace/indent_namespace				\
 	--recursive
 
 ## SRC - Put your sources files here
@@ -29,7 +29,8 @@ SRCS		=	src/Render.cpp \
 				src/Screen.cpp \
 				src/APrimitive.cpp	\
 				src/Face.cpp	\
-		    	src/Scene.cpp
+		    	src/Scene.cpp	\
+				src/parsing/SceneParser.cpp
 
 MAIN		=	src/main.cpp
 
@@ -88,8 +89,8 @@ linter: clean
 	cpplint $(CPPLINT_FLAGS) ./src/ ./include/
 
 format: clean
-	find . -type f \( -name "*.cpp" -o -name "*.hpp" \) ! -path "./tests/*"	\
-	-exec clang-format -i {} +
+	find . -type f \( -name "*.cpp" -o -name "*.hpp" -o -name "*.tpp" \) ! \
+	-path "./tests/*" -exec clang-format -i {} +
 
 factories:
 	mkdir -p Plugins

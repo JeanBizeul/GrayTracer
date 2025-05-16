@@ -14,7 +14,7 @@ namespace RayTracer {
 class ILight : public RayTracer::I3dObject {
  public:
     ILight();
-    ~ILight();
+    ~ILight() = default;
 
     // COLOR
     virtual Math::Vec<4> getColor() = 0;

@@ -20,8 +20,7 @@ namespace RayTracer {
 APrimitive::APrimitive(
     Math::Point3 center, Math::Vec3 direction,
     const std::vector<std::shared_ptr<RayTracer::Face>> &faces, double scale)
-    : _center(center), _direction(direction), _faces(faces), _scale(scale) {
-}
+    : _center(center), _direction(direction), _faces(faces), _scale(scale) {}
 
 std::optional<Impact> APrimitive::hit(const RayTracer::Ray &ray) const {
     std::optional<Impact> impact = std::nullopt;

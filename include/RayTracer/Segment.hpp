@@ -16,8 +16,7 @@ class Segment {
  public:
     Segment() = default;
 
-    Segment(Math::Point3 p1, Math::Point3 p2) : _p1(p1), _p2(p2) {
-    }
+    Segment(Math::Point3 p1, Math::Point3 p2) : _p1(p1), _p2(p2) {}
 
     ~Segment() = default;
 
