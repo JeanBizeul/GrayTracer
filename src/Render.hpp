@@ -48,4 +48,5 @@ class Render {
     sf::Sprite sprite;
 };
 
+void initRender(Scene, bool);
 #endif  // SRC_RENDER_HPP_

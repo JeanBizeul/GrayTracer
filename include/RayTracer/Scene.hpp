@@ -12,7 +12,7 @@
 
 #include "APrimitive.hpp"
 #include "Camera.hpp"
-#include "ILight.hpp"
+#include "Light.hpp"
 
 class Scene {
  public:
@@ -25,7 +25,7 @@ class Scene {
 
     std::vector<RayTracer::APrimitive> primitives;
     RayTracer::Camera camera;
-    std::vector<RayTracer::ILight> lights;
+    std::vector<RayTracer::Light> lights;
     Math::Vec3 ambient;
 };
 
