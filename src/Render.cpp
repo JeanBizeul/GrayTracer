@@ -86,14 +86,13 @@ void Render::createRayWindow(/*color, */ double x, double y) {
 
         // window.draw(bufferSprite);
 
-        // Finally, display
         window.display();
     }
 }
 
 void initRender(
     Scene scenario,
-    bool DisplayMode) {  // get the infos if PPM the call PPM if not sfml
+    bool DisplayMode) {
     Render render;
     std::vector<RayTracer::APrimitive> list;
     std::optional<RayTracer::APrimitive> ClosestPrimitive;
