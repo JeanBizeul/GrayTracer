@@ -21,13 +21,11 @@ class Sphere : public APrimitive {
  public:
     Sphere() = default;
     Sphere(Math::Point3 center, Math::Vec3 direction,
-        RayTracer::Material &material, double scale = 1);
+           RayTracer::Material &material, double scale = 1);
     ~Sphere() = default;
 
     std::optional<Impact> hit(const RayTracer::Ray &ray) const final;
 };
 }  // namespace RayTracer
-
-#include "Sphere.tpp"
 
 #endif  // SRC_PLUGINS_FACTORIES_PRIMITIVES_SPHERE_SRC_SPHERE_HPP_

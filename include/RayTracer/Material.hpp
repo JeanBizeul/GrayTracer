@@ -16,11 +16,13 @@ namespace RayTracer {
 class Material {
  public:
     Material() = delete;
+
     Material(const std::string &name, Math::Vec3 ambiantColor,
              Math::Vec3 diffuseColor)
         : _name(name),
           _ambiantColor(ambiantColor),
           _diffuseColor(diffuseColor) {}
+
     ~Material() = default;
 
     std::string _name;

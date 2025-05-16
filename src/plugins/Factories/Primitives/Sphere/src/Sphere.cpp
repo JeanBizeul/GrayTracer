@@ -15,13 +15,12 @@
 #include "Math/Vec3.hpp"
 #include "RayTracer/APrimitive.hpp"
 #include "RayTracer/Impact.hpp"
+#include "Sphere.hpp"
 
 namespace RayTracer {
 Sphere::Sphere(Math::Point3 center, Math::Vec3 direction,
-    RayTracer::Material &material, double scale)
-    : APrimitive(center, direction, {}, material, scale)
-{
-}
+               RayTracer::Material &material, double scale)
+    : APrimitive(center, direction, {}, material, scale) {}
 
 std::optional<Impact> Sphere::hit(const RayTracer::Ray &ray) const {
     (void)ray;

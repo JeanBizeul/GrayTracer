@@ -10,9 +10,9 @@
 #include <memory>
 #include <string>
 
-#include "Sphere.hpp"
-#include "RayTracer/IFactory.hpp"
 #include "RayTracer/FactoryContext.hpp"
+#include "RayTracer/IFactory.hpp"
+#include "Sphere.hpp"
 
 namespace RayTracer {
 class SphereFactory : public IFactory<RayTracer::Sphere> {
