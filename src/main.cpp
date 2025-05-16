@@ -7,6 +7,8 @@
 
 #include "main.hpp"
 
+#include "Render.hpp"
+
 void SceneLoader(Scene &scene_elements) {  // For testing purposes
     Math::Point3 origin({0, 0, 0});
     Math::Vec3 screenSize({2.0, 2.0, 0.0});

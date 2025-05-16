@@ -11,8 +11,8 @@
 #include <optional>
 #include <tuple>
 
-#include "Math/Vec.hpp"
 #include "Impact.hpp"
+#include "Math/Vec.hpp"
 #include "Ray.hpp"
 
 namespace RayTracer {

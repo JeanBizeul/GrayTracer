@@ -5,18 +5,30 @@
 ** render
 */
 
+#include <cstddef>
+#include <cstdio>
+#include <iostream>
+#include <vector>
 #define MAX_HEIGHT 700
 #define MAX_WIDHT 1000
 
 #include "Render.hpp"
 
-#include <cstddef>
-#include <iostream>
-#include <optional>
-#include <vector>
+std::ofstream &Render::getPPM(void) {
+    return _PPMFile;
+}
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
+sf::RenderWindow &Render::GetWindow(void) {
+    return win;
+}
+
+sf::Texture &Render::getTexture(void) {
+    return texture;
+}
+
+sf::Sprite &Render::getSprite(void) {
+    return sprite;
+}
 
 std::optional<RayTracer::APrimitive> lookingForTheClosestHit(
     std::vector<RayTracer::APrimitive> primitive, RayTracer::Ray ray) {
@@ -41,31 +53,48 @@ std::optional<RayTracer::APrimitive> lookingForTheClosestHit(
     return closest;
 }
 
-void GeneratePPM(Scene scenario) {
-    // Create a file if it doesn't exist in append Mode
-    // std::cout << "P3" << std::endl;
-    // std::cout << MAX_WIDHT << " " << MAX_HEIGHT << std::endl;
-    // std::cout << "255" << std::endl;
+void Render::GeneratePPM(/*color*/) {
+    static bool set = false;
+    if (!set) {
+        _PPMFile.open("Output.ppm");
+        if (_PPMFile.fail()) {
+            std::cerr << "Error while opening PPM file";
+            return;
+        }
+
+        _PPMFile << "P3" << std::endl;
+        _PPMFile << MAX_WIDHT << " " << MAX_HEIGHT << std::endl;
+        _PPMFile << "255" << std::endl;
+        _PPMFile << std::endl;
+        _PPMFile << std::endl;
+    }
+    // PPMFile << (...) << std::endl
 }
 
-void createRayWindown() {
-    bool set = false;
-    sf::Window window(sf::VideoMode(MAX_WIDHT, MAX_HEIGHT), "RayTracer");
+void Render::createRayWindow(/*color, */ double x, double y) {
+    sf::RenderWindow window(sf::VideoMode(MAX_WIDHT, MAX_HEIGHT), "RayTracer");
+    //  sf::Image buffer(MAX_WIDHT, MAX_HEIGHT, sf::Color(0, 0, 0));
+    //  sf::Sprite bufferSprite(buffer); à revoir
+
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) window.close();
         }
-        if (!set) {
-            // draw image
-            set = true;
-        }
+        window.clear(sf::Color::Black);
+        // buffer.SetPixel(z, y, sf::Color(r, g, b));
+
+        // window.draw(bufferSprite);
+
+        // Finally, display
+        window.display();
     }
 }
 
 void initRender(
     Scene scenario,
     bool DisplayMode) {  // get the infos if PPM the call PPM if not sfml
+    Render render;
     std::vector<RayTracer::APrimitive> list;
     std::optional<RayTracer::APrimitive> ClosestPrimitive;
 
@@ -78,12 +107,13 @@ void initRender(
             if (ClosestPrimitive.has_value()) {
                 // Light
                 if (DisplayMode) {
-                    createRayWindown();
+                    render.createRayWindow(/*color,*/ u, v);
                 } else {
-                    GeneratePPM(scenario);
+                    render.GeneratePPM(/*color*/);
                 }
             }
             continue;
         }
     }
+    if (!DisplayMode) render.getPPM().close();
 }

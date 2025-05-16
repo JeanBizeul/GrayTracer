@@ -12,8 +12,6 @@
 
 #include "Render.hpp"
 
-void createRayWindown();
-void GeneratePPM(Scene scenario);
 void initRender(Scene, bool);
 
 #endif  // SRC_MAIN_HPP_
