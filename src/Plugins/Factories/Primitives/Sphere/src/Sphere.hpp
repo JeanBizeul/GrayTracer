@@ -5,11 +5,11 @@
 ** Sphere
 */
 
-
 #ifndef SRC_PLUGINS_FACTORIES_PRIMITIVES_SPHERE_SRC_SPHERE_HPP_
 #define SRC_PLUGINS_FACTORIES_PRIMITIVES_SPHERE_SRC_SPHERE_HPP_
 
 #include <optional>
+
 #include "Math/Point3.hpp"
 #include "Math/Vec3.hpp"
 #include "RayTracer/APrimitive.hpp"

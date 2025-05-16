@@ -15,8 +15,7 @@ namespace RayTracer {
 class Impact {
  public:
     Impact(Math::Point3 point, Math::Vec3 normal, double distance)
-        : _point(point), _normal(normal), _distance(distance) {
-    }
+        : _point(point), _normal(normal), _distance(distance) {}
 
     Math::Point3 _point;
     Math::Vec3 _normal;
