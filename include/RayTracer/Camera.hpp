@@ -16,6 +16,10 @@ namespace RayTracer {
 class Camera {
  public:
     Camera() = default;
+
+    Camera(Math::Point3 screenPos, Math::Vec3 screenSize)
+        : origin(), screen(screenPos, screenSize) {}
+
     ~Camera() = default;
 
     Math::Point3 origin;

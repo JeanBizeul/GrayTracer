@@ -16,7 +16,7 @@ CPPLINT_FLAGS		=														\
 	--root=./include														\
 	--repository=. 															\
 	--filter=-legal/copyright,-build/c++17,+build/c++20,-runtime/references,$\
--build/include_subdir,-build/c++11											\
+-build/include_subdir,-build/c++11,-whitespace/indent_namespace				\
 	--recursive
 
 ## SRC - Put your sources files here
@@ -25,7 +25,8 @@ FILE_EXTENSION	=	.cpp
 INCLUDE_PATH	=	./include
 
 SRCS		=	src/APrimitive.cpp	\
-				src/Face.cpp
+				src/Face.cpp 		\
+				src/parsing/SceneParser.cpp
 
 MAIN		=	src/main.cpp
 
@@ -80,8 +81,8 @@ re:		fclean all
 	done
 
 unit_tests: $(OBJS) $(OBJS_TEST)
-	$(CXX) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST) --coverage -lcriterion \
-	-I $(INCLUDE_PATH)
+	$(CXX) $(CXXFLAGS) $(DFLAGS) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST)	\
+	--coverage -lcriterion -I $(INCLUDE_PATH) $(LDFLAGS)
 
 tests_run: unit_tests
 	./$(TEST_OUTPUT)
@@ -93,8 +94,8 @@ linter: clean
 	cpplint $(CPPLINT_FLAGS) ./src/ ./include/
 
 format: clean
-	find . -type f \( -name "*.cpp" -o -name "*.hpp" \) ! -path "./tests/*"	\
-	-exec clang-format -i {} +
+	find . -type f \( -name "*.cpp" -o -name "*.hpp" -o -name "*.tpp" \) ! \
+	-path "./tests/*" -exec clang-format -i {} +
 
 factories:
 	mkdir -p plugins

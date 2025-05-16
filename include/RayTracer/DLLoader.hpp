@@ -53,8 +53,7 @@ class DLLoader {
 
 class DLLoaderError : std::runtime_error {
  public:
-    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {
-    }
+    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {}
 };
 
 #endif  // RAYTRACER_DLLOADER_HPP_

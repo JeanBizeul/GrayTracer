@@ -24,7 +24,7 @@ void SphereFactory::init(std::shared_ptr<RayTracer::FactoryContext> fcx) {
 }
 
 std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(
-const libconfig::Setting &settings) {
+    const libconfig::Setting &settings) {
     try {
         auto position = Math::Point3(settings["position"]);
         auto rotation = Math::Vec3(settings["rotation"]);

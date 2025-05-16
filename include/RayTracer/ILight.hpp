@@ -14,7 +14,7 @@ namespace RayTracer {
 class ILight : public RayTracer::I3dObject {
  public:
     ILight();
-    ~ILight();
+    ~ILight() = default;
 
     // COLOR
     // OPERTURE

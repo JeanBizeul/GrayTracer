@@ -60,18 +60,21 @@ const RayTracer::Ray &ray) const {
     Math::Vec3 h = ray._direction.cross(edge2);
     double a = edge1.dot(h);
 
-    if (a > -EPSILON && a < EPSILON) return std::nullopt;
+    if (a > -EPSILON && a < EPSILON)
+        return std::nullopt;
 
     double f = 1.0 / a;
     Math::Vec3 s = ray._origin - v0;
     double u = f * s.dot(h);
 
-    if (u < 0.0 || u > 1.0) return std::nullopt;
+    if (u < 0.0 || u > 1.0)
+        return std::nullopt;
 
     Math::Vec3 q = s.cross(edge1);
     double v = f * ray._direction.dot(q);
 
-    if (v < 0.0 || u + v > 1.0) return std::nullopt;
+    if (v < 0.0 || u + v > 1.0)
+        return std::nullopt;
 
     double t = f * edge2.dot(q);
 
