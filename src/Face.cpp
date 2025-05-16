@@ -10,15 +10,15 @@
 
 #define EPSILON 1e-6f
 
-#include "Face.hpp"
+#include "RayTracer/Face.hpp"
 
 #include <cmath>
 #include <optional>
 #include <tuple>
 
-#include "Impact.hpp"
+#include "RayTracer/Impact.hpp"
 #include "Math/Vec.hpp"
-#include "Ray.hpp"
+#include "RayTracer/Ray.hpp"
 
 namespace RayTracer {
 
@@ -40,7 +40,7 @@ Math::Vec3 rotateVec(const Math::Vec3 &v, const Math::Vec3 &rotation_deg) {
 }
 
 std::tuple<Math::Vec3, Math::Vec3, Math::Vec3> Face::getWorldVertices(
-    const Math::Vec3 &obj_pos, const Math::Vec3 &obj_dir) const {
+const Math::Vec3 &obj_pos, const Math::Vec3 &obj_dir) const {
     Math::Vec3 total_rotation = obj_dir + _normal;
     Math::Vec3 base_pos = obj_pos + _position;
 
@@ -52,26 +52,29 @@ std::tuple<Math::Vec3, Math::Vec3, Math::Vec3> Face::getWorldVertices(
 }
 
 std::optional<Impact> Face::hit(Math::Vec3 obj_pos, Math::Vec3 obj_dir,
-                                const RayTracer::Ray &ray) const {
-    auto[v0, v1, v2] = getWorldVertices(obj_pos, obj_dir);
+const RayTracer::Ray &ray) const {
+    auto [v0, v1, v2] = getWorldVertices(obj_pos, obj_dir);
 
     Math::Vec3 edge1 = v1 - v0;
     Math::Vec3 edge2 = v2 - v0;
     Math::Vec3 h = ray._direction.cross(edge2);
     double a = edge1.dot(h);
 
-    if (a > -EPSILON && a < EPSILON) return std::nullopt;
+    if (a > -EPSILON && a < EPSILON)
+        return std::nullopt;
 
     double f = 1.0 / a;
     Math::Vec3 s = ray._origin - v0;
     double u = f * s.dot(h);
 
-    if (u < 0.0 || u > 1.0) return std::nullopt;
+    if (u < 0.0 || u > 1.0)
+        return std::nullopt;
 
     Math::Vec3 q = s.cross(edge1);
     double v = f * ray._direction.dot(q);
 
-    if (v < 0.0 || u + v > 1.0) return std::nullopt;
+    if (v < 0.0 || u + v > 1.0)
+        return std::nullopt;
 
     double t = f * edge2.dot(q);
 

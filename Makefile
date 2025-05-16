@@ -16,7 +16,7 @@ CPPLINT_FLAGS		=														\
 	--root=./include														\
 	--repository=. 															\
 	--filter=-legal/copyright,-build/c++17,+build/c++20,-runtime/references,$\
--build/include_subdir,-build/c++11											\
+-build/include_subdir,-build/c++11,-whitespace/indent_namespace				\
 	--recursive
 
 ## SRC - Put your sources files here
@@ -24,7 +24,9 @@ CPPLINT_FLAGS		=														\
 FILE_EXTENSION	=	.cpp
 INCLUDE_PATH	=	./include
 
-SRCS		=
+SRCS		=	src/APrimitive.cpp	\
+				src/Face.cpp 		\
+				src/parsing/SceneParser.cpp
 
 MAIN		=	src/main.cpp
 
@@ -32,9 +34,12 @@ TEST_OUTPUT	=	unit_tests
 
 SRCS_TEST	=
 
-## Put the path of the factories Makefiles here
+## Put the path of the factories Makefiles here from src/plugins/Factories/
 
-FACTORIES	=	Primitives/Sphere
+FACTORIES	=	Primitives/Sphere	\
+				Material			\
+
+FACTORIES_DIRS = $(addprefix src/plugins/Factories/, $(FACTORIES))
 
 ## OBJS
 
@@ -60,17 +65,24 @@ objs/%.o:	%$(FILE_EXTENSION)
 
 clean:
 	rm -rf objs *.gcda *.gcno
-	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) clean
+	for dir in $(FACTORIES_DIRS); do \
+		$(MAKE) -C $$dir clean;	\
+	done
 
 fclean:		clean
-	rm -rf $(NAME) $(TEST_OUTPUT) Plugins/
-	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) fclean
+	rm -rf $(NAME) $(TEST_OUTPUT) plugins/
+	for dir in $(FACTORIES_DIRS); do \
+		$(MAKE) -C $$dir fclean; \
+	done
 
 re:		fclean all
-	$(MAKE) -C src/Plugins/Factories/$(FACTORIES) re
+	for dir in $(FACTORIES_DIRS); do \
+		$(MAKE) -C $$dir re; \
+	done
 
 unit_tests: $(OBJS) $(OBJS_TEST)
-	$(CXX) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST) --coverage -lcriterion
+	$(CXX) $(CXXFLAGS) $(DFLAGS) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST)	\
+	--coverage -lcriterion -I $(INCLUDE_PATH) $(LDFLAGS)
 
 tests_run: unit_tests
 	./$(TEST_OUTPUT)
@@ -82,12 +94,14 @@ linter: clean
 	cpplint $(CPPLINT_FLAGS) ./src/ ./include/
 
 format: clean
-	find . -type f \( -name "*.cpp" -o -name "*.hpp" \) ! -path "./tests/*"	\
-	-exec clang-format -i {} +
+	find . -type f \( -name "*.cpp" -o -name "*.hpp" -o -name "*.tpp" \) ! \
+	-path "./tests/*" -exec clang-format -i {} +
 
 factories:
-	mkdir -p Plugins
-	$(MAKE) -C src/Plugins/Factories/$(FACTORIES)
-	cp src/Plugins/Factories/$(FACTORIES)/**.so ./Plugins/
+	mkdir -p plugins
+	for dir in $(FACTORIES_DIRS); do \
+		$(MAKE) -C $$dir; \
+	done
+	cp $$(find src/plugins/Factories -name '*.so') ./plugins/
 
 .PHONY:	all clean fclean re tests_run tests_coverage linter format factories
