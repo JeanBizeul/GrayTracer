@@ -5,8 +5,8 @@
 ** DLLoader
 */
 
-#ifndef RAYTRACER_DLLOADER_HPP_
-#define RAYTRACER_DLLOADER_HPP_
+#ifndef DLLOADER_HPP_
+#define DLLOADER_HPP_
 #include <dlfcn.h>
 
 #include <iostream>
@@ -14,10 +14,9 @@
 #include <stdexcept>
 #include <string>
 
-class DLLoaderError : std::runtime_error {
+class DLLoaderError : public std::runtime_error {
  public:
-    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {
-    }
+    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {}
 };
 
 template <typename T>
@@ -56,4 +55,4 @@ class DLLoader {
     const std::string _libName;
 };
 
-#endif  // RAYTRACER_DLLOADER_HPP_
+#endif  // DLLOADER_HPP_

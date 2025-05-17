@@ -40,8 +40,9 @@ SRCS_TEST	=
 
 ## Put the path of the factories Makefiles here from src/plugins/Factories/
 
-FACTORIES	=	Primitives/Sphere	\
-				Material			\
+FACTORIES	=	Primitives/Sphere		\
+				Lights/DirectionalLight	\
+				Material				\
 
 FACTORIES_DIRS = $(addprefix src/plugins/Factories/, $(FACTORIES))
 

@@ -17,16 +17,13 @@
 #include "RayTracer/Impact.hpp"
 
 namespace RayTracer {
-<<<<<<< HEAD:src/Plugins/Factories/Primitives/Sphere/src/Sphere.tpp
+
 inline Sphere::Sphere(Math::Point3 center, Math::Vec3 direction, double scale)
     : APrimitive(center, direction, {}, scale) {}
-=======
+
 Sphere::Sphere(Math::Point3 center, Math::Vec3 direction,
-    RayTracer::Material &material, double scale)
-    : APrimitive(center, direction, {}, material, scale)
-{
-}
->>>>>>> main:src/plugins/Factories/Primitives/Sphere/src/Sphere.tpp
+               RayTracer::Material &material, double scale)
+    : APrimitive(center, direction, {}, material, scale) {}
 
 inline std::optional<Impact> Sphere::hit(const RayTracer::Ray &ray) const {
     (void)ray;

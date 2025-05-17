@@ -10,9 +10,9 @@
 #include <memory>
 #include <string>
 
-#include "Sphere.hpp"
-#include "RayTracer/IFactory.hpp"
 #include "RayTracer/FactoryContext.hpp"
+#include "RayTracer/IFactory.hpp"
+#include "Sphere.hpp"
 
 namespace RayTracer {
 class SphereFactory : public IFactory<RayTracer::Sphere> {
@@ -24,6 +24,7 @@ class SphereFactory : public IFactory<RayTracer::Sphere> {
     std::unique_ptr<RayTracer::Sphere> createObject(
         const libconfig::Setting &settings) final;
     const std::string &getObjectTag() const final;
+    FactoryType getType() const final;
 
  private:
     const std::string _tag = "sphere";

@@ -30,12 +30,12 @@ std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(
         auto rotation = Math::Vec3(settings["rotation"]);
         double scale = settings["scale"];
         std::unordered_map<std::string, RayTracer::Material> matMap =
-            _fcx->get<std::unordered_map<std::string, RayTracer::Material>>
-            ("materials");
+            _fcx->get<std::unordered_map<std::string, RayTracer::Material>>(
+                "materials");
         std::string material = settings["material"];
 
-        return std::make_unique<RayTracer::Sphere>
-            (position, rotation, matMap.at(material), scale);
+        return std::make_unique<RayTracer::Sphere>(position, rotation,
+                                                   matMap.at(material), scale);
     } catch (const libconfig::SettingException &e) {
         std::cerr << "Error while creating sphere: ";
         std::cerr << e.what() << std::endl;
@@ -46,11 +46,14 @@ std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(
 const std::string &SphereFactory::getObjectTag() const {
     return _tag;
 }
+
+FactoryType SphereFactory::getType() const {
+    return FactoryType::Primitive;
+}
 }  // namespace RayTracer
 
 extern "C" {
-RayTracer::FactoryReturnType<RayTracer::Sphere>
-FactoryEntryPoint() {
+RayTracer::FactoryReturnType<RayTracer::Sphere> FactoryEntryPoint() {
     return std::make_unique<RayTracer::SphereFactory>();
 }
 }

@@ -7,7 +7,7 @@
 
 ## DEFS - Set your project infos and compilation preferences
 
-NAME		=	libspherefactory.so
+NAME		=	libdirectionallightfactory.so
 CXX			=	g++
 CXXFLAGS	=	-Wall -Wextra -std=c++20
 DFLAGS		=	-MMD -MF $(@:.o=.d)
@@ -17,8 +17,7 @@ DFLAGS		=	-MMD -MF $(@:.o=.d)
 FILE_EXTENSION	=	.cpp
 INCLUDE_PATH	=	../../../../../include
 
-SRCS		=	src/SphereFactory.cpp	\
-				src/APrimitive.cpp		\
+SRCS		=	src/DirectionalLightFactory.cpp
 
 ## OBJS
 
