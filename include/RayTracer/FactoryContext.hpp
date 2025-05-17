@@ -8,9 +8,9 @@
 #ifndef RAYTRACER_FACTORYCONTEXT_HPP_
 #define RAYTRACER_FACTORYCONTEXT_HPP_
 
+#include <any>
 #include <string>
 #include <unordered_map>
-#include <any>
 
 namespace RayTracer {
 class FactoryContext {
@@ -23,6 +23,7 @@ class FactoryContext {
 
     template <typename T>
     bool has(const std::string &key) const;
+
  private:
     std::unordered_map<std::string, std::any> _contextMap;
 };

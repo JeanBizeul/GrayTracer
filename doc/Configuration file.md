@@ -50,6 +50,7 @@ scene:
             position = [ x, y, z ];
             rotation = [ x, y, z ];
             color = [ r, g, b ];
+            angle = 90.0;  // Operture cone angle (0 - 180)
             range = 100.0; // Range of the light / power
         }
     );

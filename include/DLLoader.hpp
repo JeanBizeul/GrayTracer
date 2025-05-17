@@ -5,14 +5,19 @@
 ** DLLoader
 */
 
-#ifndef RAYTRACER_DLLOADER_HPP_
-#define RAYTRACER_DLLOADER_HPP_
+#ifndef DLLOADER_HPP_
+#define DLLOADER_HPP_
 #include <dlfcn.h>
 
 #include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
+
+class DLLoaderError : public std::runtime_error {
+ public:
+    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {}
+};
 
 template <typename T>
 class DLLoader {
@@ -35,8 +40,7 @@ class DLLoader {
 
     ~DLLoader() {
         if (dlclose(_handler) != 0) {
-        std:
-            cerr << "Cannot unload " + _libName + ": ";
+            std::cerr << "Cannot unload " + _libName + ": ";
             std::cerr << dlerror() << std::endl;
         }
     }
@@ -51,9 +55,4 @@ class DLLoader {
     const std::string _libName;
 };
 
-class DLLoaderError : std::runtime_error {
- public:
-    explicit DLLoaderError(const std::string &msg) : std::runtime_error(msg) {}
-};
-
-#endif  // RAYTRACER_DLLOADER_HPP_
+#endif  // DLLOADER_HPP_

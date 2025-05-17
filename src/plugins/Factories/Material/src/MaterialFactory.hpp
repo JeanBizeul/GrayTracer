@@ -8,13 +8,13 @@
 #ifndef SRC_PLUGINS_FACTORIES_MATERIAL_SRC_MATERIALFACTORY_HPP_
 #define SRC_PLUGINS_FACTORIES_MATERIAL_SRC_MATERIALFACTORY_HPP_
 
-#include <unordered_map>
 #include <memory>
 #include <string>
+#include <unordered_map>
 
+#include "RayTracer/FactoryContext.hpp"
 #include "RayTracer/IFactory.hpp"
 #include "RayTracer/Material.hpp"
-#include "RayTracer/FactoryContext.hpp"
 
 namespace RayTracer {
 class MaterialFactory : public IFactory<RayTracer::Material> {
@@ -27,6 +27,7 @@ class MaterialFactory : public IFactory<RayTracer::Material> {
         const libconfig::Setting &settings) final;
 
     const std::string &getObjectTag() const final;
+    FactoryType getType() const final;
 
  private:
     const std::string _tag = "material";

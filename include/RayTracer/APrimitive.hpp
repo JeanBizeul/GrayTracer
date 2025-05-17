@@ -10,10 +10,10 @@
 
 #include "Face.hpp"
 #include "I3dObject.hpp"
+#include "Material.hpp"
 #include "Math/Point3.hpp"
 #include "Math/Vec3.hpp"
 #include "Ray.hpp"
-#include "Material.hpp"
 
 #ifndef RAYTRACER_APRIMITIVE_HPP_
 #define RAYTRACER_APRIMITIVE_HPP_
@@ -24,8 +24,7 @@ class APrimitive : public RayTracer::I3dObject {
     APrimitive() = default;
     APrimitive(Math::Point3 center, Math::Vec3 direction,
                const std::vector<std::shared_ptr<RayTracer::Face>> &faces,
-               RayTracer::Material &material,
-               double scale = 1);
+               RayTracer::Material &material, double scale = 1);
     ~APrimitive() = default;
 
     virtual std::optional<Impact> hit(const RayTracer::Ray &ray) const;
