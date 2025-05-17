@@ -11,16 +11,15 @@
 #include <optional>
 
 #include "Math/Point3.hpp"
-#include "Math/Point4.hpp"
 #include "Math/Vec3.hpp"
 
 namespace RayTracer {
 class LightInfo {
  public:
-    LightInfo(Math::Point4 color, double intensity)
+    LightInfo(Math::Point3 color, double intensity)
         : _color(color), _intensity(intensity) {}
 
-    Math::Point4 _color;
+    Math::Point3 _color;
     double _intensity;
 };
 
