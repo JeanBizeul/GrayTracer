@@ -21,8 +21,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window.hpp>
 
-#include "Plugins/Factories/Primitives/Sphere/src/Sphere.hpp"
-#include "RayTracer/DLLoader.hpp"
+#include "DLLoader.hpp"
 #include "RayTracer/I3dObject.hpp"
 #include "RayTracer/Scene.hpp"
 
@@ -48,5 +47,5 @@ class Render {
     sf::Sprite sprite;
 };
 
-void initRender(Scene, bool);
+void initRender(RayTracer::Scene, bool);
 #endif  // SRC_RENDER_HPP_

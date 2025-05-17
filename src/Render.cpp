@@ -5,9 +5,13 @@
 ** render
 */
 
+#include <algorithm>
 #include <cstddef>
 #include <cstdio>
 #include <iostream>
+#include <memory>
+#include <optional>
+#include <utility>
 #include <vector>
 #define MAX_HEIGHT 700
 #define MAX_WIDHT 1000
@@ -30,26 +34,34 @@ sf::Sprite &Render::getSprite(void) {
     return sprite;
 }
 
-std::optional<RayTracer::APrimitive> lookingForTheClosestHit(
-    std::vector<RayTracer::APrimitive> primitive, RayTracer::Ray ray) {
-    std::vector<RayTracer::APrimitive> _hitByRay;
-    std::optional<RayTracer::APrimitive> closest = std::nullopt;
-    bool set = false;
+std::optional<std::reference_wrapper<RayTracer::APrimitive>> lookingForTheClosestHit(
+    std::vector<RayTracer::APrimitive>& primitive,
+    RayTracer::Ray ray
+) {
+    std::vector<std::reference_wrapper<RayTracer::APrimitive>> _hitByRay;
+    std::optional<std::reference_wrapper<RayTracer::APrimitive>> closest = std::nullopt;
 
-    for (auto &i : primitive) {
+    for (auto& i : primitive) {
         if (i.hit(ray))
-            _hitByRay.push_back(i);  // All primitives hit by the ray
+            _hitByRay.push_back(i);
     }
+
     if (_hitByRay.empty()) return closest;
-    for (auto y : _hitByRay) {
-        if (!set) {
+
+    for (auto& y : _hitByRay) {
+        if (!closest.has_value()) {
             closest = y;
-            set = true;
+        } else {
+            // Compare distances from the ray hit
+            auto closest_hit = closest->get().hit(ray);
+            auto current_hit = y.get().hit(ray);
+
+            if (closest_hit && current_hit && closest_hit->_distance > current_hit->_distance) {
+                closest = y;
+            }
         }
-        if (closest.value().hit(ray)->_distance >
-            y.hit(ray)->_distance)  // looking for the closest hit directly here
-            closest = y;
     }
+
     return closest;
 }
 
@@ -70,7 +82,7 @@ void Render::GeneratePPM(/*color*/) {
     }
     // PPMFile << (...) << std::endl
 }
-
+ 
 void Render::createRayWindow(/*color, */ double x, double y) {
     sf::RenderWindow window(sf::VideoMode(MAX_WIDHT, MAX_HEIGHT), "RayTracer");
     //  sf::Image buffer(MAX_WIDHT, MAX_HEIGHT, sf::Color(0, 0, 0));
@@ -90,25 +102,23 @@ void Render::createRayWindow(/*color, */ double x, double y) {
     }
 }
 
-void initRender(
-    Scene scenario,
-    bool DisplayMode) {
+void initRender(std::unique_ptr<RayTracer::Scene> &scenario, bool DisplayMode) {
     Render render;
-    std::vector<RayTracer::APrimitive> list;
-    std::optional<RayTracer::APrimitive> ClosestPrimitive;
+    std::optional<std::reference_wrapper<RayTracer::APrimitive>> ClosestPrimitive;
 
     for (int i = 0; i != MAX_HEIGHT; i++) {
         for (int j = 0; j != MAX_WIDHT; j++) {
             double u = j;
             double v = i;
-            RayTracer::Ray r = scenario.camera.GenerateRay(u, v);
-            ClosestPrimitive = lookingForTheClosestHit(scenario.primitives, r);
+            RayTracer::Ray r = scenario->camera.GenerateRay(u, v);
+            ClosestPrimitive = lookingForTheClosestHit(scenario->primitives, r);
             if (ClosestPrimitive.has_value()) {
-                // Light
-                if (DisplayMode) {
-                    render.createRayWindow(/*color,*/ u, v);
-                } else {
-                    render.GeneratePPM(/*color*/);
+                for (auto p: scenario->lights) { //find all lights
+                    if (DisplayMode) {
+                        render.createRayWindow(/*color,*/ u, v);
+                    } else {
+                        render.GeneratePPM(/*color*/);
+                    }
                 }
             }
             continue;

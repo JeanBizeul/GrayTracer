@@ -12,6 +12,6 @@
 
 #include "Render.hpp"
 
-void initRender(Scene, bool);
+void initRender(std::unique_ptr<RayTracer::Scene> &, bool);
 
 #endif  // SRC_MAIN_HPP_
