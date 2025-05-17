@@ -38,6 +38,10 @@ const std::string &DirectionalLightFactory::getObjectTag() const {
     return _tag;
 }
 
+FactoryType DirectionalLightFactory::getType() const {
+    return FactoryType::Light;
+}
+
 }  // namespace RayTracer
 
 extern "C" {

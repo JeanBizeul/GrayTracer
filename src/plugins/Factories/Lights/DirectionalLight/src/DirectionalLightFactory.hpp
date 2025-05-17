@@ -27,6 +27,7 @@ class DirectionalLightFactory : public IFactory<RayTracer::Light> {
         const libconfig::Setting &settings) final;
     
     const std::string &getObjectTag() const final;
+    FactoryType getType() const final;
  private:
     std::string _tag = "directional light";
 };

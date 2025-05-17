@@ -115,6 +115,10 @@ const std::string &MaterialFactory::getObjectTag() const {
     return _tag;
 }
 
+FactoryType MaterialFactory::getType() const {
+    return FactoryType::Material;
+}
+
 }  // namespace RayTracer
 
 extern "C" {

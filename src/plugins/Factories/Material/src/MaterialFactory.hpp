@@ -27,6 +27,7 @@ class MaterialFactory : public IFactory<RayTracer::Material> {
         const libconfig::Setting &settings) final;
 
     const std::string &getObjectTag() const final;
+    FactoryType MaterialFactory::getType() const final;
 
  private:
     const std::string _tag = "material";

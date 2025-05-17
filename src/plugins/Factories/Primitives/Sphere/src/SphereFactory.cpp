@@ -46,6 +46,10 @@ std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(
 const std::string &SphereFactory::getObjectTag() const {
     return _tag;
 }
+
+FactoryType SphereFactory::getType() const {
+    return FactoryType::Primitive;
+}
 }  // namespace RayTracer
 
 extern "C" {
