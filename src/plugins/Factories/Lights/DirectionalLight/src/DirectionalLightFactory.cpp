@@ -9,6 +9,7 @@
 
 #include <memory>
 #include <iostream>
+#include <string>
 
 #include <libconfig.h++>
 

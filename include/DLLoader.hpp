@@ -5,8 +5,8 @@
 ** DLLoader
 */
 
-#ifndef RAYTRACER_DLLOADER_HPP_
-#define RAYTRACER_DLLOADER_HPP_
+#ifndef DLLOADER_HPP_
+#define DLLOADER_HPP_
 #include <dlfcn.h>
 
 #include <iostream>
@@ -55,4 +55,4 @@ class DLLoader {
     const std::string _libName;
 };
 
-#endif  // RAYTRACER_DLLOADER_HPP_
+#endif  // DLLOADER_HPP_

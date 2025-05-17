@@ -17,7 +17,8 @@ DFLAGS		=	-MMD -MF $(@:.o=.d)
 FILE_EXTENSION	=	.cpp
 INCLUDE_PATH	=	../../../../../include
 
-SRCS		=	src/SphereFactory.cpp
+SRCS		=	src/SphereFactory.cpp	\
+				src/APrimitive.cpp		\
 
 ## OBJS
 
