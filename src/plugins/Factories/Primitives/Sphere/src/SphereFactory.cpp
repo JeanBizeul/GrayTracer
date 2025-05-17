@@ -23,7 +23,7 @@ void SphereFactory::init(std::shared_ptr<RayTracer::FactoryContext> fcx) {
     _fcx = fcx;
 }
 
-std::unique_ptr<RayTracer::Sphere> SphereFactory::createObject(
+std::unique_ptr<RayTracer::APrimitive> SphereFactory::createObject(
     const libconfig::Setting &settings) {
     try {
         auto position = Math::Point3(settings["position"]);
@@ -50,10 +50,11 @@ const std::string &SphereFactory::getObjectTag() const {
 FactoryType SphereFactory::getType() const {
     return FactoryType::Primitive;
 }
+
 }  // namespace RayTracer
 
 extern "C" {
-RayTracer::FactoryReturnType<RayTracer::Sphere> FactoryEntryPoint() {
+RayTracer::FactoryReturnType<RayTracer::APrimitive> FactoryEntryPoint() {
     return std::make_unique<RayTracer::SphereFactory>();
 }
 }
