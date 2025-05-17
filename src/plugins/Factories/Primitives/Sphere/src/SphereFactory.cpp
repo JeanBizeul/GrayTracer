@@ -47,7 +47,7 @@ const std::string &SphereFactory::getObjectTag() const {
     return _tag;
 }
 
-FactoryType MaterialFactory::getType() const {
+FactoryType SphereFactory::getType() const {
     return FactoryType::Primitive;
 }
 }  // namespace RayTracer

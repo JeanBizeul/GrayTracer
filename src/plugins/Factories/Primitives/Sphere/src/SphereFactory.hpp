@@ -24,7 +24,7 @@ class SphereFactory : public IFactory<RayTracer::Sphere> {
     std::unique_ptr<RayTracer::Sphere> createObject(
         const libconfig::Setting &settings) final;
     const std::string &getObjectTag() const final;
-    FactoryType SphereFactory::getType() const final;
+    FactoryType getType() const final;
 
  private:
     const std::string _tag = "sphere";
