@@ -42,11 +42,16 @@ std::optional<std::reference_wrapper<RayTracer::APrimitive>> lookingForTheCloses
     std::optional<std::reference_wrapper<RayTracer::APrimitive>> closest = std::nullopt;
 
     for (auto& i : primitive) {
-        if (i.hit(ray))
+        if (i.hit(ray)) {
             _hitByRay.push_back(i);
+            std::cout << "A hit occured\n";
+        }
     }
 
-    if (_hitByRay.empty()) return closest;
+    if (_hitByRay.empty()) {
+        //std::cout << "Its empty\n";
+        return closest;
+    }
 
     for (auto& y : _hitByRay) {
         if (!closest.has_value()) {
@@ -61,7 +66,7 @@ std::optional<std::reference_wrapper<RayTracer::APrimitive>> lookingForTheCloses
             }
         }
     }
-
+    std::cout << "found it" << std::endl;
     return closest;
 }
 
@@ -82,7 +87,7 @@ void Render::GeneratePPM(/*color*/) {
     }
     // PPMFile << (...) << std::endl
 }
- 
+
 void Render::createRayWindow(/*color, */ double x, double y) {
     sf::RenderWindow window(sf::VideoMode(MAX_WIDHT, MAX_HEIGHT), "RayTracer");
     //  sf::Image buffer(MAX_WIDHT, MAX_HEIGHT, sf::Color(0, 0, 0));
@@ -112,16 +117,16 @@ void initRender(std::unique_ptr<RayTracer::Scene> &scenario, bool DisplayMode) {
             double v = i;
             RayTracer::Ray r = scenario->camera.GenerateRay(u, v);
             ClosestPrimitive = lookingForTheClosestHit(scenario->primitives, r);
-            if (ClosestPrimitive.has_value()) {
-                for (auto p: scenario->lights) { //find all lights
-                    if (DisplayMode) {
-                        render.createRayWindow(/*color,*/ u, v);
-                    } else {
-                        render.GeneratePPM(/*color*/);
-                    }
-                }
-            }
-            continue;
+            //if (ClosestPrimitive.has_value()) {
+            //    for (auto p: scenario->lights) { //find all lights
+            //        if (DisplayMode) {
+            //            render.createRayWindow(/*color,*/ u, v);
+            //        } else {
+            //            render.GeneratePPM(/*color*/);
+            //        }
+            //    }
+            //}
+            //continue;
         }
     }
     if (!DisplayMode) render.getPPM().close();

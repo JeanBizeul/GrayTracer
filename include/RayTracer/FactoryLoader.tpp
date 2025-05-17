@@ -105,13 +105,16 @@ const libconfig::Setting &settings) {
     } else if constexpr (std::is_same_v<T, RayTracer::Material>) {
         map = &_materials;
     } else if constexpr (std::is_same_v<T, RayTracer::APrimitive>) {
+        std::cout << "here 3" << std::endl;
         map = &_primitives;
     } else {
         static_assert(sizeof(T) == 0, "Unsupported factory type for create().");
     }
-
+    std::cout << "After" << std::endl;
     auto it = map->find(tag);
+    std::cout << "here__" << std::endl;
     if (it == map->end())
+    std::cout << "__here" << std::endl;
         throw std::runtime_error("Unknown factory tag: " + tag);
     return it->second->createObject(settings);
 }
