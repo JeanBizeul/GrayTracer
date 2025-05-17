@@ -11,7 +11,7 @@ NAME		=	raytracer
 CXX			=	g++
 CXXFLAGS	=	-Wall -Wextra -std=c++20
 DFLAGS		=	-MMD -MF $(@:.o=.d)
-LDFLAGS		=	-lconfig++
+LDFLAGS		=	-lconfig++ -lsfml-graphics -lsfml-window -lsfml-system
 CPPLINT_FLAGS		=														\
 	--root=./include														\
 	--repository=. 															\
@@ -24,8 +24,12 @@ CPPLINT_FLAGS		=														\
 FILE_EXTENSION	=	.cpp
 INCLUDE_PATH	=	./include
 
-SRCS		=	src/APrimitive.cpp	\
-				src/Face.cpp 		\
+SRCS		=	src/Render.cpp \
+		        src/Camera.cpp \
+				src/Screen.cpp \
+				src/APrimitive.cpp	\
+				src/Face.cpp	\
+		    	src/Scene.cpp	\
 				src/parsing/SceneParser.cpp
 
 MAIN		=	src/main.cpp
@@ -83,7 +87,7 @@ re:		fclean all
 
 unit_tests: $(OBJS) $(OBJS_TEST)
 	$(CXX) $(CXXFLAGS) $(DFLAGS) -o $(TEST_OUTPUT) $(SRCS) $(OBJS_TEST)	\
-	--coverage -lcriterion -I $(INCLUDE_PATH) $(LDFLAGS)
+	--coverage -lcriterion -lcriterion -lsfml-graphics -lsfml-window -lsfml-system -I $(INCLUDE_PATH) $(LDFLAGS)
 
 tests_run: unit_tests
 	./$(TEST_OUTPUT)

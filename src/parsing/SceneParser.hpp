@@ -21,10 +21,10 @@ class SceneParser {
     SceneParser() = delete;
     explicit SceneParser(std::string const &filename);
     ~SceneParser();
-    std::unique_ptr<Scene> getScene();
+    std::unique_ptr<RayTracer::Scene> getScene();
 
  private:
-    void writeScene(std::unique_ptr<Scene> &toFill);
+    void writeScene(std::unique_ptr<RayTracer::Scene> &toFill);
     void parsePrimitives(const libconfig::Setting &primitivesSetting,
                          std::vector<RayTracer::APrimitive> &primitives);
     void parseCamera(const libconfig::Setting &cameraSetting,

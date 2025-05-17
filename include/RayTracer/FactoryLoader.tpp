@@ -10,6 +10,7 @@
 
 #include <filesystem>
 #include <iostream>
+#include <iterator>
 #include <string>
 
 #include "IFactory.hpp"
@@ -109,7 +110,6 @@ const libconfig::Setting &settings) {
     } else {
         static_assert(sizeof(T) == 0, "Unsupported factory type for create().");
     }
-
     auto it = map->find(tag);
     if (it == map->end())
         throw std::runtime_error("Unknown factory tag: " + tag);
