@@ -36,11 +36,10 @@ class Light {
                                        Math::Vec3 _faceNormal) const;
 
  private:
+    LightInfo _LightInfo;
     Math::Point3 _position;
     Math::Vec3 _direction;
     double _angle;
-
-    LightInfo _LightInfo;
 };
 }  // namespace RayTracer
 
