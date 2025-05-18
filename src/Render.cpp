@@ -34,6 +34,10 @@ sf::Sprite &Render::getSprite(void) {
     return sprite;
 }
 
+std::vector<RayTracer::vec4> &Render::getPixels(void) {
+    return Pixels;
+}
+
 std::optional<std::reference_wrapper<RayTracer::APrimitive>>
 lookingForTheClosestHit(std::vector<RayTracer::APrimitive> &primitive,
                         RayTracer::Ray ray) {
@@ -49,7 +53,7 @@ lookingForTheClosestHit(std::vector<RayTracer::APrimitive> &primitive,
     }
 
     if (_hitByRay.empty()) {
-        // std::cout << "Its empty\n";
+        std::cout << "Its empty\n";
         return closest;
     }
 
@@ -107,12 +111,18 @@ void Render::createRayWindow(/*color, */ double x, double y) {
 
         window.display();
     }
+    // Color& pixel = framebuffer[y * width + x] => hot to access the color
+}
+
+void Render::StoreColor(/*Color*/) {
+    Pixels.push_back(/*color*/);
 }
 
 void initRender(std::unique_ptr<RayTracer::Scene> &scenario, bool DisplayMode) {
     Render render;
     std::optional<std::reference_wrapper<RayTracer::APrimitive>>
         ClosestPrimitive;
+    render.getPixels().size(MAX_WIDHT * MAX_HEIGHT);
 
     for (int i = 0; i != MAX_HEIGHT; i++) {
         for (int j = 0; j != MAX_WIDHT; j++) {
@@ -120,18 +130,22 @@ void initRender(std::unique_ptr<RayTracer::Scene> &scenario, bool DisplayMode) {
             double v = i;
             RayTracer::Ray r = scenario->camera.GenerateRay(u, v);
             ClosestPrimitive = lookingForTheClosestHit(scenario->primitives, r);
-            // if (ClosestPrimitive.has_value()) {
-            //     for (auto p: scenario->lights) { //find all lights
-            //         if (DisplayMode) {
-            //             render.createRayWindow(/*color,*/ u, v);
-            //         } else {
-            //             render.GeneratePPM(/*color*/);
-            //         }
-            //     }
-            // }
-            // continue;
+            if (ClosestPrimitive.has_value()) {
+                for (auto Light: scenario->lights) { // All lights
+                    if (Light.hit(ClosestPrimitive._point, ClosestPrimitive.normal).has_value) {
+                        // calcul pour affichier la lumière
+                        StoreColor(/*color?*/);
+                    }
+                    continue;
+                }
+            }
+            StoreColor(/*Black*/);
+            continue;
         }
     }
+    if (DisplayMode)
+        render.createRayWindow();
+    render.GeneratePPM();
     if (!DisplayMode)
         render.getPPM().close();
 }

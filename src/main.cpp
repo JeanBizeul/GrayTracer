@@ -39,9 +39,9 @@ int main(int ac, char **av) {
         }
 
         std::cout << "---> After parsing" << std::endl;
-        // SceneParser sceneParser("./tests/test.cfg");
-        // auto scene_elements = sceneParser.getScene();
-        // initRender(scene_elements, false);
+        SceneParser sceneParser("./tests/test.cfg");
+        auto scene_elements = sceneParser.getScene();
+        initRender(scene_elements, false);
     } catch (const libconfig::SettingNotFoundException &e) {
         std::cerr << "Config error: " << e.what() << std::endl;
         return 1;
