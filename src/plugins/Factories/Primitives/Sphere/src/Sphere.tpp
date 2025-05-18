@@ -17,11 +17,12 @@
 #include "RayTracer/Impact.hpp"
 
 namespace RayTracer {
-Sphere::Sphere(Math::Point3 center, Math::Vec3 direction,
-               RayTracer::Material &material, double scale)
+
+inline Sphere::Sphere(Math::Point3 center, Math::Vec3 direction,
+                      RayTracer::Material &material, double scale)
     : APrimitive(center, direction, {}, material, scale) {}
 
-std::optional<Impact> Sphere::hit(const RayTracer::Ray &ray) const {
+inline std::optional<Impact> Sphere::hit(const RayTracer::Ray &ray) const {
     (void)ray;
     return std::nullopt;
 }

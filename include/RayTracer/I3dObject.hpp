@@ -8,8 +8,6 @@
 #ifndef RAYTRACER_I3DOBJECT_HPP_
 #define RAYTRACER_I3DOBJECT_HPP_
 
-#include "Math/Point3.hpp"
-#include "Math/Vec3.hpp"
 #include "Ray.hpp"
 
 namespace RayTracer {

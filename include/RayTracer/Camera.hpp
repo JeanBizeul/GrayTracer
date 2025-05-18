@@ -5,12 +5,11 @@
 ** header
 */
 
-#include "Math/Point3.hpp"
-#include "Ray.hpp"
-#include "Screen.hpp"
-
 #ifndef RAYTRACER_CAMERA_HPP_
 #define RAYTRACER_CAMERA_HPP_
+
+#include "Ray.hpp"
+#include "Screen.hpp"
 
 namespace RayTracer {
 class Camera {
@@ -18,15 +17,15 @@ class Camera {
     Camera() = default;
 
     Camera(Math::Point3 screenPos, Math::Vec3 screenSize)
-        : origin(), screen(screenPos, screenSize) {}
+        : origin(), _screen(screenPos, screenSize) {}
 
     ~Camera() = default;
 
     Math::Point3 origin;
-    RayTracer::Screen screen;
+    Math::Vec3 _size;
+    RayTracer::Screen _screen;
     RayTracer::Ray GenerateRay(double u, double v);
-    // return ray from the camera to the screen
 };
-}  // namespace RayTracer
+};  // namespace RayTracer
 
 #endif  // RAYTRACER_CAMERA_HPP_

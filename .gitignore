@@ -1,4 +1,5 @@
 raytracer
+Notes.txt
 
 *.log
 *.so
@@ -6,3 +7,6 @@ raytracer
 objs/
 .vscode/
 .obsidian/
+
+
+file.conf

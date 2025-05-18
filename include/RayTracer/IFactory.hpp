@@ -16,19 +16,24 @@
 #include "FactoryContext.hpp"
 
 namespace RayTracer {
-enum class FactoryType { Light, Material, Primitive };
+enum class FactoryType {
+    Light,
+    Material,
+    Primitive
+};
 
 class IFactoryBase {
  public:
     ~IFactoryBase() = default;
 
     virtual void init(std::shared_ptr<FactoryContext> ctx) {}
+
     virtual const std::string &getObjectTag() const = 0;
     virtual FactoryType getType() const = 0;
 };
 
 template <typename T>
-class IFactory : public IFactoryBase{
+class IFactory : public IFactoryBase {
  public:
     virtual ~IFactory() = default;
 

@@ -15,13 +15,13 @@
 #include "Sphere.hpp"
 
 namespace RayTracer {
-class SphereFactory : public IFactory<RayTracer::Sphere> {
+class SphereFactory : public IFactory<RayTracer::APrimitive> {
  public:
     explicit SphereFactory() = default;
     ~SphereFactory() = default;
 
     void init(std::shared_ptr<RayTracer::FactoryContext> fcx) final;
-    std::unique_ptr<RayTracer::Sphere> createObject(
+    std::unique_ptr<RayTracer::APrimitive> createObject(
         const libconfig::Setting &settings) final;
     const std::string &getObjectTag() const final;
     FactoryType getType() const final;

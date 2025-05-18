@@ -39,8 +39,9 @@ SceneParser::SceneParser(std::string const &filename) : _cfg() {
 
 SceneParser::~SceneParser() {}
 
-std::unique_ptr<Scene> SceneParser::getScene() {
-    std::unique_ptr<Scene> scene = std::make_unique<Scene>();
+std::unique_ptr<RayTracer::Scene> SceneParser::getScene() {
+    std::unique_ptr<RayTracer::Scene> scene =
+        std::make_unique<RayTracer::Scene>();
 
     std::cout << "Parsing scene..." << std::endl;
     try {
@@ -56,7 +57,7 @@ std::unique_ptr<Scene> SceneParser::getScene() {
     return scene;
 }
 
-void SceneParser::writeScene(std::unique_ptr<Scene> &toFill) {
+void SceneParser::writeScene(std::unique_ptr<RayTracer::Scene> &toFill) {
     const libconfig::Setting &root = _cfg.getRoot();
     if (root.getLength() > 1)
         errorThrow("\"scene\" isn't the only element at root");
