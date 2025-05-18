@@ -21,10 +21,11 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window.hpp>
-
+#include "Math/Vec4.hpp"
 #include "DLLoader.hpp"
 #include "RayTracer/I3dObject.hpp"
 #include "RayTracer/Scene.hpp"
+
 
 class Render {
  public:
@@ -32,22 +33,22 @@ class Render {
     ~Render() = default;
 
     // Methods
-    void createRayWindow(/*color, */ double, double);
-    void GeneratePPM(/*color*/);
-    void StoreColor();
+    void createRayWindow();
+    void GeneratePPM();
+    void StoreColor(Math::Vec4 &color);
     // Getters
     std::ofstream &getPPM(void);
     sf::RenderWindow &GetWindow(void);
     sf::Texture &getTexture(void);
     sf::Sprite &getSprite(void);
-    std::vector<RayTracer::vec4> &getPixels(void);
+    std::vector<Math::Vec4> &getPixels(void);
 
  private:
     std::ofstream _PPMFile;
     sf::RenderWindow win;
     sf::Texture texture;
     sf::Sprite sprite;
-    std::vector<RayTracer::vec4> Pixels;
+    std::vector<Math::Vec4> Pixels;
 };
 
 void initRender(RayTracer::Scene, bool);

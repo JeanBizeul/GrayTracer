@@ -5,7 +5,7 @@
 ** Light
 */
 
-#include "Light.hpp"
+#include "RayTracer/Light.hpp"
 
 #include <cmath>
 #include <optional>

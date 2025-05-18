@@ -30,6 +30,7 @@ SRCS		=	src/Render.cpp \
 				src/APrimitive.cpp	\
 				src/Face.cpp	\
 		    	src/Scene.cpp	\
+				src/Light.cpp	\
 				src/parsing/SceneParser.cpp
 
 MAIN		=	src/main.cpp
