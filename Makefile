@@ -9,9 +9,9 @@
 
 NAME		=	raytracer
 CXX			=	g++
-CXXFLAGS	=	-Wall -Wextra -std=c++20
+CXXFLAGS	=	-Wall -Wextra -std=c++20 
 DFLAGS		=	-MMD -MF $(@:.o=.d)
-LDFLAGS		=	-lconfig++ -lsfml-graphics -lsfml-window -lsfml-system
+LDFLAGS		=	-g -lconfig++ -lsfml-graphics -lsfml-window -lsfml-system
 CPPLINT_FLAGS		=														\
 	--root=./include														\
 	--repository=. 															\

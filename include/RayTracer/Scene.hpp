@@ -14,7 +14,6 @@
 #include "Camera.hpp"
 #include "Light.hpp"
 
-
 namespace RayTracer {
 class Scene {
  public:
@@ -30,6 +29,6 @@ class Scene {
     std::vector<RayTracer::Light> lights;
     Math::Vec3 ambient;
 };
-}
+}  // namespace RayTracer
 
 #endif  // RAYTRACER_SCENE_HPP_

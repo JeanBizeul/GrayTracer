@@ -19,7 +19,7 @@
 namespace RayTracer {
 
 inline Sphere::Sphere(Math::Point3 center, Math::Vec3 direction,
-               RayTracer::Material &material, double scale)
+                      RayTracer::Material &material, double scale)
     : APrimitive(center, direction, {}, material, scale) {}
 
 inline std::optional<Impact> Sphere::hit(const RayTracer::Ray &ray) const {

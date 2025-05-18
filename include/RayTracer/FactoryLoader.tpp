@@ -61,12 +61,16 @@ FactoryLoader::FactoryLoader(const std::string &sharedLibFolder) {
 bool FactoryLoader::loadFactory(const std::filesystem::path &path) {
     std::cout << "[FactoryLoader] Trying to load: "
         << path.filename() << std::endl;
+
     try {
         std::string name = extractSharedLibName(path.filename());
         _sharedLibLoaders.emplace(name,
             std::make_unique<DLLoader<IFactoryBase>>
             (path, "FactoryEntryPoint"));
         auto factory = _sharedLibLoaders[name]->getInstance();
+        if (!factory) {
+            throw std::runtime_error("Factory instance is null");
+        }
         std::string tag = factory->getObjectTag();
 
         std::cout << "[FactoryLoader] Detected type: "
@@ -110,9 +114,11 @@ const libconfig::Setting &settings) {
     } else {
         static_assert(sizeof(T) == 0, "Unsupported factory type for create().");
     }
+
     auto it = map->find(tag);
     if (it == map->end())
         throw std::runtime_error("Unknown factory tag: " + tag);
+    std::cout << "Before Create Object Function\n";
     return it->second->createObject(settings);
 }
 

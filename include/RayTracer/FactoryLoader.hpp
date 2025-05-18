@@ -8,19 +8,19 @@
 #ifndef RAYTRACER_FACTORYLOADER_HPP_
 #define RAYTRACER_FACTORYLOADER_HPP_
 
-#include <unordered_map>
-#include <string>
 #include <filesystem>
 #include <memory>
+#include <string>
+#include <unordered_map>
 
 #include <libconfig.h++>
 
+#include "APrimitive.hpp"
+#include "DLLoader.hpp"
 #include "FactoryContext.hpp"
 #include "IFactory.hpp"
 #include "Light.hpp"
-#include "APrimitive.hpp"
 #include "Material.hpp"
-#include "DLLoader.hpp"
 
 namespace RayTracer {
 class FactoryLoader {
@@ -30,25 +30,26 @@ class FactoryLoader {
 
     template <typename T>
     std::unique_ptr<T> create(const std::string &tag,
-        const libconfig::Setting &settings);
+                              const libconfig::Setting &settings);
 
  private:
-    std::unordered_map<std::string,
-        std::unique_ptr<DLLoader<IFactoryBase>>> _sharedLibLoaders;
+    std::unordered_map<std::string, std::unique_ptr<DLLoader<IFactoryBase>>>
+        _sharedLibLoaders;
 
     bool loadFactory(const std::filesystem::path &path);
 
     std::unordered_map<std::string,
-        std::unique_ptr<RayTracer::IFactory
-            <RayTracer::Light>>> _lights;
+                       std::unique_ptr<RayTracer::IFactory<RayTracer::Light>>>
+        _lights;
 
-    std::unordered_map<std::string,
-        std::unique_ptr<RayTracer::IFactory
-            <RayTracer::Material>>> _materials;
+    std::unordered_map<
+        std::string, std::unique_ptr<RayTracer::IFactory<RayTracer::Material>>>
+        _materials;
 
-    std::unordered_map<std::string,
-        std::unique_ptr<RayTracer::IFactory
-            <RayTracer::APrimitive>>> _primitives;
+    std::unordered_map<
+        std::string,
+        std::unique_ptr<RayTracer::IFactory<RayTracer::APrimitive>>>
+        _primitives;
 };
 }  // namespace RayTracer
 

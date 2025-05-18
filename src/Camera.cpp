@@ -7,7 +7,6 @@
 
 #include "RayTracer/Camera.hpp"
 
-
 RayTracer::Ray RayTracer::Camera::GenerateRay(double u, double v) {
     // Create direction vector using array constructor
     return RayTracer::Ray(origin,

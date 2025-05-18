@@ -6,4 +6,3 @@
 */
 
 #include "RayTracer/Scene.hpp"
-

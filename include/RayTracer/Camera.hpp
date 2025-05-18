@@ -15,6 +15,7 @@ namespace RayTracer {
 class Camera {
  public:
     Camera() = default;
+
     Camera(Math::Point3 screenPos, Math::Vec3 screenSize)
         : origin(), _screen(screenPos, screenSize) {}
 
@@ -25,9 +26,6 @@ class Camera {
     RayTracer::Screen _screen;
     RayTracer::Ray GenerateRay(double u, double v);
 };
-
-// return ray from the camera to the screen
 };  // namespace RayTracer
-    // namespace RayTracer
 
 #endif  // RAYTRACER_CAMERA_HPP_

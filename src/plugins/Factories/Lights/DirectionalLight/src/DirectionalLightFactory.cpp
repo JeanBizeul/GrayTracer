@@ -7,8 +7,8 @@
 
 #include "DirectionalLightFactory.hpp"
 
-#include <memory>
 #include <iostream>
+#include <memory>
 #include <string>
 
 #include <libconfig.h++>
@@ -26,8 +26,8 @@ std::unique_ptr<RayTracer::Light> DirectionalLightFactory::createObject(
         double brightness = settings["range"];
         double angle = settings["angle"];
 
-        return std::make_unique<RayTracer::Light>(position, rotation, angle,
-            RayTracer::LightInfo(color, brightness));
+        return std::make_unique<RayTracer::Light>(
+            position, rotation, angle, RayTracer::LightInfo(color, brightness));
     } catch (const libconfig::SettingException &e) {
         std::cerr << "Error while creating directional light: ";
         std::cerr << e.what() << std::endl;

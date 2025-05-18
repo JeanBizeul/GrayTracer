@@ -40,7 +40,8 @@ SceneParser::SceneParser(std::string const &filename) : _cfg() {
 SceneParser::~SceneParser() {}
 
 std::unique_ptr<RayTracer::Scene> SceneParser::getScene() {
-    std::unique_ptr<RayTracer::Scene> scene = std::make_unique<RayTracer::Scene>();
+    std::unique_ptr<RayTracer::Scene> scene =
+        std::make_unique<RayTracer::Scene>();
 
     std::cout << "Parsing scene..." << std::endl;
     try {

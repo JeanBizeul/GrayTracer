@@ -6,33 +6,48 @@
 */
 
 #include "main.hpp"
+
 #include <memory>
+#include <unordered_map>
+#include <iostream>
 #include <libconfig.h++>
 
-#include "parsing/SceneParser.hpp"
 #include "RayTracer/FactoryLoader.hpp"
-
+#include "parsing/SceneParser.hpp"
 
 int main(int ac, char **av) {
     (void)ac;
     (void)av;
 
-    // Create a shared context for factories
-    //auto context = std::make_shared<RayTracer::FactoryContext>();
-    
-    // Initialize factory loader with the context
-    RayTracer::FactoryLoader fc("./plugins/");
-    libconfig::Config cfg;
-    cfg.readFile("./tests/test.cfg");
+    try {
+        // Initialize factory loader
+        RayTracer::FactoryLoader fc("./plugins/");
 
-    libconfig::Setting& primitives = cfg.lookup("scene.primitives");
-    libconfig::Setting& sphereSetting = primitives[0];  // Assuming it's a "sphere"
+        libconfig::Config cfg;
+        cfg.readFile("./tests/test.cfg");
 
-    SceneParser sceneParser("./tests/test.cfg");
-    std::unique_ptr<RayTracer::APrimitive> sphere =
-        fc.create<RayTracer::APrimitive>("sphere", sphereSetting); //use it like this !
-    //auto scene_elements = sceneParser.getScene();
-    std::cout << "---> After le parsing" << std::endl;
-    //initRender(scene_elements, false);  //  False => Asking for PPM Output
+        // Get primitives settings
+        libconfig::Setting &primitives = cfg.lookup("scene.primitives");
+        libconfig::Setting &sphereSetting = primitives[0];
+
+        std::cout << "BEFORE LOADING SPHERE\n";
+        std::unique_ptr<RayTracer::APrimitive> sphere =
+            fc.create<RayTracer::APrimitive>("sphere", sphereSetting);
+
+        if (!sphere) {
+            throw std::runtime_error("Failed to create sphere");
+        }
+
+        std::cout << "---> After parsing" << std::endl;
+        // SceneParser sceneParser("./tests/test.cfg");
+        // auto scene_elements = sceneParser.getScene();
+        // initRender(scene_elements, false);
+    } catch (const libconfig::SettingNotFoundException &e) {
+        std::cerr << "Config error: " << e.what() << std::endl;
+        return 1;
+    } catch (const std::exception &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
     return 0;
 }

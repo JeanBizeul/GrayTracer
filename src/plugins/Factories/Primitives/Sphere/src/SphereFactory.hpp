@@ -12,7 +12,6 @@
 
 #include "RayTracer/FactoryContext.hpp"
 #include "RayTracer/IFactory.hpp"
-#include "RayTracer/APrimitive.hpp"
 #include "Sphere.hpp"
 
 namespace RayTracer {
