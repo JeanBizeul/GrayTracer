@@ -21,15 +21,16 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window.hpp>
-#include "Math/Vec4.hpp"
+
 #include "DLLoader.hpp"
+#include "Math/Vec4.hpp"
 #include "RayTracer/I3dObject.hpp"
 #include "RayTracer/Scene.hpp"
-
 
 class Render {
  public:
     Render() {}
+
     ~Render() = default;
 
     // Methods

@@ -7,9 +7,10 @@
 
 #include "main.hpp"
 
+#include <iostream>
 #include <memory>
 #include <unordered_map>
-#include <iostream>
+
 #include <libconfig.h++>
 
 #include "RayTracer/FactoryLoader.hpp"

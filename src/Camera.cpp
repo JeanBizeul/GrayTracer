@@ -10,5 +10,5 @@
 RayTracer::Ray RayTracer::Camera::GenerateRay(double u, double v) {
     // Create direction vector using array constructor
     return RayTracer::Ray(origin,
-                        Math::Vec3(std::array<double, 3>{u, v, -1.0}));
+                          Math::Vec3(std::array<double, 3>{u, v, -1.0}));
 }

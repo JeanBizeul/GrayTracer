@@ -18,7 +18,7 @@ const std::optional<LightInfo> Light::hit(Math::Point3 _impact,
                                           Math::Vec3 _faceNormal) const {
     Math::Vec3 dir = (_impact - _position).normalize();
 
-    if (dir.dot(_faceNormal) >= 0) //Prend les lumières du sens inverse??
+    if (dir.dot(_faceNormal) >= 0)  // Prend les lumières du sens inverse??
         return std::nullopt;
 
     double angle = _direction.dot(dir);
