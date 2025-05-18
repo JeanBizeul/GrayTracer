@@ -75,22 +75,20 @@ lookingForTheClosestHit(std::vector<RayTracer::APrimitive> &primitive,
     return closest;
 }
 
-void Render::GeneratePPM(/*color*/) {
-    static bool set = false;
-    if (!set) {
-        _PPMFile.open("Output.ppm");
-        if (_PPMFile.fail()) {
-            std::cerr << "Error while opening PPM file";
-            return;
-        }
-
-        _PPMFile << "P3" << std::endl;
-        _PPMFile << MAX_WIDHT << " " << MAX_HEIGHT << std::endl;
-        _PPMFile << "255" << std::endl;
-        _PPMFile << std::endl;
-        _PPMFile << std::endl;
+void Render::GeneratePPM(/*vector color*/) {
+    _PPMFile.open("Output.ppm");
+    if (_PPMFile.fail()) {
+        std::cerr << "Error while opening PPM file";
+        return;
     }
-    // PPMFile << (...) << std::endl
+    _PPMFile << "P3" << std::endl;
+    _PPMFile << MAX_WIDHT << " " << MAX_HEIGHT << std::endl;
+    _PPMFile << "255" << std::endl;
+    _PPMFile << std::endl;
+    _PPMFile << std::endl;
+    for (auto i: Pixels)
+        //PPMFile << i.r << std::endl
+    _PPMFile.close();
 }
 
 void Render::createRayWindow(/*color, */ double x, double y) {
@@ -143,9 +141,7 @@ void initRender(std::unique_ptr<RayTracer::Scene> &scenario, bool DisplayMode) {
             continue;
         }
     }
+    render.GeneratePPM();
     if (DisplayMode)
         render.createRayWindow();
-    render.GeneratePPM();
-    if (!DisplayMode)
-        render.getPPM().close();
 }
